@@ -1,0 +1,36 @@
+{
+  "commands": [
+    {
+      "text": "$(gear)",
+      "command": "workbench.action.openGlobalSettings",
+      "tooltip": "Settings"
+    },
+    {
+      "command": "commands.refresh",
+      "text": "$(sync)",
+      "tooltip": "Refresh commands",
+      "color": "#FFCC00"
+    },
+    {
+      "text": "$(tools)Build",
+      "command": "workbench.action.tasks.runTask",
+      "arguments": ["Build"],
+      "tooltip": "Build & Run",
+      "color": "#00f30c"
+    },
+    {
+      "text": "$(play)Run ($(bug))",
+      "command": "workbench.action.tasks.runTask",
+      "arguments": ["Run Debug"],
+      "tooltip": "Build & Run",
+      "color": "#00f30c"
+    },
+    {
+      "text": "$(play)Run ($(zap))",
+      "command": "workbench.action.tasks.runTask",
+      "arguments": ["Run Release"],
+      "tooltip": "Build & Run",
+      "color": "#ff009d"
+    }
+  ]
+}
