@@ -57,10 +57,10 @@ RM = /usr/local/Cellar/cmake/3.20.5/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/borjavazquez/Documents/YoutubeProjects/GDEL
+CMAKE_SOURCE_DIR = /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/borjavazquez/Documents/YoutubeProjects/GDEL/build
+CMAKE_BINARY_DIR = /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/borjavazquez/Documents/YoutubeProjects/GDEL/build/CMakeFiles /Users/borjavazquez/Documents/YoutubeProjects/GDEL/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/borjavazquez/Documents/YoutubeProjects/GDEL/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,197 +129,173 @@ GDEL-DEBUG/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/build
 .PHONY : GDEL-DEBUG/fast
 
-Parser/core/Parser.o: Parser/core/Parser.cpp.o
-.PHONY : Parser/core/Parser.o
+Parser/src/BlockStatement.o: Parser/src/BlockStatement.cpp.o
+.PHONY : Parser/src/BlockStatement.o
 
 # target to build an object file
-Parser/core/Parser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.o
-.PHONY : Parser/core/Parser.cpp.o
+Parser/src/BlockStatement.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.o
+.PHONY : Parser/src/BlockStatement.cpp.o
 
-Parser/core/Parser.i: Parser/core/Parser.cpp.i
-.PHONY : Parser/core/Parser.i
+Parser/src/BlockStatement.i: Parser/src/BlockStatement.cpp.i
+.PHONY : Parser/src/BlockStatement.i
 
 # target to preprocess a source file
-Parser/core/Parser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.i
-.PHONY : Parser/core/Parser.cpp.i
+Parser/src/BlockStatement.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.i
+.PHONY : Parser/src/BlockStatement.cpp.i
 
-Parser/core/Parser.s: Parser/core/Parser.cpp.s
-.PHONY : Parser/core/Parser.s
+Parser/src/BlockStatement.s: Parser/src/BlockStatement.cpp.s
+.PHONY : Parser/src/BlockStatement.s
 
 # target to generate assembly for a file
-Parser/core/Parser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.s
-.PHONY : Parser/core/Parser.cpp.s
+Parser/src/BlockStatement.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.s
+.PHONY : Parser/src/BlockStatement.cpp.s
 
-Parser/core/Tokenizer.o: Parser/core/Tokenizer.cpp.o
-.PHONY : Parser/core/Tokenizer.o
+Parser/src/Expression.o: Parser/src/Expression.cpp.o
+.PHONY : Parser/src/Expression.o
 
 # target to build an object file
-Parser/core/Tokenizer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.o
-.PHONY : Parser/core/Tokenizer.cpp.o
+Parser/src/Expression.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.o
+.PHONY : Parser/src/Expression.cpp.o
 
-Parser/core/Tokenizer.i: Parser/core/Tokenizer.cpp.i
-.PHONY : Parser/core/Tokenizer.i
+Parser/src/Expression.i: Parser/src/Expression.cpp.i
+.PHONY : Parser/src/Expression.i
 
 # target to preprocess a source file
-Parser/core/Tokenizer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.i
-.PHONY : Parser/core/Tokenizer.cpp.i
+Parser/src/Expression.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.i
+.PHONY : Parser/src/Expression.cpp.i
 
-Parser/core/Tokenizer.s: Parser/core/Tokenizer.cpp.s
-.PHONY : Parser/core/Tokenizer.s
+Parser/src/Expression.s: Parser/src/Expression.cpp.s
+.PHONY : Parser/src/Expression.s
 
 # target to generate assembly for a file
-Parser/core/Tokenizer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.s
-.PHONY : Parser/core/Tokenizer.cpp.s
+Parser/src/Expression.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.s
+.PHONY : Parser/src/Expression.cpp.s
 
-Parser/elements/ignore/Ignore.o: Parser/elements/ignore/Ignore.cpp.o
-.PHONY : Parser/elements/ignore/Ignore.o
+Parser/src/ExpressionStatement.o: Parser/src/ExpressionStatement.cpp.o
+.PHONY : Parser/src/ExpressionStatement.o
 
 # target to build an object file
-Parser/elements/ignore/Ignore.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.o
-.PHONY : Parser/elements/ignore/Ignore.cpp.o
+Parser/src/ExpressionStatement.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.o
+.PHONY : Parser/src/ExpressionStatement.cpp.o
 
-Parser/elements/ignore/Ignore.i: Parser/elements/ignore/Ignore.cpp.i
-.PHONY : Parser/elements/ignore/Ignore.i
+Parser/src/ExpressionStatement.i: Parser/src/ExpressionStatement.cpp.i
+.PHONY : Parser/src/ExpressionStatement.i
 
 # target to preprocess a source file
-Parser/elements/ignore/Ignore.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.i
-.PHONY : Parser/elements/ignore/Ignore.cpp.i
+Parser/src/ExpressionStatement.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.i
+.PHONY : Parser/src/ExpressionStatement.cpp.i
 
-Parser/elements/ignore/Ignore.s: Parser/elements/ignore/Ignore.cpp.s
-.PHONY : Parser/elements/ignore/Ignore.s
+Parser/src/ExpressionStatement.s: Parser/src/ExpressionStatement.cpp.s
+.PHONY : Parser/src/ExpressionStatement.s
 
 # target to generate assembly for a file
-Parser/elements/ignore/Ignore.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.s
-.PHONY : Parser/elements/ignore/Ignore.cpp.s
+Parser/src/ExpressionStatement.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.s
+.PHONY : Parser/src/ExpressionStatement.cpp.s
 
-Parser/elements/literal/Literal.o: Parser/elements/literal/Literal.cpp.o
-.PHONY : Parser/elements/literal/Literal.o
+Parser/src/Literal.o: Parser/src/Literal.cpp.o
+.PHONY : Parser/src/Literal.o
 
 # target to build an object file
-Parser/elements/literal/Literal.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.o
-.PHONY : Parser/elements/literal/Literal.cpp.o
+Parser/src/Literal.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.o
+.PHONY : Parser/src/Literal.cpp.o
 
-Parser/elements/literal/Literal.i: Parser/elements/literal/Literal.cpp.i
-.PHONY : Parser/elements/literal/Literal.i
+Parser/src/Literal.i: Parser/src/Literal.cpp.i
+.PHONY : Parser/src/Literal.i
 
 # target to preprocess a source file
-Parser/elements/literal/Literal.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.i
-.PHONY : Parser/elements/literal/Literal.cpp.i
+Parser/src/Literal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.i
+.PHONY : Parser/src/Literal.cpp.i
 
-Parser/elements/literal/Literal.s: Parser/elements/literal/Literal.cpp.s
-.PHONY : Parser/elements/literal/Literal.s
+Parser/src/Literal.s: Parser/src/Literal.cpp.s
+.PHONY : Parser/src/Literal.s
 
 # target to generate assembly for a file
-Parser/elements/literal/Literal.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.s
-.PHONY : Parser/elements/literal/Literal.cpp.s
+Parser/src/Literal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.s
+.PHONY : Parser/src/Literal.cpp.s
 
-Parser/elements/statement/Statement.o: Parser/elements/statement/Statement.cpp.o
-.PHONY : Parser/elements/statement/Statement.o
+Parser/src/Parser.o: Parser/src/Parser.cpp.o
+.PHONY : Parser/src/Parser.o
 
 # target to build an object file
-Parser/elements/statement/Statement.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.o
-.PHONY : Parser/elements/statement/Statement.cpp.o
+Parser/src/Parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.o
+.PHONY : Parser/src/Parser.cpp.o
 
-Parser/elements/statement/Statement.i: Parser/elements/statement/Statement.cpp.i
-.PHONY : Parser/elements/statement/Statement.i
+Parser/src/Parser.i: Parser/src/Parser.cpp.i
+.PHONY : Parser/src/Parser.i
 
 # target to preprocess a source file
-Parser/elements/statement/Statement.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.i
-.PHONY : Parser/elements/statement/Statement.cpp.i
+Parser/src/Parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.i
+.PHONY : Parser/src/Parser.cpp.i
 
-Parser/elements/statement/Statement.s: Parser/elements/statement/Statement.cpp.s
-.PHONY : Parser/elements/statement/Statement.s
+Parser/src/Parser.s: Parser/src/Parser.cpp.s
+.PHONY : Parser/src/Parser.s
 
 # target to generate assembly for a file
-Parser/elements/statement/Statement.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.s
-.PHONY : Parser/elements/statement/Statement.cpp.s
+Parser/src/Parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.s
+.PHONY : Parser/src/Parser.cpp.s
 
-Parser/elements/statement/expression/BlockStatement.o: Parser/elements/statement/expression/BlockStatement.cpp.o
-.PHONY : Parser/elements/statement/expression/BlockStatement.o
+Parser/src/Statement.o: Parser/src/Statement.cpp.o
+.PHONY : Parser/src/Statement.o
 
 # target to build an object file
-Parser/elements/statement/expression/BlockStatement.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.o
-.PHONY : Parser/elements/statement/expression/BlockStatement.cpp.o
+Parser/src/Statement.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.o
+.PHONY : Parser/src/Statement.cpp.o
 
-Parser/elements/statement/expression/BlockStatement.i: Parser/elements/statement/expression/BlockStatement.cpp.i
-.PHONY : Parser/elements/statement/expression/BlockStatement.i
+Parser/src/Statement.i: Parser/src/Statement.cpp.i
+.PHONY : Parser/src/Statement.i
 
 # target to preprocess a source file
-Parser/elements/statement/expression/BlockStatement.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.i
-.PHONY : Parser/elements/statement/expression/BlockStatement.cpp.i
+Parser/src/Statement.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.i
+.PHONY : Parser/src/Statement.cpp.i
 
-Parser/elements/statement/expression/BlockStatement.s: Parser/elements/statement/expression/BlockStatement.cpp.s
-.PHONY : Parser/elements/statement/expression/BlockStatement.s
+Parser/src/Statement.s: Parser/src/Statement.cpp.s
+.PHONY : Parser/src/Statement.s
 
 # target to generate assembly for a file
-Parser/elements/statement/expression/BlockStatement.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.s
-.PHONY : Parser/elements/statement/expression/BlockStatement.cpp.s
+Parser/src/Statement.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.s
+.PHONY : Parser/src/Statement.cpp.s
 
-Parser/elements/statement/expression/Expression.o: Parser/elements/statement/expression/Expression.cpp.o
-.PHONY : Parser/elements/statement/expression/Expression.o
+Parser/src/Tokenizer.o: Parser/src/Tokenizer.cpp.o
+.PHONY : Parser/src/Tokenizer.o
 
 # target to build an object file
-Parser/elements/statement/expression/Expression.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.o
-.PHONY : Parser/elements/statement/expression/Expression.cpp.o
+Parser/src/Tokenizer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.o
+.PHONY : Parser/src/Tokenizer.cpp.o
 
-Parser/elements/statement/expression/Expression.i: Parser/elements/statement/expression/Expression.cpp.i
-.PHONY : Parser/elements/statement/expression/Expression.i
-
-# target to preprocess a source file
-Parser/elements/statement/expression/Expression.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.i
-.PHONY : Parser/elements/statement/expression/Expression.cpp.i
-
-Parser/elements/statement/expression/Expression.s: Parser/elements/statement/expression/Expression.cpp.s
-.PHONY : Parser/elements/statement/expression/Expression.s
-
-# target to generate assembly for a file
-Parser/elements/statement/expression/Expression.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.s
-.PHONY : Parser/elements/statement/expression/Expression.cpp.s
-
-Parser/elements/statement/expression/ExpressionStatement.o: Parser/elements/statement/expression/ExpressionStatement.cpp.o
-.PHONY : Parser/elements/statement/expression/ExpressionStatement.o
-
-# target to build an object file
-Parser/elements/statement/expression/ExpressionStatement.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.o
-.PHONY : Parser/elements/statement/expression/ExpressionStatement.cpp.o
-
-Parser/elements/statement/expression/ExpressionStatement.i: Parser/elements/statement/expression/ExpressionStatement.cpp.i
-.PHONY : Parser/elements/statement/expression/ExpressionStatement.i
+Parser/src/Tokenizer.i: Parser/src/Tokenizer.cpp.i
+.PHONY : Parser/src/Tokenizer.i
 
 # target to preprocess a source file
-Parser/elements/statement/expression/ExpressionStatement.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.i
-.PHONY : Parser/elements/statement/expression/ExpressionStatement.cpp.i
+Parser/src/Tokenizer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.i
+.PHONY : Parser/src/Tokenizer.cpp.i
 
-Parser/elements/statement/expression/ExpressionStatement.s: Parser/elements/statement/expression/ExpressionStatement.cpp.s
-.PHONY : Parser/elements/statement/expression/ExpressionStatement.s
+Parser/src/Tokenizer.s: Parser/src/Tokenizer.cpp.s
+.PHONY : Parser/src/Tokenizer.s
 
 # target to generate assembly for a file
-Parser/elements/statement/expression/ExpressionStatement.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.s
-.PHONY : Parser/elements/statement/expression/ExpressionStatement.cpp.s
+Parser/src/Tokenizer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GDEL-DEBUG.dir/build.make CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.s
+.PHONY : Parser/src/Tokenizer.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -354,30 +330,27 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... GDEL-DEBUG"
-	@echo "... Parser/core/Parser.o"
-	@echo "... Parser/core/Parser.i"
-	@echo "... Parser/core/Parser.s"
-	@echo "... Parser/core/Tokenizer.o"
-	@echo "... Parser/core/Tokenizer.i"
-	@echo "... Parser/core/Tokenizer.s"
-	@echo "... Parser/elements/ignore/Ignore.o"
-	@echo "... Parser/elements/ignore/Ignore.i"
-	@echo "... Parser/elements/ignore/Ignore.s"
-	@echo "... Parser/elements/literal/Literal.o"
-	@echo "... Parser/elements/literal/Literal.i"
-	@echo "... Parser/elements/literal/Literal.s"
-	@echo "... Parser/elements/statement/Statement.o"
-	@echo "... Parser/elements/statement/Statement.i"
-	@echo "... Parser/elements/statement/Statement.s"
-	@echo "... Parser/elements/statement/expression/BlockStatement.o"
-	@echo "... Parser/elements/statement/expression/BlockStatement.i"
-	@echo "... Parser/elements/statement/expression/BlockStatement.s"
-	@echo "... Parser/elements/statement/expression/Expression.o"
-	@echo "... Parser/elements/statement/expression/Expression.i"
-	@echo "... Parser/elements/statement/expression/Expression.s"
-	@echo "... Parser/elements/statement/expression/ExpressionStatement.o"
-	@echo "... Parser/elements/statement/expression/ExpressionStatement.i"
-	@echo "... Parser/elements/statement/expression/ExpressionStatement.s"
+	@echo "... Parser/src/BlockStatement.o"
+	@echo "... Parser/src/BlockStatement.i"
+	@echo "... Parser/src/BlockStatement.s"
+	@echo "... Parser/src/Expression.o"
+	@echo "... Parser/src/Expression.i"
+	@echo "... Parser/src/Expression.s"
+	@echo "... Parser/src/ExpressionStatement.o"
+	@echo "... Parser/src/ExpressionStatement.i"
+	@echo "... Parser/src/ExpressionStatement.s"
+	@echo "... Parser/src/Literal.o"
+	@echo "... Parser/src/Literal.i"
+	@echo "... Parser/src/Literal.s"
+	@echo "... Parser/src/Parser.o"
+	@echo "... Parser/src/Parser.i"
+	@echo "... Parser/src/Parser.s"
+	@echo "... Parser/src/Statement.o"
+	@echo "... Parser/src/Statement.i"
+	@echo "... Parser/src/Statement.s"
+	@echo "... Parser/src/Tokenizer.o"
+	@echo "... Parser/src/Tokenizer.i"
+	@echo "... Parser/src/Tokenizer.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

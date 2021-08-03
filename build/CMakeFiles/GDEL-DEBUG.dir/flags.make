@@ -4,7 +4,7 @@
 # compile CXX with /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser -I/Users/borjavazquez/Documents/YoutubeProjects/GDEL
+CXX_INCLUDES = -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL
 
 CXX_FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk -mmacosx-version-min=11.2 -std=gnu++17
 

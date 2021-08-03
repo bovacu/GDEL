@@ -1,12 +1,12 @@
 #include <iostream>
-#include "Parser/core/Parser.h"
-#include "Parser/core/Exception.hpp"
-#include "Parser/tests/ParserTests.hpp"
+#include "Parser/include/Parser.h"
+#include "Parser/include/Exception.hpp"
+// #include "Parser/tests/ParserTests.hpp"
 
-void executeUnitTests(){
-    ParserTests _pt;
-    _pt.runTests();
-}
+// void executeUnitTests(){
+//     ParserTests _pt;
+//     _pt.runTests();
+// }
 
 int main() {
 

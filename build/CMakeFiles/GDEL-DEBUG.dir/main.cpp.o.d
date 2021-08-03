@@ -1,5 +1,5 @@
 CMakeFiles/GDEL-DEBUG.dir/main.cpp.o: \
-  /Users/borjavazquez/Documents/YoutubeProjects/GDEL/main.cpp \
+  /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/main.cpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/__config \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/pthread.h \
@@ -223,9 +223,9 @@ CMakeFiles/GDEL-DEBUG.dir/main.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/bitset \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/__bit_reference \
-  /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/core/Parser.h \
+  /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/include/Parser.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/sstream \
-  /Users/borjavazquez/Documents/YoutubeProjects/GDEL/json.hpp \
+  /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/json.hpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/numeric \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/cmath \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/math.h \
@@ -242,12 +242,11 @@ CMakeFiles/GDEL-DEBUG.dir/main.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/__hash_table \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/valarray \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/clocale \
-  /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/core/Tokenizer.h \
-  /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/core/Declarations.h \
-  /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/Statement.h \
-  /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/expression/ExpressionStatement.h \
-  /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/expression/Expression.h \
-  /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/literal/Literal.h \
-  /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/expression/BlockStatement.h \
-  /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/core/Exception.hpp \
-  /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/tests/ParserTests.hpp
+  /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/include/Tokenizer.h \
+  /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/include/Declarations.h \
+  /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/include/Statement.h \
+  /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/include/ExpressionStatement.h \
+  /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/include/Expression.h \
+  /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/include/Literal.h \
+  /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/include/BlockStatement.h \
+  /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/include/Exception.hpp

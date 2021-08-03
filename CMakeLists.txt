@@ -16,14 +16,12 @@ project (${PROJECT_NAME})
 # the project's entire directory structure.
 include_directories(${CMAKE_SOURCE_DIR}/Parser ${CMAKE_SOURCE_DIR})
 set(SRC_FILES   main.cpp 
-                Parser/core/Parser.cpp 
-                Parser/core/Tokenizer.cpp 
-                Parser/elements/literal/Literal.cpp 
-                Parser/elements/ignore/Ignore.cpp
-                Parser/elements/statement/Statement.cpp
-                Parser/elements/statement/expression/ExpressionStatement.cpp
-                Parser/elements/statement/expression/Expression.cpp
-                Parser/elements/statement/expression/BlockStatement.cpp
-                Parser/tests/ParserTests.hpp)
+                Parser/src/Parser.cpp 
+                Parser/src/Tokenizer.cpp 
+                Parser/src/Literal.cpp 
+                Parser/src/Statement.cpp
+                Parser/src/ExpressionStatement.cpp
+                Parser/src/Expression.cpp
+                Parser/src/BlockStatement.cpp)
 
 add_executable (${PROJECT_NAME} ${SRC_FILES})

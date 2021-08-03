@@ -53,10 +53,10 @@ RM = /usr/local/Cellar/cmake/3.20.5/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/borjavazquez/Documents/YoutubeProjects/GDEL
+CMAKE_SOURCE_DIR = /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/borjavazquez/Documents/YoutubeProjects/GDEL/build
+CMAKE_BINARY_DIR = /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/GDEL-DEBUG.dir/depend.make
@@ -72,156 +72,140 @@ include CMakeFiles/GDEL-DEBUG.dir/flags.make
 CMakeFiles/GDEL-DEBUG.dir/main.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
 CMakeFiles/GDEL-DEBUG.dir/main.cpp.o: ../main.cpp
 CMakeFiles/GDEL-DEBUG.dir/main.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/YoutubeProjects/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/main.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/main.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/main.cpp.o -c /Users/borjavazquez/Documents/YoutubeProjects/GDEL/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/main.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/main.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/main.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/main.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/main.cpp
 
 CMakeFiles/GDEL-DEBUG.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/YoutubeProjects/GDEL/main.cpp > CMakeFiles/GDEL-DEBUG.dir/main.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/main.cpp > CMakeFiles/GDEL-DEBUG.dir/main.cpp.i
 
 CMakeFiles/GDEL-DEBUG.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/YoutubeProjects/GDEL/main.cpp -o CMakeFiles/GDEL-DEBUG.dir/main.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/main.cpp -o CMakeFiles/GDEL-DEBUG.dir/main.cpp.s
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
-CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.o: ../Parser/core/Parser.cpp
-CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/YoutubeProjects/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.o -c /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/core/Parser.cpp
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.o: ../Parser/src/Parser.cpp
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Parser.cpp
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/core/Parser.cpp > CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.i
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Parser.cpp > CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.i
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/core/Parser.cpp -o CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.s
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Parser.cpp -o CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.s
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
-CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.o: ../Parser/core/Tokenizer.cpp
-CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/YoutubeProjects/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.o -c /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/core/Tokenizer.cpp
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.o: ../Parser/src/Tokenizer.cpp
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Tokenizer.cpp
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/core/Tokenizer.cpp > CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.i
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Tokenizer.cpp > CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.i
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/core/Tokenizer.cpp -o CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.s
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Tokenizer.cpp -o CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.s
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.o: ../Parser/elements/literal/Literal.cpp
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/YoutubeProjects/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.o -c /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/literal/Literal.cpp
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.o: ../Parser/src/Literal.cpp
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Literal.cpp
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/literal/Literal.cpp > CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.i
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Literal.cpp > CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.i
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/literal/Literal.cpp -o CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.s
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Literal.cpp -o CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.s
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.o: ../Parser/elements/ignore/Ignore.cpp
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/YoutubeProjects/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.o -c /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/ignore/Ignore.cpp
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.o: ../Parser/src/Statement.cpp
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Statement.cpp
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/ignore/Ignore.cpp > CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.i
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Statement.cpp > CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.i
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/ignore/Ignore.cpp -o CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.s
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Statement.cpp -o CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.s
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.o: ../Parser/elements/statement/Statement.cpp
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/YoutubeProjects/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.o -c /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/Statement.cpp
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.o: ../Parser/src/ExpressionStatement.cpp
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/ExpressionStatement.cpp
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/Statement.cpp > CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.i
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/ExpressionStatement.cpp > CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.i
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/Statement.cpp -o CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.s
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/ExpressionStatement.cpp -o CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.s
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.o: ../Parser/elements/statement/expression/ExpressionStatement.cpp
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/YoutubeProjects/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.o -c /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/expression/ExpressionStatement.cpp
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.o: ../Parser/src/Expression.cpp
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Expression.cpp
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/expression/ExpressionStatement.cpp > CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.i
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Expression.cpp > CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.i
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/expression/ExpressionStatement.cpp -o CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.s
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Expression.cpp -o CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.s
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.o: ../Parser/elements/statement/expression/Expression.cpp
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/YoutubeProjects/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.o -c /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/expression/Expression.cpp
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.o: ../Parser/src/BlockStatement.cpp
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/BlockStatement.cpp
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/expression/Expression.cpp > CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.i
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/BlockStatement.cpp > CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.i
 
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/expression/Expression.cpp -o CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.s
-
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.o: CMakeFiles/GDEL-DEBUG.dir/flags.make
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.o: ../Parser/elements/statement/expression/BlockStatement.cpp
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.o: CMakeFiles/GDEL-DEBUG.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/YoutubeProjects/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.o -MF CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.o.d -o CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.o -c /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/expression/BlockStatement.cpp
-
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/expression/BlockStatement.cpp > CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.i
-
-CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/YoutubeProjects/GDEL/Parser/elements/statement/expression/BlockStatement.cpp -o CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.s
+CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/BlockStatement.cpp -o CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.s
 
 # Object files for target GDEL-DEBUG
 GDEL__DEBUG_OBJECTS = \
 "CMakeFiles/GDEL-DEBUG.dir/main.cpp.o" \
-"CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.o" \
-"CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.o" \
-"CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.o" \
-"CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.o" \
-"CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.o" \
-"CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.o" \
-"CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.o" \
-"CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.o"
+"CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.o" \
+"CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.o" \
+"CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.o" \
+"CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.o" \
+"CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.o" \
+"CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.o" \
+"CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.o"
 
 # External object files for target GDEL-DEBUG
 GDEL__DEBUG_EXTERNAL_OBJECTS =
 
 GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/main.cpp.o
-GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/Parser/core/Parser.cpp.o
-GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/Parser/core/Tokenizer.cpp.o
-GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/Parser/elements/literal/Literal.cpp.o
-GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/Parser/elements/ignore/Ignore.cpp.o
-GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/Statement.cpp.o
-GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/ExpressionStatement.cpp.o
-GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/Expression.cpp.o
-GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/Parser/elements/statement/expression/BlockStatement.cpp.o
+GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/Parser/src/Parser.cpp.o
+GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/Parser/src/Tokenizer.cpp.o
+GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/Parser/src/Literal.cpp.o
+GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/Parser/src/Statement.cpp.o
+GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/Parser/src/ExpressionStatement.cpp.o
+GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/Parser/src/Expression.cpp.o
+GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/Parser/src/BlockStatement.cpp.o
 GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/build.make
 GDEL-DEBUG: CMakeFiles/GDEL-DEBUG.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/borjavazquez/Documents/YoutubeProjects/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable GDEL-DEBUG"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable GDEL-DEBUG"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GDEL-DEBUG.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -233,6 +217,6 @@ CMakeFiles/GDEL-DEBUG.dir/clean:
 .PHONY : CMakeFiles/GDEL-DEBUG.dir/clean
 
 CMakeFiles/GDEL-DEBUG.dir/depend:
-	cd /Users/borjavazquez/Documents/YoutubeProjects/GDEL/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/borjavazquez/Documents/YoutubeProjects/GDEL /Users/borjavazquez/Documents/YoutubeProjects/GDEL /Users/borjavazquez/Documents/YoutubeProjects/GDEL/build /Users/borjavazquez/Documents/YoutubeProjects/GDEL/build /Users/borjavazquez/Documents/YoutubeProjects/GDEL/build/CMakeFiles/GDEL-DEBUG.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles/GDEL-DEBUG.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/GDEL-DEBUG.dir/depend
 
