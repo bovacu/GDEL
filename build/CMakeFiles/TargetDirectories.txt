@@ -1,3 +1,0 @@
-/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles/rebuild_cache.dir
-/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles/edit_cache.dir
-/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles/GDEL-DEBUG.dir

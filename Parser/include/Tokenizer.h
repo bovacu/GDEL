@@ -3,6 +3,7 @@
 
 #include "Parser/include/Declarations.h"
 #include "Parser/include/Statement.h"
+#include "Parser/include/TokenStripper.h"
 
 #include <iostream>
 #include <ostream>
@@ -16,14 +17,12 @@ class Tokenizer {
         std::map<MatchCharFunc, TokenizerFunc> tokenizerMap;
 
     private:
-        static constexpr const char* tokenTypeNames[] = {"PROGRAM", "INTEGER", "FLOAT", "BOOL", "STRING", "IGNORE", "ERROR", "EOF"};
-
-    private:
         int charPointer;
         const char* code;
         int codeLenth;
         int linePointer;
 
+        TokenStripper tokenStripper;
         Statement statement;
         friend class Parser;
 

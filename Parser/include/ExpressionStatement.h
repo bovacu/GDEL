@@ -11,7 +11,6 @@ class ExpressionStatement {
         Expression expression;
 
     public:
-        json getNextToken(Parser* _parser, const char* _code, int& _charPointer, int _linePointer);
         json getAst(Parser* _parser, json& _tokenToCheck) const;
 };
 

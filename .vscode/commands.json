@@ -31,6 +31,13 @@
       "arguments": ["Run Release"],
       "tooltip": "Build & Run",
       "color": "#ff009d"
+    },
+    {
+      "text": "$(beaker) UnitTests",
+      "command": "workbench.action.tasks.runTask",
+      "arguments": ["Run Tests"],
+      "tooltip": "Run Unit tests",
+      "color": "#ff009d"
     }
   ]
 }

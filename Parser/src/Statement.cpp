@@ -1,10 +1,6 @@
 #include "Parser/include/Statement.h"
 #include "Parser/include/Parser.h"
 
-json Statement::getNextToken(Parser* _parser, const char* _code, int& _charPointer, int _linePointer) {
-    return this->expressionStatement.getNextToken(_parser, _code, _charPointer, _linePointer);
-}
-
 json Statement::getAst(Parser* _parser, json& _tokenToCheck) const {
     if(strcmp(_tokenToCheck["type"].get<std::string>().c_str(), _LEFT_COLLIBRACE) == 0) {
         std::vector<json> _optionalBlockStatement;

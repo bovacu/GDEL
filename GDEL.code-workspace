@@ -116,7 +116,7 @@
 				"dependsOn": [
 					"Clear"
 				],
-				"command": "sh build/build.sh DEBUG GDEL",
+				"command": "sh build/build.sh DEBUG NO_RUN_TESTS GDEL",
 				"options": {
 					"cwd": "${workspaceFolder}"
 				},
@@ -131,7 +131,22 @@
 				"dependsOn": [
 					"Clear"
 				],
-				"command": "sh build/build.sh RELEASE GDEL",
+				"command": "sh build/build.sh RELEASE NO_RUN_TESTS GDEL",
+				"options": {
+					"cwd": "${workspaceFolder}"
+				},
+				"group": {
+					"kind": "build",
+					"isDefault": true
+				}
+			},
+			{
+				"type": "shell",
+				"label": "Run Tests",
+				"dependsOn": [
+					"Clear"
+				],
+				"command": "sh build/build.sh DEBUG RUN_TESTS GDEL",
 				"options": {
 					"cwd": "${workspaceFolder}"
 				},
@@ -146,7 +161,7 @@
 				"dependsOn": [
 					"Clear"
 				],
-				"command": "sh build/build.sh DEBUG GDEL NO_RUN",
+				"command": "sh build/build.sh DEBUG NO_RUN_TESTS GDEL NO_RUN",
 				"options": {
 					"cwd": "${workspaceFolder}"
 				},

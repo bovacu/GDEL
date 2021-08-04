@@ -14,6 +14,16 @@ using namespace nlohmann;
 #define _LEFT_COLLIBRACE "{"
 #define _RIGHT_COLLIBRACE "}"
 
+#define _BINARY_OP "BINARY_OP"
+#define _SUM "+"
+#define _SUB "-"
+#define _MUL "*"
+#define _DIV "/"
+#define _MOD "%"
+#define _POW "^"
+#define _LEFT_PARENTHESIS "("
+#define _RIGHT_PARENTHESIS ")"
+
 #define _IGNORE "IGNORE"
 #define _ERROR "ERROR"
 #define _EOF "EOF"

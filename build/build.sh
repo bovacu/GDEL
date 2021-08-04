@@ -1,6 +1,7 @@
 BUILD_TYPE=$1
-APP_NAME=$2
-NO_RUN=$3
+RUN_TESTS=$2
+APP_NAME=$3
+NO_RUN=$4
 
 source ./build/niceLogs.sh
 
@@ -36,11 +37,11 @@ execBuildRun() {
 		RUN="true"
 	fi
 
-	compile $BUILD_TYPE $APP_NAME $FINAL_DIR $RUN
+	compile $BUILD_TYPE $RUN_TESTS $APP_NAME $FINAL_DIR $RUN
 }
 
 compile() {
-	cmakeOut=$(cd build; cmake .. -DBUILD_TYPE_PARAM=$1 -DAPP_NAME_PARAM=$2 -Wno-dev -Wno-switch)
+	cmakeOut=$(cd build; cmake .. -DBUILD_TYPE_PARAM=$1 -DRUN_TESTS=$2 -DAPP_NAME_PARAM=$3 -Wno-dev -Wno-switch)
 	if [[ $? != 0 ]]; then
     	# There was an error
     	buildError
@@ -51,14 +52,14 @@ compile() {
 			buildError
 		else
 			cd build
-			mv $2-$1 $3
+			mv $3-$1 $4
 			PATH=`echo "$1" | tr '[:upper:]' '[:lower:]'`
 			buildSuccess
-			if [ "$4" == "true" ]; then
+			if [ "$5" == "true" ]; then
 				nicePrint 35 "" "Running!!" 
 				echo ""
 				echo ""
-				./../releases/$PATH/$2-$1
+				./../releases/$PATH/$3-$1
 			fi
 		fi
 	fi

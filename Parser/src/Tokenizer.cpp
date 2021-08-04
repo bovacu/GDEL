@@ -24,7 +24,7 @@ json Tokenizer::getNextToken() {
 
     // Get the type of token
     json _token;
-    _token = this->statement.getNextToken(this->parser, this->code, this->charPointer, this->linePointer);  
+    _token = this->tokenStripper.getTokenType(this->code, this->charPointer, this->linePointer);  
 
     // Unexpected token
     if(_token.size() == 0)
