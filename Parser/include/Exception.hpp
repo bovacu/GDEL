@@ -31,7 +31,7 @@ class UnexpectedTypexception : public CoreException {
         ~UnexpectedTypexception() { }
 };
 
-class MalformedStringException : public std::exception {
+class MalformedStringException : public CoreException {
     public:
         MalformedStringException(const char* _string, int _line)  {
          
@@ -54,7 +54,7 @@ class MalformedStringException : public std::exception {
         const char* msg;
 };
 
-class MalformedFloat : public std::exception {
+class MalformedFloat : public CoreException {
     public:
         MalformedFloat(const char* _string, int _line)  {
          
