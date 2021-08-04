@@ -169,6 +169,17 @@
 					"kind": "build",
 					"isDefault": true
 				}
+			},
+			{
+				"type": "shell",
+				"label": "Push",
+				"dependsOn": [
+					"Clear"
+				],
+				"command": "git push origin",
+				"options": {
+					"cwd": "${workspaceFolder}"
+				}
 			}
 		]
 	}

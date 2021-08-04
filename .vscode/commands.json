@@ -38,6 +38,13 @@
       "arguments": ["Run Tests"],
       "tooltip": "Run Unit tests",
       "color": "#ff009d"
+    },
+    {
+      "text": "$(github) Push",
+      "command": "workbench.action.tasks.runTask",
+      "arguments": ["Push"],
+      "tooltip": "Push to github",
+      "color": "#2a8b7b"
     }
   ]
 }
