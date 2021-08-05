@@ -4,12 +4,12 @@
 #include "Parser/include/Expression.h"
 
 json MultiplicativeExpression::getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const {
-    auto _left = this->primaryExpression.getAst(_expression, _parser, _parser->getLookAhead());
+    auto _left = this->unaryExpression.getAst(_expression, _parser, _parser->getLookAhead());
 
     while ( strcmp(_parser->getCurrentLookAheadType().c_str(), _MUL) == 0 || 
             strcmp(_parser->getCurrentLookAheadType().c_str(), _DIV) == 0) {
         auto _op = _parser->eatToken(_parser->getCurrentLookAheadType().c_str());
-        auto _right = this->primaryExpression.getAst(_expression, _parser, _parser->getLookAhead());
+        auto _right = this->unaryExpression.getAst(_expression, _parser, _parser->getLookAhead());
         _left = {
             {"type", _BINARY_OP},
             {"operator", _op},
@@ -21,7 +21,7 @@ json MultiplicativeExpression::getAst(const Expression& _expression, Parser* _pa
     return _left;
 }
 
-const PrimaryExpression& MultiplicativeExpression::getPrimaryExpression() const{
-    return this->primaryExpression;
+const UnaryExpression& MultiplicativeExpression::getUnaryExpression() const{
+    return this->unaryExpression;
 }  
 

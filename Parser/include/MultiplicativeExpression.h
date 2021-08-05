@@ -2,18 +2,18 @@
 #define __MULTIPLICATIVEEXPRESSION_H__
 
 #include "Parser/include/Declarations.h"
-#include "Parser/include/PrimaryExpression.h"
+#include "Parser/include/UnaryExpression.h"
 
 class Expression;
 class Parser;
 
 class MultiplicativeExpression {
     private:
-        PrimaryExpression primaryExpression;
+        UnaryExpression unaryExpression;
 
     public:
         json getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const;
-        const PrimaryExpression& getPrimaryExpression() const;
+        const UnaryExpression& getUnaryExpression() const;
 };
 
 #endif // __MULTIPLICATIVEEXPRESSION_H__

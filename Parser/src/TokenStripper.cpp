@@ -148,6 +148,17 @@ void TokenStripper::symbolToken(json& _outToken, const char* _code, int& _charPo
         case 10: _outToken  = json { {"type", _IGNORE}, {"value", "/n"}};           break;
         case 13: _outToken  = json { {"type", _IGNORE}, {"value", "/t"}};           break;
         case 32: _outToken  = json { {"type", _IGNORE}, {"value", " "}};            break;
+        // ! and variants
+        case 33: {
+                char _nextChar = _code[_charPointer + 1];
+                if(_nextChar == '='){
+                    _outToken  = json { {"type", _COM_N_EQ}, {"value", "!="}};
+                    _charPointer++;
+                }        
+                else
+                    _outToken  = json { {"type", _COM_N}, {"value", "!"}};        
+                break;
+            }
         
         // Comments
         case 35: {

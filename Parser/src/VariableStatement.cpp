@@ -40,6 +40,7 @@ json VariableStatement::getVariableDeclaration(const Expression& _expression, Pa
                                .getRelationalExpression()
                                .getAdditiveExpression()
                                .getMultiplicativeExpression()
+                               .getUnaryExpression()
                                .getPrimaryExpression()
                                .getLiteral();
     auto _id = _literal.getAst(_parser, _parser->getLookAhead());

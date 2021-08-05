@@ -43,6 +43,7 @@
 #define _COM_OR "||"
 
 #define _BINARY_OP "BINARY_OP"
+#define _UNARY_OP "UNARY_OP"
 #define _SUM "+"
 #define _SUB "-"
 #define _MUL "*"
