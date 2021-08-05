@@ -34,6 +34,8 @@ std::vector<json> VariableStatement::getDeclarationList(const Expression& _expre
 
 json VariableStatement::getVariableDeclaration(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const {
     auto _literal = _expression.getAssigmentExpression()
+                               .getLogicalOrExpression()
+                               .getLogicalAndExpression()
                                .getEqualityExpression()
                                .getRelationalExpression()
                                .getAdditiveExpression()

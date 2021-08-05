@@ -38,6 +38,7 @@
 #define _COM_LT_EQ "<="
 #define _COM_N "!"
 #define _COM_N_EQ "!="
+#define _LOGICAL_EXPRESSION "LOGICAL_EXPRESSION"
 #define _COM_AND "&&"
 #define _COM_OR "||"
 

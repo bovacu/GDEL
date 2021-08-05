@@ -39,6 +39,8 @@ set(SRC_FILES   main.cpp
                 Parser/src/IfStatement.cpp
                 Parser/src/RelationalExpression.cpp
                 Parser/src/EqualityExpression.cpp
+                Parser/src/LogicalAndExpression.cpp
+                Parser/src/LogicalOrExpression.cpp
                 
                 Parser/tests/ParserTests.hpp
                 Parser/tests/BlockTest.hpp

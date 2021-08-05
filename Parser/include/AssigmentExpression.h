@@ -2,18 +2,18 @@
 #define __ASSIGMENTEXPRESSION_H__
 
 #include "Parser/include/Declarations.h"
-#include "Parser/include/EqualityExpression.h"
+#include "Parser/include/LogicalOrExpression.h"
 
 class Expression;
 class Parser;
 
 class AssigmentExpression {
     private:
-        EqualityExpression equalityExpression;
+        LogicalOrExpression logicalOrExpression;
 
     public:
         json getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const;
-        const EqualityExpression& getEqualityExpression() const;
+        const LogicalOrExpression& getLogicalOrExpression() const;
 
     private:
         json isAssigment(Parser* _parser, const char* _tokenType) const;

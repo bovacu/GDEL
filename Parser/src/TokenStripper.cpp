@@ -159,6 +159,20 @@ void TokenStripper::symbolToken(json& _outToken, const char* _code, int& _charPo
             _outToken = json { {"type", _IGNORE}, {"value", "#"}};     break;
         }
         case 37: _outToken  = json { {"type", _MOD}, {"value", "%"}};               break;
+
+        // & and variants
+        case 38: {
+                char _nextChar = _code[_charPointer + 1];
+                if(_nextChar == '='){
+                    _outToken  = json { {"type", _AEQ}, {"value", "&="}};
+                    _charPointer++;
+                } else if(_nextChar == '&'){
+                    _outToken  = json { {"type", _COM_AND}, {"value", "&&"}};
+                    _charPointer++;
+                } else
+                    _outToken  = json { {"type", _EQ}, {"value", "&"}};        
+                break;
+            }
         case 40: _outToken  = json { {"type", _LEFT_PARENTHESIS}, {"value", "("}};  break;
         case 41: _outToken  = json { {"type", _RIGHT_PARENTHESIS}, {"value", ")"}}; break;
         
@@ -257,6 +271,20 @@ void TokenStripper::symbolToken(json& _outToken, const char* _code, int& _charPo
                 break;
             }
         case 123: _outToken = json { {"type", _LEFT_COLLIBRACE}, {"value", "{"}};   break;
+
+        // | and variants
+        case 124: {
+                char _nextChar = _code[_charPointer + 1];
+                if(_nextChar == '='){
+                    _outToken  = json { {"type", _OEQ}, {"value", "|="}};
+                    _charPointer++;
+                } else if(_nextChar == '|'){
+                    _outToken  = json { {"type", _COM_OR}, {"value", "||"}};
+                    _charPointer++;
+                } else
+                    _outToken  = json { {"type", _EQ}, {"value", "|"}};        
+                break;
+            }
         case 125: _outToken = json { {"type", _RIGHT_COLLIBRACE}, {"value", "}"}};  break;
         default: {
                 _outToken = {};
