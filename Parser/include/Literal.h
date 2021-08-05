@@ -13,6 +13,7 @@ class Literal {
         json numberAst(Parser* _parser, json& _tokenToCheck) const;
         json stringAst(Parser* _parser, json& _tokenToCheck) const;
         json boolAst(Parser* _parser, json& _tokenToCheck) const;
+        json nullAst(Parser* _parser, json& _tokenToCheck) const;
         json idAst(Parser* _parser, json& _tokenToCheck) const;
         json symbolAst(Parser* _parser, json& _tokenToCheck) const;
 };

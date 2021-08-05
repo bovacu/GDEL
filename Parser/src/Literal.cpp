@@ -12,6 +12,8 @@ json Literal::getAst(Parser* _parser, json& _tokenToCheck) const {
         _outToken = stringAst(_parser, _tokenToCheck);
     } else if(strcmp(_tokenType.c_str(), _BOOL) == 0) {
         _outToken = boolAst(_parser, _tokenToCheck);
+    }else if(strcmp(_tokenType.c_str(), _NULL) == 0) {
+        _outToken = nullAst(_parser, _tokenToCheck);
     } else if(strcmp(_tokenType.c_str(), _ID) == 0) {
         _outToken = idAst(_parser, _tokenToCheck);
     } else {
@@ -42,6 +44,10 @@ json Literal::stringAst(Parser* _parser, json& _tokenToCheck) const {
 
 json Literal::boolAst(Parser* _parser, json& _tokenToCheck) const {
     return _parser->eatToken(_BOOL);
+}
+
+json Literal::nullAst(Parser* _parser, json& _tokenToCheck) const {
+    return _parser->eatToken(_NULL);
 }
 
 json Literal::idAst(Parser* _parser, json& _tokenToCheck) const {

@@ -2,6 +2,7 @@
 #define _FLOAT "FLOAT"
 #define _STRING "STRING"
 #define _BOOL "BOOL"
+#define _NULL "NULL"
 
 #define _SEMICOLON ";"
 #define _COMA ","

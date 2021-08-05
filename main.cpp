@@ -12,7 +12,9 @@ int main(int argc, char *argv[]) {
         Parser _p;
         try {
             auto _root = _p.parse(R"(
-                10 > x == 11 < x;
+                if(x == null) {
+
+                }
             )");
             std::cout << _root.dump(4) << std::endl;
         } catch(CoreException e) {  }

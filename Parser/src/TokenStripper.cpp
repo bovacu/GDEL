@@ -6,6 +6,7 @@ json TokenStripper::getTokenType(const char* _code, int& _charPointer, int _line
     numberToken(_outToken, _code, _charPointer, _linePointer);
     stringToken(_outToken, _code, _charPointer, _linePointer);
     boolToken(_outToken, _code, _charPointer, _linePointer);
+    nullToken(_outToken, _code, _charPointer, _linePointer);
     idToken(_outToken, _code, _charPointer, _linePointer);
     symbolToken(_outToken, _code, _charPointer, _linePointer);
 
@@ -81,6 +82,27 @@ void TokenStripper::boolToken(json& _outToken, const char* _code, int& _charPoin
     _outToken = json {
         {"type", _BOOL},
         {"value", _fullBool.c_str()}  
+    };
+}
+
+void TokenStripper::nullToken(json& _outToken, const char* _code, int& _charPointer, int _linePointer) {
+    if(!_outToken.empty()) return;
+
+    char _first = _code[_charPointer];
+    if(_first != 'n') return;
+    if(_first == 'n' && _charPointer + 4 >= strlen(_code)) return;
+
+    std::string _bool = std::string(&_code[_charPointer], &_code[_charPointer] + 4);
+    if(std::strcmp(_bool.c_str(), "null") != 0) return;
+
+    std::string _fullNull;
+    int _size = 4;
+    for(auto _i = 0; _i < _size; _i++) 
+        _fullNull.push_back(_code[_charPointer++]);
+
+    _outToken = json {
+        {"type", _NULL},
+        {"value", _fullNull.c_str()}  
     };
 }
 
