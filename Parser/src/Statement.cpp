@@ -3,7 +3,9 @@
 #include "Parser/include/Parser.h"
 
 json Statement::getAst(Parser* _parser, json& _tokenToCheck) const {
-    if(strcmp(_tokenToCheck["type"].get<std::string>().c_str(), _LEFT_COLLIBRACE) == 0) {
+    auto _tokenType = _tokenToCheck["type"].get<std::string>();
+
+    if(strcmp(_tokenType.c_str(), _LEFT_COLLIBRACE) == 0) {
         std::vector<json> _optionalBlockStatement;
         _parser->eatToken(_LEFT_COLLIBRACE);
 
@@ -16,7 +18,17 @@ json Statement::getAst(Parser* _parser, json& _tokenToCheck) const {
             {"type", _BLOCK_STATEMENT },
             {"body", _optionalBlockStatement}
         };
+    } else if(strcmp(_tokenType.c_str(), _VAR) == 0) {
+        return this->variableStatement.getAst(this->expressionStatement.getExpression(), _parser, _parser->getLookAhead());
+    } else if (strcmp(_tokenType.c_str(), _IF) == 0) {
+        return this->ifStatement.getAst(*this, _parser, _parser->getLookAhead());
     }
 
     return this->expressionStatement.getAst(_parser, _tokenToCheck);
 }
+
+
+const ExpressionStatement& Statement::getExpressionStatement() const {
+    return this->expressionStatement;
+}
+

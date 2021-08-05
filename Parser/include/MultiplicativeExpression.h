@@ -13,6 +13,7 @@ class MultiplicativeExpression {
 
     public:
         json getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const;
+        const PrimaryExpression& getPrimaryExpression() const;
 };
 
 #endif // __MULTIPLICATIVEEXPRESSION_H__

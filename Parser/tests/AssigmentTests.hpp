@@ -13,7 +13,7 @@ class AssigmentTests {
             test3();
             test4();
             test5();
-            // test6();
+            test6();
             std::cout << "\033[1;32m" << "✔" << " All unit test passed for Assigment!" << "\033[0m\n" << std::endl;
         }
 
@@ -300,6 +300,103 @@ class AssigmentTests {
                                         "value": "y"
                                     },
                                     "type": "BINARY_OP"
+                                },
+                                "type": "ASSIGMENT_EXPRESSION"
+                            },
+                            "type": "EXPRESSION_STATEMENT"
+                        },
+                        {
+                            "type": "EOF",
+                            "value": "EOF"
+                        }
+                    ],
+                    "type": "PROGRAM"
+                }
+            )";
+            _resultAst = _parser.parse(_code1);
+            assert(json::parse(_expectedAst) == _resultAst);
+        }
+
+        void test6() {
+            Parser _parser;
+            const char* _code1 = R"(
+                x += 1;
+                x -= 1;
+                x *= 1;
+                x /= 1;
+            )";
+            json _resultAst;
+            
+            std::string _expectedAst = R"(
+                {
+                    "body": [
+                        {
+                            "expression": {
+                                "left": {
+                                    "type": "ID",
+                                    "value": "x"
+                                },
+                                "operator": {
+                                    "type": "+=",
+                                    "value": "+="
+                                },
+                                "right": {
+                                    "type": "INTEGER",
+                                    "value": "1"
+                                },
+                                "type": "ASSIGMENT_EXPRESSION"
+                            },
+                            "type": "EXPRESSION_STATEMENT"
+                        },
+                        {
+                            "expression": {
+                                "left": {
+                                    "type": "ID",
+                                    "value": "x"
+                                },
+                                "operator": {
+                                    "type": "-=",
+                                    "value": "-="
+                                },
+                                "right": {
+                                    "type": "INTEGER",
+                                    "value": "1"
+                                },
+                                "type": "ASSIGMENT_EXPRESSION"
+                            },
+                            "type": "EXPRESSION_STATEMENT"
+                        },
+                        {
+                            "expression": {
+                                "left": {
+                                    "type": "ID",
+                                    "value": "x"
+                                },
+                                "operator": {
+                                    "type": "*=",
+                                    "value": "*="
+                                },
+                                "right": {
+                                    "type": "INTEGER",
+                                    "value": "1"
+                                },
+                                "type": "ASSIGMENT_EXPRESSION"
+                            },
+                            "type": "EXPRESSION_STATEMENT"
+                        },
+                        {
+                            "expression": {
+                                "left": {
+                                    "type": "ID",
+                                    "value": "x"
+                                },
+                                "operator": {
+                                    "type": "/=",
+                                    "value": "/="
+                                },
+                                "right": {
+                                    "type": "INTEGER",
+                                    "value": "1"
                                 },
                                 "type": "ASSIGMENT_EXPRESSION"
                             },

@@ -4,6 +4,7 @@
 #define _BOOL "BOOL"
 
 #define _SEMICOLON ";"
+#define _COMA ","
 #define _SPACE " "
 #define _N "/n"
 #define _R "/r"
@@ -13,15 +14,31 @@
 
 #define _ID "ID"
 #define _ASSIGMENT_EXPRESSION "ASSIGMENT_EXPRESSION"
+#define _VARIABLE_STATEMENT "VARIABLE_STATEMENT"
+#define _VARIABLE_DECLARATION "VARIABLE_DECLARATION"
 #define _EQ "="
 #define _PEQ "+="
+#define _INCR "++"
+#define _DECR "--"
+#define _MULTR "**"
+#define _DVDR "//"
+// #define _MODR "%%"
 #define _MEQ "-="
-#define _BEq "*="
+#define _BEQ "*="
 #define _DEQ "/="
 #define _POWEQ "^="
 #define _MODEQ "%="
 #define _AEQ "&="
 #define _OEQ "|="
+#define _COM_EQ "=="
+#define _COM_GT ">"
+#define _COM_GT_EQ ">="
+#define _COM_LT "<"
+#define _COM_LT_EQ "<="
+#define _COM_N "!"
+#define _COM_N_EQ "!="
+#define _COM_AND "&&"
+#define _COM_OR "||"
 
 #define _BINARY_OP "BINARY_OP"
 #define _SUM "+"
@@ -40,4 +57,25 @@
 #define _EXPRESSION_STATEMENT "EXPRESSION_STATEMENT"
 #define _BLOCK_STATEMENT "BLOCK_STATEMENT"
 
-extern const char* symbols[25];
+extern const char* symbols[32];
+
+#define _VAR "var"
+
+#define _FOR_STATEMENT "FOR_STATEMENT"
+#define _FOR "for"
+
+#define _LOOP_STATEMENT "LOOP_STATEMENT"
+#define _LOOP "loop"
+
+#define _IF_STATEMENT "IF_STATEMENT"
+#define _IF "if"
+#define _ELSE_IF_STATEMENT "ELSE_IF_STATEMENT"
+#define _ELSE_IF "elif"
+#define _ELSE_STATEMENT "ELSE_STATEMENT"
+#define _ELSE "else"
+
+#define _SWITCH_STATEMENT "SWITCH_STATEMENT"
+#define _SWITCH "switch"
+#define _CASE "case"
+
+extern const char* keywords[8];

@@ -20,3 +20,8 @@ json MultiplicativeExpression::getAst(const Expression& _expression, Parser* _pa
 
     return _left;
 }
+
+const PrimaryExpression& MultiplicativeExpression::getPrimaryExpression() const{
+    return this->primaryExpression;
+}  
+

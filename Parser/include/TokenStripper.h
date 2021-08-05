@@ -14,6 +14,8 @@ class TokenStripper {
         void boolToken(json& _outToken, const char* _code, int& _charPointer, int _linePointer);
         void idToken(json& _outToken, const char* _code, int& _charPointer, int _linePointer);
         void symbolToken(json& _outToken, const char* _code, int& _charPointer, int _linePointer);
+
+        std::string checkIfIsKeyword(const std::string& _fullId) const;
 };
 
 #endif // __TOKENSTRIPPER_H__

@@ -10,3 +10,9 @@ json ExpressionStatement::getAst(Parser* _parser, json& _tokenToCheck) const {
         {"expression", _ast}
     };
 }
+
+
+const Expression& ExpressionStatement::getExpression() const {
+    return this->expression;
+}
+

@@ -23,6 +23,12 @@ json Literal::getAst(Parser* _parser, json& _tokenToCheck) const {
     return _outToken;
 }
 
+
+const Literal& PrimaryExpression::getLiteral() const {
+    return this->literal;
+}
+
+
 json Literal::numberAst(Parser* _parser, json& _tokenToCheck) const {
     auto _tokenValue = _tokenToCheck["value"].get<std::string>();
     auto _type = _tokenValue.find('.') != std::string::npos ? _FLOAT : _INTEGER;

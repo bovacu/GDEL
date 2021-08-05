@@ -3,7 +3,7 @@
 #include "Parser/include/Parser.h"
 
 json AssigmentExpression::getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const {
-    auto _left = this->additiveExpression.getAst(_expression, _parser, _parser->getLookAhead());
+    auto _left = this->equalityExpression.getAst(_expression, _parser, _parser->getLookAhead());
     auto _assigment = isAssigment(_parser, _parser->getCurrentLookAheadType().c_str());
     if(_assigment.empty())
         return _left;
@@ -18,6 +18,12 @@ json AssigmentExpression::getAst(const Expression& _expression, Parser* _parser,
 
     return json {  };
 }
+
+
+const EqualityExpression& AssigmentExpression::getEqualityExpression() const {
+    return this->equalityExpression;
+}
+
 
 json AssigmentExpression::isAssigment(Parser* _parser, const char* _tokenType) const {
     // from = to %=

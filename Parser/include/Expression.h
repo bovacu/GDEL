@@ -12,6 +12,7 @@ class Expression {
 
     public:
         json getAst(Parser* _parser, json& _tokenToCheck) const;
+        const AssigmentExpression& getAssigmentExpression() const;
 };
 
 #endif // __EXPRESSION_H__

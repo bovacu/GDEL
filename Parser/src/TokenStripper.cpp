@@ -66,9 +66,12 @@ void TokenStripper::boolToken(json& _outToken, const char* _code, int& _charPoin
     if(!_outToken.empty()) return;
 
     char _first = _code[_charPointer];
-    if(_charPointer + 4 + (_first == 't' ? 0 : 1) >= strlen(_code) || _first != 't' && _first != 'f') return;
+    if(_first != 't' && _first != 'f') return;
+    if(_first == 'f' && _charPointer + 4 >= strlen(_code)) return;
+    if(_first == 't' && _charPointer + 5 >= strlen(_code)) return;
+
     std::string _bool = std::string(&_code[_charPointer], &_code[_charPointer] + 4 + (_first == 't' ? 0 : 1));
-    if(std::strcmp(_bool.c_str(), "true") == 1 && strcmp(_bool.c_str(), "false") == 1) return;
+    if(std::strcmp(_bool.c_str(), "true") != 0 && strcmp(_bool.c_str(), "false") != 0) return;
 
     std::string _fullBool;
     int _size = _code[_charPointer] == 't' ? 4 : 5;
@@ -82,8 +85,7 @@ void TokenStripper::boolToken(json& _outToken, const char* _code, int& _charPoin
 }
 
 void TokenStripper::idToken(json& _outToken, const char* _code, int& _charPointer, int _linePointer) {
-    int _ascii = (int)_code[_charPointer], _minLower = 97, _maxLower = 122, _minUpper = 65, _maxUpper = 90,
-     _underscore = 95, _miNum = 48, _maxNum = 57;
+    int _ascii = (int)_code[_charPointer], _underscore = 95;
     
     if(_ascii != _underscore && !std::isalpha(_code[_charPointer])) return;
 
@@ -96,10 +98,20 @@ void TokenStripper::idToken(json& _outToken, const char* _code, int& _charPointe
         _currentChar = _code[_charPointer];
     }
 
+    auto _keyword = checkIfIsKeyword(_fullId);
+
     _outToken = json {
-        {"type", _ID},
+        {"type", _keyword.empty() ? _ID : _keyword},
         {"value", _fullId.c_str()}  
     };
+}
+
+std::string TokenStripper::checkIfIsKeyword(const std::string& _fullId) const {
+    for(const char* _keyword : keywords) {
+        if(_keyword != nullptr && strcmp(_fullId.c_str(), _keyword) == 0)
+            return _keyword;
+    }
+    return "";
 }
 
 void TokenStripper::symbolToken(json& _outToken, const char* _code, int& _charPointer, int _linePointer) {
@@ -114,6 +126,8 @@ void TokenStripper::symbolToken(json& _outToken, const char* _code, int& _charPo
         case 10: _outToken  = json { {"type", _IGNORE}, {"value", "/n"}};           break;
         case 13: _outToken  = json { {"type", _IGNORE}, {"value", "/t"}};           break;
         case 32: _outToken  = json { {"type", _IGNORE}, {"value", " "}};            break;
+        
+        // Comments
         case 35: {
             auto _length = strlen(_code);
             while(_code[_charPointer] != '\n' && _code[_charPointer] != '\r' && _charPointer < _length)
@@ -125,12 +139,101 @@ void TokenStripper::symbolToken(json& _outToken, const char* _code, int& _charPo
         case 37: _outToken  = json { {"type", _MOD}, {"value", "%"}};               break;
         case 40: _outToken  = json { {"type", _LEFT_PARENTHESIS}, {"value", "("}};  break;
         case 41: _outToken  = json { {"type", _RIGHT_PARENTHESIS}, {"value", ")"}}; break;
-        case 42: _outToken  = json { {"type", _MUL}, {"value", "*"}};               break;
-        case 43: _outToken  = json { {"type", _SUM}, {"value", "+"}};               break;
-        case 45: _outToken  = json { {"type", _SUB}, {"value", "-"}};               break;
-        case 47: _outToken  = json { {"type", _DIV}, {"value", "/"}};               break;
+        
+        // * and variants
+        case 42: {
+                char _nextChar = _code[_charPointer + 1];
+                if(_nextChar == '='){
+                    _outToken  = json { {"type", _BEQ}, {"value", "*="}};  
+                    _charPointer++;
+                } else if(_nextChar == '*'){
+                    _outToken  = json { {"type", _MULTR}, {"value", "**"}};  
+                    _charPointer++;
+                } else
+                    _outToken  = json { {"type", _MUL}, {"value", "*"}};        
+                break;
+            }
+        
+        // + and variants
+        case 43: {
+                char _nextChar = _code[_charPointer + 1];
+                if(_nextChar == '='){
+                    _outToken  = json { {"type", _PEQ}, {"value", "+="}};  
+                    _charPointer++;
+                } else if(_nextChar == '+') {
+                    _outToken  = json { {"type", _INCR}, {"value", "++"}};  
+                    _charPointer++;
+                } else
+                    _outToken  = json { {"type", _SUM}, {"value", "+"}};        
+                break;
+            }
+        case 44: _outToken  = json { {"type", _COMA}, {"value", ","}};              break;
+        
+        // - and variants
+        case 45: {
+                char _nextChar = _code[_charPointer + 1];
+                if(_nextChar == '='){
+                    _outToken  = json { {"type", _MEQ}, {"value", "-="}};  
+                    _charPointer++;
+                } else if(_nextChar == '-') {
+                    _outToken  = json { {"type", _DECR}, {"value", "--"}};  
+                    _charPointer++;
+                } else
+                    _outToken  = json { {"type", _SUB}, {"value", "-"}};        
+                break;
+            }
+        
+        // / and variants
+        case 47: {
+                char _nextChar = _code[_charPointer + 1];
+                if(_nextChar == '='){
+                    _outToken  = json { {"type", _DEQ}, {"value", "/="}};  
+                    _charPointer++;
+                }
+                else if(_nextChar == '/'){
+                    _outToken  = json { {"type", _DVDR}, {"value", "//"}}; 
+                    _charPointer++;
+                } else
+                    _outToken  = json { {"type", _DIV}, {"value", "/"}};        
+                break;
+            }
         case 59: _outToken  = json { {"type", _SEMICOLON}, {"value", ";"}};         break;
-        case 61: _outToken  = json { {"type", _EQ}, {"value", "="}};                break;
+        
+        // < and variants
+        case 60: {
+                char _nextChar = _code[_charPointer + 1];
+                if(_nextChar == '='){
+                    _outToken  = json { {"type", _COM_LT_EQ}, {"value", "<="}};        
+                    _charPointer++;
+                }
+                else
+                    _outToken  = json { {"type", _COM_LT}, {"value", "<"}};        
+                break;
+            }
+
+        // = and variants
+        case 61: {
+                char _nextChar = _code[_charPointer + 1];
+                if(_nextChar == '='){
+                    _outToken  = json { {"type", _COM_EQ}, {"value", "=="}};
+                    _charPointer++;
+                }        
+                else
+                    _outToken  = json { {"type", _EQ}, {"value", "="}};        
+                break;
+            }
+        
+        // > and variants
+        case 62: {
+                char _nextChar = _code[_charPointer + 1];
+                if(_nextChar == '='){
+                    _outToken  = json { {"type", _COM_GT_EQ}, {"value", ">="}};    
+                    _charPointer++;
+                }    
+                else
+                    _outToken  = json { {"type", _COM_GT}, {"value", ">"}};        
+                break;
+            }
         case 123: _outToken = json { {"type", _LEFT_COLLIBRACE}, {"value", "{"}};   break;
         case 125: _outToken = json { {"type", _RIGHT_COLLIBRACE}, {"value", "}"}};  break;
         default: {

@@ -15,6 +15,7 @@ class PrimaryExpression {
 
     public:
         json getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const;
+        const Literal& getLiteral() const;
 };
 
 #endif // __PRIMARYEXPRESSION_H__

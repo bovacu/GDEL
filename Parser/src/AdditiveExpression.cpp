@@ -20,3 +20,10 @@ json AdditiveExpression::getAst(const Expression& _expression, Parser* _parser, 
 
     return _left;
 }
+
+
+
+const MultiplicativeExpression& AdditiveExpression::getMultiplicativeExpression() const {
+    return this->multiplicativeExpression;
+}
+

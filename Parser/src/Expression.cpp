@@ -5,3 +5,8 @@
 json Expression::getAst(Parser* _parser, json& _tokenToCheck) const {
     return this->assigmentExpression.getAst(*this, _parser, _tokenToCheck);
 }
+
+
+const AssigmentExpression& Expression::getAssigmentExpression() const {
+    return this->assigmentExpression;
+}

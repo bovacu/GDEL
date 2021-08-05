@@ -13,6 +13,7 @@ class AdditiveExpression {
 
     public:
         json getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const;
+        const MultiplicativeExpression& getMultiplicativeExpression() const;
 };
 
 
