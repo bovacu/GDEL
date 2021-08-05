@@ -10,6 +10,7 @@
 #include "Parser/tests/VariablesTest.hpp"
 #include "Parser/tests/IfTests.hpp"
 #include "Parser/tests/RangeTests.hpp"
+#include "Parser/tests/LoopTests.hpp"
 #include <assert.h>
 
 class ParserTests {
@@ -22,6 +23,7 @@ class ParserTests {
         VariablesTest variablesTest;
         IfTests ifTests;
         RangeTests rangeTests;
+        LoopTests LoopTests;
 
     public:
         void run() {
@@ -32,6 +34,7 @@ class ParserTests {
             variablesTest.runTests();
             ifTests.runTests();
             rangeTests.runTests();
+            LoopTests.runTests();
         }
 };
 
