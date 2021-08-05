@@ -1,3 +1,4 @@
+#include "Parser/include/Defines.h"
 #include "Parser/include/AdditiveExpression.h"
 #include "Parser/include/Parser.h"
 #include "Parser/include/Expression.h"

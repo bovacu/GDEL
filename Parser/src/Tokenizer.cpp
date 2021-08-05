@@ -1,3 +1,4 @@
+#include "Parser/include/Defines.h"
 #include "Parser/include/Tokenizer.h"
 #include "Parser/include/Exception.hpp"
 #include "Parser/include/Parser.h"

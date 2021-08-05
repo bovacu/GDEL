@@ -2,6 +2,7 @@
 #define __NUMBERSTEST_H__
 
 #include "Parser/include/Parser.h"
+#include "Parser/include/Defines.h"
 #include "Parser/include/Declarations.h"
 #include <assert.h>
 

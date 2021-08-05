@@ -12,6 +12,7 @@ class TokenStripper {
         void numberToken(json& _outToken, const char* _code, int& _charPointer, int _linePointer);
         void stringToken(json& _outToken, const char* _code, int& _charPointer, int _linePointer);
         void boolToken(json& _outToken, const char* _code, int& _charPointer, int _linePointer);
+        void idToken(json& _outToken, const char* _code, int& _charPointer, int _linePointer);
         void symbolToken(json& _outToken, const char* _code, int& _charPointer, int _linePointer);
 };
 

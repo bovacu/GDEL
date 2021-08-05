@@ -32,7 +32,9 @@ set(SRC_FILES   main.cpp
                 Parser/src/MultiplicativeExpression.cpp
                 Parser/src/PrimaryExpression.cpp
                 Parser/src/ParenthesisExpression.cpp
+                Parser/src/AssigmentExpression.cpp
                 Parser/src/TokenStripper.cpp
+                Parser/src/Defines.cpp
                 
                 Parser/tests/ParserTests.hpp
                 Parser/tests/BlockTest.hpp

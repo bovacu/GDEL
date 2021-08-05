@@ -31,6 +31,14 @@ class UnexpectedTypexception : public CoreException {
         ~UnexpectedTypexception() { }
 };
 
+class IllegalAssigmentExpression : public CoreException {
+    public:
+        IllegalAssigmentExpression(const char* _assigment, int _line) {
+            std::cerr << "\033[1;31m" << "Error: Illegal assigment of var '" << _assigment << "' in line " << _line << "\033[0m\n" << std::endl;
+        }
+        ~IllegalAssigmentExpression() { }
+};
+
 class MalformedStringException : public CoreException {
     public:
         MalformedStringException(const char* _string, int _line)  {

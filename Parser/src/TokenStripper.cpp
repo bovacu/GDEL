@@ -1,3 +1,4 @@
+#include "Parser/include/Defines.h"
 #include "Parser/include/TokenStripper.h"
 
 json TokenStripper::getTokenType(const char* _code, int& _charPointer, int _linePointer) {
@@ -5,6 +6,7 @@ json TokenStripper::getTokenType(const char* _code, int& _charPointer, int _line
     numberToken(_outToken, _code, _charPointer, _linePointer);
     stringToken(_outToken, _code, _charPointer, _linePointer);
     boolToken(_outToken, _code, _charPointer, _linePointer);
+    idToken(_outToken, _code, _charPointer, _linePointer);
     symbolToken(_outToken, _code, _charPointer, _linePointer);
 
     return _outToken;
@@ -79,6 +81,27 @@ void TokenStripper::boolToken(json& _outToken, const char* _code, int& _charPoin
     };
 }
 
+void TokenStripper::idToken(json& _outToken, const char* _code, int& _charPointer, int _linePointer) {
+    int _ascii = (int)_code[_charPointer], _minLower = 97, _maxLower = 122, _minUpper = 65, _maxUpper = 90,
+     _underscore = 95, _miNum = 48, _maxNum = 57;
+    
+    if(_ascii != _underscore && !std::isalpha(_code[_charPointer])) return;
+
+    char _currentChar = _code[_charPointer];
+    std::string _fullId;
+    int _codeLength = strlen(_code);
+    while((_currentChar == '_' || std::isalpha(_currentChar) || std::isdigit(_currentChar)) && _charPointer < _codeLength) {
+        _fullId.push_back(_currentChar);
+        _charPointer++;
+        _currentChar = _code[_charPointer];
+    }
+
+    _outToken = json {
+        {"type", _ID},
+        {"value", _fullId.c_str()}  
+    };
+}
+
 void TokenStripper::symbolToken(json& _outToken, const char* _code, int& _charPointer, int _linePointer) {
     if(!_outToken.empty()) return;
     //      /r    to  /t            space to /                :  to  @               [   to   _               {   to    ~
@@ -107,11 +130,12 @@ void TokenStripper::symbolToken(json& _outToken, const char* _code, int& _charPo
         case 45: _outToken  = json { {"type", _SUB}, {"value", "-"}};               break;
         case 47: _outToken  = json { {"type", _DIV}, {"value", "/"}};               break;
         case 59: _outToken  = json { {"type", _SEMICOLON}, {"value", ";"}};         break;
+        case 61: _outToken  = json { {"type", _EQ}, {"value", "="}};                break;
         case 123: _outToken = json { {"type", _LEFT_COLLIBRACE}, {"value", "{"}};   break;
         case 125: _outToken = json { {"type", _RIGHT_COLLIBRACE}, {"value", "}"}};  break;
         default: {
                 _outToken = {};
-                std::cerr << "Symbol " << _code[_charPointer] << " with ascii " << (int)_code[_charPointer] << " wasn't handled in symbolToken() inside the switch statement, or maybe it wasn't added to the list inside Literal.h" << std::endl;
+                std::cerr << "Symbol " << _code[_charPointer] << " with ascii " << (int)_code[_charPointer] << " wasn't handled in symbolToken() inside the switch statement, or maybe it wasn't added to the list inside Declarations.h" << std::endl;
                 break;
             }
     }

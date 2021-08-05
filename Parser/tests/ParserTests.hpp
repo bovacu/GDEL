@@ -6,6 +6,7 @@
 #include "Parser/tests/BlockTest.hpp"
 #include "Parser/tests/NumbersTest.hpp"
 #include "Parser/tests/BinaryOpsTest.hpp"
+#include "Parser/tests/AssigmentTests.hpp"
 #include <assert.h>
 
 class ParserTests {
@@ -14,12 +15,14 @@ class ParserTests {
         NumbersTest numberTets;
         BlockTest blockTest;
         BinaryOpsTest binaryOpsTest;
+        AssigmentTests assigmentTests;
 
     public:
         void run() {
             numberTets.runTests();
             blockTest.runTests();
             binaryOpsTest.runTests();
+            assigmentTests.runTests();
         }
 };
 
