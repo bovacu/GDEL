@@ -7,4 +7,4 @@ const char* symbols[32] = { _SPACE, _SEMICOLON, _N, _R, _T, _SUM, _DIV, _MUL,
                             _COM_N, _COM_N_EQ, _COM_AND, _COM_OR
                           };
 
-const char* keywords[8] = { _VAR, _FOR, _LOOP, _IF, _ELSE_IF, _ELSE, _SWITCH, _CASE };
+const char* keywords[9] = { _VAR, _FOR, _LOOP, _IF, _ELSE_IF, _ELSE, _SWITCH, _CASE, _IN };

@@ -18,21 +18,21 @@ json VariableStatement::getAst(const Expression& _expression, Parser* _parser, j
 }
 
 
-std::vector<json> VariableStatement::getDeclarationList(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const {
+std::vector<json> VariableStatement::getDeclarationList(const Expression& _expression, Parser* _parser, json& _tokenToCheck, bool _isLoop) const {
     std::vector<json> _declarationList;
 
-    _declarationList.push_back(getVariableDeclaration(_expression, _parser, _parser->getLookAhead()));
+    _declarationList.push_back(getVariableDeclaration(_expression, _parser, _parser->getLookAhead(), _isLoop));
 
     while(strcmp(_parser->getCurrentLookAheadType().c_str(), _COMA) == 0) {
         _parser->eatToken(_COMA);
-        _declarationList.push_back(getVariableDeclaration(_expression, _parser, _parser->getLookAhead()));
+        _declarationList.push_back(getVariableDeclaration(_expression, _parser, _parser->getLookAhead(), _isLoop));
     }
 
     return _declarationList;
 }
 
 
-json VariableStatement::getVariableDeclaration(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const {
+json VariableStatement::getVariableDeclaration(const Expression& _expression, Parser* _parser, json& _tokenToCheck, bool _isLoop) const {
     auto _literal = _expression.getAssigmentExpression()
                                .getLogicalOrExpression()
                                .getLogicalAndExpression()
@@ -45,8 +45,15 @@ json VariableStatement::getVariableDeclaration(const Expression& _expression, Pa
                                .getPrimaryExpression()
                                .getLiteral();
     auto _id = _literal.getAst(_parser, _parser->getLookAhead());
-    auto _initializer = strcmp(_parser->getCurrentLookAheadType().c_str(), _SEMICOLON) != 0 &&
-        strcmp(_parser->getCurrentLookAheadType().c_str(), _COMA) != 0 ? getInitializer(_expression, _parser, _parser->getLookAhead()) : json {  };
+
+    json _initializer = {};
+    if(!_isLoop)
+        _initializer = strcmp(_parser->getCurrentLookAheadType().c_str(), _SEMICOLON) != 0 &&
+            strcmp(_parser->getCurrentLookAheadType().c_str(), _COMA) != 0 ? getInitializer(_expression, _parser, _parser->getLookAhead()) : json {  };
+    else {
+        if(strcmp(_parser->getCurrentLookAheadType().c_str(), _EQ) == 0)
+            _initializer = getInitializer(_expression, _parser, _parser->getLookAhead());
+    }
 
     return json {
         {"type", _VARIABLE_DECLARATION},

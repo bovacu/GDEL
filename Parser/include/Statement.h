@@ -7,6 +7,7 @@
 #include "Parser/include/VariableStatement.h"
 #include "Parser/include/IfStatement.h"
 #include "Parser/include/LoopStatement.h"
+#include "Parser/include/ForLoopStatement.h"
 
 class Parser;
 
@@ -17,6 +18,7 @@ class Statement {
         VariableStatement variableStatement;
         IfStatement ifStatement;
         LoopStatement loopStatement;
+        ForLoopStatement forLoopStatement;
 
     public:
         json getAst(Parser* _parser, json& _tokenToCheck) const;

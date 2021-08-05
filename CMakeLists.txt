@@ -38,6 +38,7 @@ set(SRC_FILES   main.cpp
                 Parser/src/VariableStatement.cpp
                 Parser/src/IfStatement.cpp
                 Parser/src/LoopStatement.cpp
+                Parser/src/ForLoopStatement.cpp
                 Parser/src/RelationalExpression.cpp
                 Parser/src/EqualityExpression.cpp
                 Parser/src/LogicalAndExpression.cpp

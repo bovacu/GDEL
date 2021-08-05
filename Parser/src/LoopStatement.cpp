@@ -15,6 +15,6 @@ json LoopStatement::getAst(const Statement& _statement, Parser* _parser, json& _
     return {
         {"type", _LOOP_STATEMENT},
         {"condition", _condition},
-        {"consequence", _loopBody}
+        {"loopBody", _loopBody}
     };
 }

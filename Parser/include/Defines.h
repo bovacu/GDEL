@@ -69,7 +69,6 @@ extern const char* symbols[32];
 #define _VAR "var"
 
 #define _FOR_STATEMENT "FOR_STATEMENT"
-#define _FOREACH_STATEMENT "FOREACH_STATEMENT"
 #define _FOR "for"
 #define _IN "in"
 
@@ -88,4 +87,4 @@ extern const char* symbols[32];
 #define _SWITCH "switch"
 #define _CASE "case"
 
-extern const char* keywords[8];
+extern const char* keywords[9];
