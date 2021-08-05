@@ -40,6 +40,7 @@ json VariableStatement::getVariableDeclaration(const Expression& _expression, Pa
                                .getRelationalExpression()
                                .getAdditiveExpression()
                                .getMultiplicativeExpression()
+                               .getRangeExpression()
                                .getUnaryExpression()
                                .getPrimaryExpression()
                                .getLiteral();

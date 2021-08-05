@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
         Parser _p;
         try {
             auto _root = _p.parse(R"(
-                !(x - 1);
+                -8...10 + 9..12;
             )");
             std::cout << _root.dump(4) << std::endl;
         } catch(CoreException e) {  }

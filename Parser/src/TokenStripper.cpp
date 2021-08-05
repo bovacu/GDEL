@@ -16,27 +16,44 @@ json TokenStripper::getTokenType(const char* _code, int& _charPointer, int _line
 void TokenStripper::numberToken(json& _outToken, const char* _code, int& _charPointer, int _linePointer) {
     if(!_outToken.empty()) return;
 
-    int _min = 48, _max = 57, _ascii = (int)_code[_charPointer];
-    if(_ascii < _min || _ascii > _max)
-        return;
+    // int _min = 48, _max = 57, _ascii = (int)_code[_charPointer];
+    // if(_ascii < _min || _ascii > _max)
+    //     return;
+    if(!std::isdigit(_code[_charPointer])) return;
     
     std::string _fullNumber;
-    int _isFloat = 0;
+    int _dots = 0;
     while(std::isdigit(_code[_charPointer]) || _code[_charPointer] == '.') {
         if(_code[_charPointer] == '.')
-            _isFloat++;
+            _dots++;
 
-        if(_isFloat > 1)
-            throw MalformedFloat(_fullNumber.c_str(), _linePointer);
+        if(_dots > 1) break;
 
         _fullNumber.push_back(_code[_charPointer]);
         _charPointer++;
     }
 
-    _outToken = json {
-        {"type", _isFloat == 0 ? _INTEGER : _FLOAT},
-        {"value", _fullNumber.c_str()}  
-    };
+    if(_dots > 3)
+        throw MalformedFloat(_fullNumber.c_str(), _linePointer);
+
+    if(_dots > 1) {
+        _charPointer--;
+        _fullNumber.erase(std::remove(_fullNumber.begin(), _fullNumber.end(), '.'), _fullNumber.end());
+        _outToken = json {
+            {"type", _INTEGER},
+            {"value",  _fullNumber.c_str()}  
+        };
+    } else if(_dots == 1) {
+        _outToken = json {
+            {"type", _FLOAT},
+            {"value",  _fullNumber.c_str()}  
+        };
+    } else {
+        _outToken = json {
+            {"type", _INTEGER},
+            {"value",  _fullNumber.c_str()}  
+        };
+    }
 }
 
 void TokenStripper::stringToken(json& _outToken, const char* _code, int& _charPointer, int _linePointer) {
@@ -230,6 +247,21 @@ void TokenStripper::symbolToken(json& _outToken, const char* _code, int& _charPo
                 break;
             }
         
+        // .. and ...
+        case 46 : {
+                char _nextChar = _code[_charPointer + 1];
+                char _nextNextChar = _code[_charPointer + 2];
+                if(_nextChar == '.'){
+                    _outToken  = json { {"type", _INCL_RANGE}, {"value", ".."}};  
+                    _charPointer++;
+                    if(_nextNextChar == '.') {
+                        _outToken  = json { {"type", _EXCL_RANGE}, {"value", "..."}};  
+                        _charPointer++;
+                    }
+                }
+
+                break;
+            }
         // / and variants
         case 47: {
                 char _nextChar = _code[_charPointer + 1];

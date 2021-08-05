@@ -43,6 +43,7 @@ set(SRC_FILES   main.cpp
                 Parser/src/LogicalAndExpression.cpp
                 Parser/src/LogicalOrExpression.cpp
                 Parser/src/UnaryExpression.cpp
+                Parser/src/RangeExpression.cpp
                 
                 Parser/tests/ParserTests.hpp
                 Parser/tests/BlockTest.hpp

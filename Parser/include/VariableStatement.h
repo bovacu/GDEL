@@ -10,10 +10,10 @@ class Parser;
 class VariableStatement {
     public:
         json getAst(const Expression& _literal, Parser* _parser, json& _tokenToCheck) const;
-
+        json getVariableDeclaration(const Expression& _literal, Parser* _parser, json& _tokenToCheck) const;
+        
     private:
         std::vector<json> getDeclarationList(const Expression& _literal, Parser* _parser, json& _tokenToCheck) const;
-        json getVariableDeclaration(const Expression& _literal, Parser* _parser, json& _tokenToCheck) const;
         json getInitializer(const Expression& _literal, Parser* _parser, json& _tokenToCheck) const;
 };
 

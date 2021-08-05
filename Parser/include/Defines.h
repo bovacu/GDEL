@@ -4,6 +4,10 @@
 #define _BOOL "BOOL"
 #define _NULL "NULL"
 
+#define _RANGE "RANGE"
+#define _INCL_RANGE ".."
+#define _EXCL_RANGE "..."
+
 #define _SEMICOLON ";"
 #define _COMA ","
 #define _SPACE " "
@@ -65,10 +69,13 @@ extern const char* symbols[32];
 #define _VAR "var"
 
 #define _FOR_STATEMENT "FOR_STATEMENT"
+#define _FOREACH_STATEMENT "FOREACH_STATEMENT"
 #define _FOR "for"
+#define _IN "in"
 
 #define _LOOP_STATEMENT "LOOP_STATEMENT"
 #define _LOOP "loop"
+#define _BRAKE "break"
 
 #define _IF_STATEMENT "IF_STATEMENT"
 #define _IF "if"

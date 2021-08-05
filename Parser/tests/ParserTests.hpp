@@ -9,6 +9,7 @@
 #include "Parser/tests/AssigmentTests.hpp"
 #include "Parser/tests/VariablesTest.hpp"
 #include "Parser/tests/IfTests.hpp"
+#include "Parser/tests/RangeTests.hpp"
 #include <assert.h>
 
 class ParserTests {
@@ -20,6 +21,7 @@ class ParserTests {
         AssigmentTests assigmentTests;
         VariablesTest variablesTest;
         IfTests ifTests;
+        RangeTests rangeTests;
 
     public:
         void run() {
@@ -29,6 +31,7 @@ class ParserTests {
             assigmentTests.runTests();
             variablesTest.runTests();
             ifTests.runTests();
+            rangeTests.runTests();
         }
 };
 
