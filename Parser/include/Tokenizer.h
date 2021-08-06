@@ -24,13 +24,10 @@ class Tokenizer {
 
         TokenStripper tokenStripper;
         Statement statement;
+
         friend class Parser;
 
     public:
-        Parser* parser;
-
-    public:
-        ~Tokenizer();
         void init(const char* _code);
         bool hasMoreTokens();
         json getNextToken();

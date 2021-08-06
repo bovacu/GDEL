@@ -13,14 +13,12 @@ using namespace nlohmann;
 
 class Parser {
     private:
-        Tokenizer* tokenizer;
+        Tokenizer tokenizer;
         json lookAhead;
 
     friend class Tokenizer;
 
     public:
-        Parser();
-        ~Parser();
         json parse(const char* _code);
         json start(const char* _code);
         json eatToken(const char* _tokenType);

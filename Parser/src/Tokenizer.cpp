@@ -3,10 +3,6 @@
 #include "Parser/include/Parser.h"
 #include <sstream>
 
-Tokenizer::~Tokenizer() {
-    
-}
-
 void Tokenizer::init(const char* _code) {
     this->codeLenth = strlen(_code);
     this->code = _code;
