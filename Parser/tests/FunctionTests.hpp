@@ -20,7 +20,7 @@ class FunctionTests {
             Parser _parser;
             const char* _code1 = R"(
                 func square(x) {
-                   return x * x;
+                   ret x * x;
                }
             )";
             json _resultAst;
@@ -121,7 +121,7 @@ class FunctionTests {
             const char* _code1 = R"(
                 func square(x = 4, y = -5.5, z = false, w = 'hello') {
                    ret;
-               }
+                }
             )";
             json _resultAst;
             
