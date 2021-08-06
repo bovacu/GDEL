@@ -24,8 +24,6 @@ execBuildRun() {
 		nicePrint 33 "➖" "App name: $APP_NAME"
 	fi
 
-	nicePrint 33 "⏳" "Build started..."
-
 	FINAL_DIR='../releases/debug'
 	
 	if [ "$BUILD_TYPE" == "RELEASE" ]; then
@@ -47,7 +45,11 @@ compile() {
     	buildError
 	else
     	# Compilation successfull
-		makeOut=$(cd build; make)
+		python build/cores.py
+		cores=$?
+
+		nicePrint 33 "⏳" "Build started with $cores cores..."
+		makeOut=$(cd build; make -j$cores)
 		if [[ $? != 0 ]]; then
 			buildError
 		else

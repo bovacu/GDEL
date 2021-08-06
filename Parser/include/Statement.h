@@ -22,7 +22,7 @@ class Statement {
         FunctionDeclaration functionDeclaration;
 
     public:
-        json getAst(Parser* _parser, json& _tokenToCheck) const;
+        json getAst(Parser& _parser, json& _tokenToCheck) const;
         const ExpressionStatement& getExpressionStatement() const;
         const VariableStatement& getVariableStatement() const;
         const BlockStatement& getBlockStatement() const;

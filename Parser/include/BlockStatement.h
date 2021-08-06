@@ -9,7 +9,7 @@ class Statement;
 class BlockStatement {
 
     public:
-        json getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const;
+        json getAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const;
 };
 
 #endif // __BLOCKSTATEMENT_H__

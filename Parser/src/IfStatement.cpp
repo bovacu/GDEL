@@ -1,13 +1,13 @@
 #include "Parser/include/IfStatement.h"
 #include "Parser/include/Parser.h"
 
-json IfStatement::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
+json IfStatement::getAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const {
     const Expression& _expression = _statement.getExpressionStatement().getExpression();
-    _parser->eatToken(_IF);
-    _parser->eatToken(_LEFT_PARENTHESIS);
-    auto _condition = _expression.getAst(_statement, _parser, _parser->getLookAhead());
-    _parser->eatToken(_RIGHT_PARENTHESIS);
-    auto _consequence = _statement.getAst(_parser, _parser->getLookAhead());
+    _parser.eatToken(_IF);
+    _parser.eatToken(_LEFT_PARENTHESIS);
+    auto _condition = _expression.getAst(_statement, _parser, _parser.getLookAhead());
+    _parser.eatToken(_RIGHT_PARENTHESIS);
+    auto _consequence = _statement.getAst(_parser, _parser.getLookAhead());
 
     // std::vector<json> _alternatives;
     // if(strcmp(_parser->getCurrentLookAheadType().c_str(), _ELSE_IF) == 0) {
@@ -25,9 +25,9 @@ json IfStatement::getAst(const Statement& _statement, Parser* _parser, json& _to
     // }
 
     json _alternative = {};
-    if(!_parser->getLookAhead().empty() && strcmp(_parser->getCurrentLookAheadType().c_str(), _ELSE) == 0) {
-        _parser->eatToken(_ELSE);
-        _alternative = _statement.getAst(_parser, _parser->getLookAhead());
+    if(!_parser.getLookAhead().empty() && strcmp(_parser.getCurrentLookAheadType().c_str(), _ELSE) == 0) {
+        _parser.eatToken(_ELSE);
+        _alternative = _statement.getAst(_parser, _parser.getLookAhead());
     }
 
     return {

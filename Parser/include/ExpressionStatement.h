@@ -8,7 +8,7 @@ class ExpressionStatement {
         Expression expression;
 
     public:
-        json getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const;
+        json getAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const;
         const Expression& getExpression() const;
 };
 

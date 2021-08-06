@@ -8,7 +8,7 @@ class Expression {
         AssigmentExpression assigmentExpression;
 
     public:
-        json getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const;
+        json getAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const;
         const AssigmentExpression& getAssigmentExpression() const;
 };
 

@@ -8,7 +8,7 @@ class LogicalAndExpression {
         EqualityExpression equalityExpression;
 
     public:
-        json getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const;
+        json getAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const;
         const EqualityExpression& getEqualityExpression() const;
 };
 

@@ -7,7 +7,7 @@ class Parser;
 
 class LoopStatement {
     public:
-        json getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const;
+        json getAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const;
 };
 
 #endif // __WHILESTATEMENT_H__

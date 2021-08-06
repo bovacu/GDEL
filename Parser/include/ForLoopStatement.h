@@ -8,7 +8,7 @@ class Parser;
 
 class ForLoopStatement {
     public:
-        json getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const;
+        json getAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const;
 };
 
 #endif // __FORLOOPSTATEMENT_H__

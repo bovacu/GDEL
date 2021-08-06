@@ -45,6 +45,6 @@ json Tokenizer::getNextToken() {
     };
 }
 
-json Tokenizer::get(Parser* _parser) {
-    return this->statement.getAst(_parser, _parser->lookAhead);
+json Tokenizer::get(Parser& _parser) {
+    return this->statement.getAst(_parser, _parser.lookAhead);
 }

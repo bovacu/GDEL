@@ -20,7 +20,7 @@ json Parser::statements() {
     std::string _currentType;
     
     while(strcmp((_currentType = this->lookAhead["type"].get<std::string>()).c_str(), _EOF) != 0) {
-        _tokens.push_back(this->tokenizer.get(this));
+        _tokens.push_back(this->tokenizer.get(*this));
     }
 
     _tokens.push_back(this->lookAhead);

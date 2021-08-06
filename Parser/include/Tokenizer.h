@@ -31,7 +31,7 @@ class Tokenizer {
         void init(const char* _code);
         bool hasMoreTokens();
         json getNextToken();
-        json get(Parser* _parser);
+        json get(Parser& _parser);
 };
 
 #endif // TOKENIZER_H
