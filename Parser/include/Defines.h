@@ -87,4 +87,10 @@ extern const char* symbols[32];
 #define _SWITCH "switch"
 #define _CASE "case"
 
-extern const char* keywords[9];
+#define _FUNC_DECL "FUNCTION_DECLARATION"
+#define _FUNC "func"
+
+#define _RET_STATEMENT "RET_STATEMENT"
+#define _RET "ret"
+
+extern const char* keywords[11];

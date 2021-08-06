@@ -12,13 +12,9 @@ int main(int argc, char *argv[]) {
         Parser _p;
         try {
             auto _root = _p.parse(R"(
-               loop(x > 5) {
-                    if(x == 3) {
-                        for(var _z in 9...10) {
-                            var _string = 'stringyyy';
-                        }
-                    }
-                }
+               func square(x = 4, y = -5.5, z = false, w = 'hello') {
+                   ret;
+               }
             )");
             std::cout << _root.dump(4) << std::endl;
         } catch(CoreException e) {  }

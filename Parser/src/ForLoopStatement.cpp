@@ -5,8 +5,9 @@
 #include "Parser/include/Statement.h"
 #include "Parser/include/VariableStatement.h"
 
-json ForLoopStatement::getAst(const VariableStatement& _variableStatement, const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
+json ForLoopStatement::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
     const Expression& _expression = _statement.getExpressionStatement().getExpression();
+    const VariableStatement& _variableStatement = _statement.getVariableStatement();
     _parser->eatToken(_FOR);
     _parser->eatToken(_LEFT_PARENTHESIS);
 

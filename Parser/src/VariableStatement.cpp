@@ -1,13 +1,14 @@
 #include "Parser/include/VariableStatement.h"
 #include "Parser/include/Parser.h"
+#include "Parser/include/Statement.h"
 #include "Parser/include/Defines.h"
 #include "Parser/include/Expression.h"
 #include "Parser/include/Literal.h"
 
-json VariableStatement::getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const {
+json VariableStatement::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
     _parser->eatToken(_VAR);
     
-    auto _declarations = getDeclarationList(_expression, _parser, _parser->getLookAhead());
+    auto _declarations = getDeclarationList(_statement.getExpressionStatement().getExpression(), _parser, _parser->getLookAhead());
     
     _parser->eatToken(_SEMICOLON);
 
@@ -18,21 +19,21 @@ json VariableStatement::getAst(const Expression& _expression, Parser* _parser, j
 }
 
 
-std::vector<json> VariableStatement::getDeclarationList(const Expression& _expression, Parser* _parser, json& _tokenToCheck, bool _isLoop) const {
+std::vector<json> VariableStatement::getDeclarationList(const Expression& _expression, Parser* _parser, json& _tokenToCheck, bool _isSpecialDecl) const {
     std::vector<json> _declarationList;
-
-    _declarationList.push_back(getVariableDeclaration(_expression, _parser, _parser->getLookAhead(), _isLoop));
+    
+    _declarationList.push_back(getVariableDeclaration(_expression, _parser, _parser->getLookAhead(), _isSpecialDecl));
 
     while(strcmp(_parser->getCurrentLookAheadType().c_str(), _COMA) == 0) {
         _parser->eatToken(_COMA);
-        _declarationList.push_back(getVariableDeclaration(_expression, _parser, _parser->getLookAhead(), _isLoop));
+        _declarationList.push_back(getVariableDeclaration(_expression, _parser, _parser->getLookAhead(), _isSpecialDecl));
     }
-
+    
     return _declarationList;
 }
 
 
-json VariableStatement::getVariableDeclaration(const Expression& _expression, Parser* _parser, json& _tokenToCheck, bool _isLoop) const {
+json VariableStatement::getVariableDeclaration(const Expression& _expression, Parser* _parser, json& _tokenToCheck, bool _isSpecialDecl) const {
     auto _literal = _expression.getAssigmentExpression()
                                .getLogicalOrExpression()
                                .getLogicalAndExpression()
@@ -47,7 +48,7 @@ json VariableStatement::getVariableDeclaration(const Expression& _expression, Pa
     auto _id = _literal.getAst(_parser, _parser->getLookAhead());
 
     json _initializer = {};
-    if(!_isLoop)
+    if(!_isSpecialDecl)
         _initializer = strcmp(_parser->getCurrentLookAheadType().c_str(), _SEMICOLON) != 0 &&
             strcmp(_parser->getCurrentLookAheadType().c_str(), _COMA) != 0 ? getInitializer(_expression, _parser, _parser->getLookAhead()) : json {  };
     else {

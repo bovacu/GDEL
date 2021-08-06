@@ -8,6 +8,7 @@
 #include "Parser/include/IfStatement.h"
 #include "Parser/include/LoopStatement.h"
 #include "Parser/include/ForLoopStatement.h"
+#include "Parser/include/FunctionDeclaration.h"
 
 class Parser;
 
@@ -19,10 +20,17 @@ class Statement {
         IfStatement ifStatement;
         LoopStatement loopStatement;
         ForLoopStatement forLoopStatement;
+        FunctionDeclaration functionDeclaration;
 
     public:
         json getAst(Parser* _parser, json& _tokenToCheck) const;
         const ExpressionStatement& getExpressionStatement() const;
+        const VariableStatement& getVariableStatement() const;
+        const BlockStatement& getBlockStatement() const;
+        const IfStatement& getIfStatement() const;
+        const LoopStatement& getLoopStatement() const;
+        const ForLoopStatement& getForLoopStatement() const;
+        const FunctionDeclaration& getFunctionDeclaration() const;
 };
 
 #endif // __STATEMENT_H__

@@ -25,8 +25,8 @@ class UnexpectedEOFException : public CoreException {
 
 class UnexpectedTypexception : public CoreException {
     public:
-        UnexpectedTypexception(const char* _typeExpected, const char* _typeGot, int _line) {
-            std::cerr << "\033[1;31m" << "Error: Unexpected type " << _typeGot << ", expected " << _typeExpected << " in line " << _line << "\033[0m\n" << std::endl;
+        UnexpectedTypexception(const char* _typeExpected, const char* _typeGot, const char* _valueGot, int _line) {
+            std::cerr << "\033[1;31m" << "Error: Unexpected type " << _typeGot << " with value '" << _valueGot << "', expected " << _typeExpected << " in line " << _line << "\033[0m\n" << std::endl;
         }
         ~UnexpectedTypexception() { }
 };

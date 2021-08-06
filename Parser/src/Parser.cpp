@@ -48,7 +48,7 @@ json Parser::eatToken(const char* _tokenType) {
     
     auto _currentTokenType = _currentToken["type"].get<std::string>();
     if(strcmp(_currentTokenType.c_str(), _tokenType) != 0)
-        throw UnexpectedTypexception(_tokenType, _currentTokenType.c_str(), this->tokenizer->linePointer);
+        throw UnexpectedTypexception(_tokenType, _currentTokenType.c_str(), _currentToken["value"].get<std::string>().c_str(), this->tokenizer->linePointer);
     
     this->lookAhead = this->tokenizer->getNextToken();
     
