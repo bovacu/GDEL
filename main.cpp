@@ -12,9 +12,7 @@ int main(int argc, char *argv[]) {
         Parser _p;
         try {
             auto _root = _p.parse(R"(
-               func square(x = 4, y = -5.5, z = false, w = 'hello') {
-                   ret;
-               }
+               
             )");
             std::cout << _root.dump(4) << std::endl;
         } catch(CoreException e) {  }

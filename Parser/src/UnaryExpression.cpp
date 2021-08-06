@@ -19,9 +19,9 @@ json UnaryExpression::getAst(const Expression& _expression, Parser* _parser, jso
         };
     }
 
-    return this->primaryExpression.getAst(_expression, _parser, _parser->getLookAhead());
+    return this->memberExpression.getAst(_expression, _parser, _parser->getLookAhead());
 }
 
-const PrimaryExpression& UnaryExpression::getPrimaryExpression() const {
-    return this->primaryExpression;
+const MemberExpression& UnaryExpression::getMemberExpression() const {
+    return this->memberExpression;
 }

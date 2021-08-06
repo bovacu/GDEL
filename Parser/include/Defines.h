@@ -64,7 +64,12 @@
 #define _EXPRESSION_STATEMENT "EXPRESSION_STATEMENT"
 #define _BLOCK_STATEMENT "BLOCK_STATEMENT"
 
-extern const char* symbols[32];
+#define _MEMBER_EXPRESSION "MEMBER_EXPRESSION"
+#define _DOT "."
+#define _LEFT_BRACKET "["
+#define _RIGHT_BRACKET "]"
+
+extern const char* symbols[35];
 
 #define _VAR "var"
 

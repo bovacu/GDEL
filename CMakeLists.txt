@@ -45,6 +45,7 @@ set(SRC_FILES   main.cpp
                 Parser/src/LogicalOrExpression.cpp
                 Parser/src/UnaryExpression.cpp
                 Parser/src/RangeExpression.cpp
-                Parser/src/FunctionDeclaration.cpp)
+                Parser/src/FunctionDeclaration.cpp
+                Parser/src/MemberExpression.cpp)
 
 add_executable (${PROJECT_NAME} ${SRC_FILES})
