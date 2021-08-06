@@ -6,12 +6,10 @@
 class Parser;
 class Statement;
 
-class FunctionDeclaration {
+class FunctionStatement {
     public:
         json getAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const;
         json getReturnAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const;
-    
-    private:
         std::vector<json> getParamList(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const;
 };
 

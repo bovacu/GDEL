@@ -99,5 +99,15 @@ extern const char* symbols[35];
 #define _RET "ret"
 
 #define _CALL_EXPRESSION "CALL_EXPRESSION"
+#define _STRUCT_STATEMENT "STRUCT_STATEMENT"
+#define _STRUCT "struct"
+#define _NEW_EXPRESSION "NEW_EXPRESSION"
+#define _NEW "new"
+#define _SELF_EXPRESSION "SEFL_EXPRESSION"
+#define _SELF "self"
+#define _IMPORT "import"
+#define _EXTENDS "extends"
+#define _BASE_EXPRESSION "BASE_EXPRESSION"
+#define _BASE "base"
 
-extern const char* keywords[11];
+extern const char* keywords[17];

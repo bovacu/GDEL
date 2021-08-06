@@ -18,6 +18,8 @@ json Statement::getAst(Parser& _parser, json& _tokenToCheck) const {
         return this->functionDeclaration.getAst(*this, _parser, _parser.getLookAhead());
     } else if(strcmp(_tokenType.c_str(), _RET) == 0) {
         return this->functionDeclaration.getReturnAst(*this, _parser, _parser.getLookAhead());
+    } else if(strcmp(_tokenType.c_str(), _STRUCT) == 0) {
+        return this->structStatement.getAst(*this, _parser, _parser.getLookAhead());
     }
 
     return this->expressionStatement.getAst(*this, _parser, _tokenToCheck);
@@ -48,6 +50,11 @@ const ForLoopStatement& Statement::getForLoopStatement() const {
     return this->forLoopStatement;
 }
 
-const FunctionDeclaration& Statement::getFunctionDeclaration() const {
+const FunctionStatement& Statement::getFunctionStatement() const {
     return this->functionDeclaration;
+}
+
+
+const StructStatement& Statement::getStructStatement() const {
+    return this->structStatement;
 }

@@ -1,7 +1,7 @@
-#include "Parser/include/FunctionDeclaration.h"
+#include "Parser/include/FunctionStatement.h"
 #include "Parser/include/Parser.h"
 
-json FunctionDeclaration::getAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const {
+json FunctionStatement::getAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const {
     _parser.eatToken(_FUNC);
     auto _funcName = _parser.eatToken(_ID);
     _parser.eatToken(_LEFT_PARENTHESIS);
@@ -18,7 +18,7 @@ json FunctionDeclaration::getAst(const Statement& _statement, Parser& _parser, j
 }
 
 
-json FunctionDeclaration::getReturnAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const {
+json FunctionStatement::getReturnAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const {
     _parser.eatToken(_RET);
     auto _ret = strcmp(_parser.getCurrentLookAheadType().c_str(), _SEMICOLON) == 0 ? json {  } : 
         _statement.getExpressionStatement().getExpression().getAst(_statement, _parser, _parser.getLookAhead());
@@ -31,7 +31,7 @@ json FunctionDeclaration::getReturnAst(const Statement& _statement, Parser& _par
 }
 
 
-std::vector<json> FunctionDeclaration::getParamList(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const {
+std::vector<json> FunctionStatement::getParamList(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const {
     if(strcmp(_parser.getCurrentLookAheadType().c_str(), _RIGHT_PARENTHESIS) == 0) return std::vector<json>();
     auto _expression = _statement.getExpressionStatement().getExpression();
     return _statement.getVariableStatement().getDeclarationList(_statement, _expression, _parser, _parser.getLookAhead(), true);

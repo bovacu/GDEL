@@ -2,7 +2,13 @@
 #include "Parser/include/Parser.h"
 
 json CallExpression::getAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const {
+    if(strcmp(_parser.getCurrentLookAheadType().c_str(), _BASE) == 0) {
+        auto _super = _statement.getStructStatement().getBaseAst(_statement, _parser, _parser.getLookAhead());
+        return callee(_statement, _parser, _super);
+    }
+
     auto _member = this->memberExpression.getAst(_statement, _parser, _parser.getLookAhead());
+
     if(strcmp(_parser.getCurrentLookAheadType().c_str(), _LEFT_PARENTHESIS) == 0)
         return callee(_statement, _parser, _member);
 

@@ -7,7 +7,8 @@
 #include "Parser/include/IfStatement.h"
 #include "Parser/include/LoopStatement.h"
 #include "Parser/include/ForLoopStatement.h"
-#include "Parser/include/FunctionDeclaration.h"
+#include "Parser/include/FunctionStatement.h"
+#include "Parser/include/StructStatement.h"
 
 class Parser;
 
@@ -19,7 +20,8 @@ class Statement {
         IfStatement ifStatement;
         LoopStatement loopStatement;
         ForLoopStatement forLoopStatement;
-        FunctionDeclaration functionDeclaration;
+        FunctionStatement functionDeclaration;
+        StructStatement structStatement;
 
     public:
         json getAst(Parser& _parser, json& _tokenToCheck) const;
@@ -28,8 +30,9 @@ class Statement {
         const BlockStatement& getBlockStatement() const;
         const IfStatement& getIfStatement() const;
         const LoopStatement& getLoopStatement() const;
+        const StructStatement& getStructStatement() const;
         const ForLoopStatement& getForLoopStatement() const;
-        const FunctionDeclaration& getFunctionDeclaration() const;
+        const FunctionStatement& getFunctionStatement() const;
 };
 
 #endif // __STATEMENT_H__
