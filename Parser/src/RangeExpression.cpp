@@ -3,7 +3,6 @@
 
 json RangeExpression::getAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const {
     auto _left = this->unaryExpression.getAst(_statement, _parser, _parser.getLookAhead());
-    
     while ( strcmp(_parser.getCurrentLookAheadType().c_str(), _INCL_RANGE) == 0 ||
             strcmp(_parser.getCurrentLookAheadType().c_str(), _EXCL_RANGE) == 0) {
         auto _op = _parser.eatToken(_parser.getCurrentLookAheadType().c_str());

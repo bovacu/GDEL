@@ -36,6 +36,7 @@ json AssigmentExpression::isAssigment(Parser& _parser, const char* _tokenType) c
 }
 
 bool AssigmentExpression::isCorrectLeftSideAssigment(Parser& _parser, json& _tokenToCheck) const {
-    if(strcmp(_tokenToCheck["type"].get<std::string>().c_str(), _ID) == 0) return true;
-    throw IllegalAssigmentExpression(_tokenToCheck["value"].get<std::string>().c_str(), _parser.getCurrentParsinLine());
+    if(strcmp(_tokenToCheck["type"].get<std::string>().c_str(), _ID) == 0 ||
+    strcmp(_tokenToCheck["type"].get<std::string>().c_str(), _MEMBER_EXPRESSION) == 0) return true;
+    throw IllegalAssigmentExpression(_tokenToCheck["type"].get<std::string>().c_str(), _parser.getCurrentParsinLine());
 }

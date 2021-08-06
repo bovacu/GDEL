@@ -12,13 +12,22 @@ int main(int argc, char *argv[]) {
         Parser _p;
         try {
             auto _root = _p.parse(R"(
-               struct MyStruct {
-                   func constructor() {
-                       base();
-                       self.x;
-                       var _a = new MyStruct();
-                   }
-               }
+               struct Point {
+                    func constructor(_x, _y) {
+                        this.x = _x;
+                        this.y = _y;
+                    }
+
+                    func getX() {
+                        ret this.x;
+                    }
+
+                    func getY() {
+                        ret this.y;
+                    }
+                }
+
+                var _myPoint = new Point(10, 5);
             )");
             std::cout << _root.dump(4) << std::endl;
         } catch(CoreException e) {  }

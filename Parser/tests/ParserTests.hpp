@@ -12,6 +12,7 @@
 #include "Parser/tests/RangeTests.hpp"
 #include "Parser/tests/LoopTests.hpp"
 #include "Parser/tests/FunctionTests.hpp"
+#include "Parser/tests/StructTests.hpp"
 #include <assert.h>
 
 class ParserTests {
@@ -26,6 +27,7 @@ class ParserTests {
         RangeTests rangeTests;
         LoopTests loopTests;
         FunctionTests functionTests;
+        StructTests structTests;
 
     public:
         void run() {
@@ -38,6 +40,7 @@ class ParserTests {
             rangeTests.runTests();
             loopTests.runTests();
             functionTests.runTests();
+            structTests.runTests();
         }
 };
 
