@@ -1,11 +1,11 @@
 #include "Parser/include/MemberExpression.h"
 #include "Parser/include/Defines.h"
 #include "Parser/include/Parser.h"
-#include "Parser/include/Expression.h"
+#include "Parser/include/Statement.h"
 
 
-json MemberExpression::getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const {
-    auto _object = this->primaryExpression.getAst(_expression, _parser, _parser->getLookAhead());
+json MemberExpression::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
+    auto _object = this->primaryExpression.getAst(_statement, _parser, _parser->getLookAhead());
 
     while(strcmp(_parser->getCurrentLookAheadType().c_str(), _DOT) == 0 || 
           strcmp(_parser->getCurrentLookAheadType().c_str(), _LEFT_BRACKET) == 0) {
@@ -21,7 +21,7 @@ json MemberExpression::getAst(const Expression& _expression, Parser* _parser, js
             };
         } else {
             _parser->eatToken(_LEFT_BRACKET);
-            auto _prop = _expression.getAst(_parser, _parser->getLookAhead());
+            auto _prop = _statement.getExpressionStatement().getExpression().getAst(_statement, _parser, _parser->getLookAhead());
             _parser->eatToken(_RIGHT_BRACKET);
             _object = {
                 {"type", _MEMBER_EXPRESSION},

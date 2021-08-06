@@ -12,9 +12,9 @@ json ForLoopStatement::getAst(const Statement& _statement, Parser* _parser, json
     _parser->eatToken(_LEFT_PARENTHESIS);
 
     _parser->eatToken(_VAR);
-    std::vector<json> _indexVar = _variableStatement.getDeclarationList(_statement.getExpressionStatement().getExpression(), _parser, _parser->getLookAhead(), true);
+    std::vector<json> _indexVar = _variableStatement.getDeclarationList(_statement, _statement.getExpressionStatement().getExpression(), _parser, _parser->getLookAhead(), true);
     _parser->eatToken(_IN);
-    auto _rangeVar = _expression.getAst(_parser, _parser->getLookAhead());
+    auto _rangeVar = _expression.getAst(_statement, _parser, _parser->getLookAhead());
 
     _parser->eatToken(_RIGHT_PARENTHESIS);
     auto _loopBody = _statement.getAst(_parser, _parser->getLookAhead());

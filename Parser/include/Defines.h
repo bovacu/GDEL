@@ -98,4 +98,6 @@ extern const char* symbols[35];
 #define _RET_STATEMENT "RET_STATEMENT"
 #define _RET "ret"
 
+#define _CALL_EXPRESSION "CALL_EXPRESSION"
+
 extern const char* keywords[11];

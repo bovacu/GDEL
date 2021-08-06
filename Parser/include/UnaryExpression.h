@@ -2,18 +2,18 @@
 #define __UNARYEXPRESSION_H__
 
 #include "Parser/include/Declarations.h"
-#include "Parser/include/MemberExpression.h"
+#include "Parser/include/CallExpression.h"
 
-class Expression;
+class Statement;
 class Parser;
 
 class UnaryExpression {
     private:
-        MemberExpression memberExpression;
+        CallExpression callExpression;
 
     public:
-        json getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const;
-        const MemberExpression& getMemberExpression() const;
+        json getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const;
+        const CallExpression& getCallExpression() const;
 };
 
 #endif // __UNARYEXPRESSION_H__

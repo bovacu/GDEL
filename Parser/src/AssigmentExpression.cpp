@@ -1,9 +1,10 @@
 #include "Parser/include/Defines.h"
 #include "Parser/include/AssigmentExpression.h"
 #include "Parser/include/Parser.h"
+#include "Parser/include/Statement.h"
 
-json AssigmentExpression::getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const {
-    auto _left = this->logicalOrExpression.getAst(_expression, _parser, _parser->getLookAhead());
+json AssigmentExpression::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
+    auto _left = this->logicalOrExpression.getAst(_statement, _parser, _parser->getLookAhead());
     auto _assigment = isAssigment(_parser, _parser->getCurrentLookAheadType().c_str());
     if(_assigment.empty())
         return _left;
@@ -13,7 +14,7 @@ json AssigmentExpression::getAst(const Expression& _expression, Parser* _parser,
             {"type", _ASSIGMENT_EXPRESSION},
             {"operator", _assigment},
             {"left", _left},
-            {"right", getAst(_expression, _parser, _parser->getLookAhead())}
+            {"right", getAst(_statement, _parser, _parser->getLookAhead())}
         };
 
     return json {  };

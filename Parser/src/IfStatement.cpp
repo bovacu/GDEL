@@ -8,7 +8,7 @@ json IfStatement::getAst(const Statement& _statement, Parser* _parser, json& _to
     const Expression& _expression = _statement.getExpressionStatement().getExpression();
     _parser->eatToken(_IF);
     _parser->eatToken(_LEFT_PARENTHESIS);
-    auto _condition = _expression.getAst(_parser, _parser->getLookAhead());
+    auto _condition = _expression.getAst(_statement, _parser, _parser->getLookAhead());
     _parser->eatToken(_RIGHT_PARENTHESIS);
     auto _consequence = _statement.getAst(_parser, _parser->getLookAhead());
 

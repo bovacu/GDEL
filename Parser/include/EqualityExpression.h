@@ -5,13 +5,14 @@
 #include "Parser/include/RelationalExpression.h"
 
 class Parser;
+class Statement;
 
 class EqualityExpression {
     private:
         RelationalExpression relationalExpression;
     
     public:
-        json getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const;
+        json getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const;
         const RelationalExpression& getRelationalExpression() const;
 };
 

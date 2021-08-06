@@ -3,12 +3,12 @@
 
 #include "Parser/include/Declarations.h"
 
-class Expression;
+class Statement;
 class Parser;
 
 class ParenthesisExpression {
     public:
-        json getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const;
+        json getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const;
 };
 
 

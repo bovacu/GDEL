@@ -4,7 +4,7 @@
 #include "Parser/include/Declarations.h"
 #include "Parser/include/EqualityExpression.h"
 
-class Expression;
+class Statement;
 class Parser;
 
 class LogicalAndExpression {
@@ -12,7 +12,7 @@ class LogicalAndExpression {
         EqualityExpression equalityExpression;
 
     public:
-        json getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const;
+        json getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const;
         const EqualityExpression& getEqualityExpression() const;
 };
 

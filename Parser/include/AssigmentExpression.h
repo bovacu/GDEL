@@ -4,7 +4,7 @@
 #include "Parser/include/Declarations.h"
 #include "Parser/include/LogicalOrExpression.h"
 
-class Expression;
+class Statement;
 class Parser;
 
 class AssigmentExpression {
@@ -12,7 +12,7 @@ class AssigmentExpression {
         LogicalOrExpression logicalOrExpression;
 
     public:
-        json getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const;
+        json getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const;
         const LogicalOrExpression& getLogicalOrExpression() const;
 
     private:

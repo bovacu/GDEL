@@ -1,9 +1,9 @@
 #include "Parser/include/Defines.h"
 #include "Parser/include/UnaryExpression.h"
 #include "Parser/include/Parser.h"
-#include "Parser/include/Expression.h"
+#include "Parser/include/Statement.h"
 
-json UnaryExpression::getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const {
+json UnaryExpression::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
     json _unaryOperator; // ! or - or +
     if(strcmp(_parser->getCurrentLookAheadType().c_str(), _SUM) == 0 || 
        strcmp(_parser->getCurrentLookAheadType().c_str(), _SUB) == 0 ||
@@ -15,13 +15,13 @@ json UnaryExpression::getAst(const Expression& _expression, Parser* _parser, jso
         return json {
             {"type", _UNARY_OP},
             {"operator", _unaryOperator},
-            {"argument", getAst(_expression, _parser, _parser->getLookAhead())}
+            {"argument", getAst(_statement, _parser, _parser->getLookAhead())}
         };
     }
 
-    return this->memberExpression.getAst(_expression, _parser, _parser->getLookAhead());
+    return this->callExpression.getAst(_statement, _parser, _parser->getLookAhead());
 }
 
-const MemberExpression& UnaryExpression::getMemberExpression() const {
-    return this->memberExpression;
+const CallExpression& UnaryExpression::getCallExpression() const {
+    return this->callExpression;
 }

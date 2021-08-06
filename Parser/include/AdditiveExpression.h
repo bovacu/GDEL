@@ -4,7 +4,7 @@
 #include "Parser/include/Declarations.h"
 #include "Parser/include/MultiplicativeExpression.h"
 
-class Expression;
+class Statement;
 class Parser;
 
 class AdditiveExpression {
@@ -12,7 +12,7 @@ class AdditiveExpression {
         MultiplicativeExpression multiplicativeExpression;
 
     public:
-        json getAst(const Expression& _expression, Parser* _parser, json& _tokenToCheck) const;
+        json getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const;
         const MultiplicativeExpression& getMultiplicativeExpression() const;
 };
 

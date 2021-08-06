@@ -3,10 +3,11 @@
 
 #include "Parser/include/Declarations.h"
 class Parser;
+class Statement;
 
 class Literal {
     public:
-        json getAst(Parser* _parser, json& _tokenToCheck) const;
+        json getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const;
         bool isLiteral(json& _tokenToCheck) const;
 
     private:

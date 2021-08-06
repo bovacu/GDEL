@@ -5,13 +5,14 @@
 #include "Parser/include/AssigmentExpression.h"
 
 class Parser;
+class Statement;
 
 class Expression {
     private:
         AssigmentExpression assigmentExpression;
 
     public:
-        json getAst(Parser* _parser, json& _tokenToCheck) const;
+        json getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const;
         const AssigmentExpression& getAssigmentExpression() const;
 };
 

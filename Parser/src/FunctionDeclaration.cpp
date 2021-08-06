@@ -23,7 +23,7 @@ json FunctionDeclaration::getAst(const Statement& _statement, Parser* _parser, j
 json FunctionDeclaration::getReturnAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
     _parser->eatToken(_RET);
     auto _ret = strcmp(_parser->getCurrentLookAheadType().c_str(), _SEMICOLON) == 0 ? json {  } : 
-        _statement.getExpressionStatement().getExpression().getAst(_parser, _parser->getLookAhead());
+        _statement.getExpressionStatement().getExpression().getAst(_statement, _parser, _parser->getLookAhead());
     _parser->eatToken(_SEMICOLON);
     
     return json {
@@ -36,5 +36,5 @@ json FunctionDeclaration::getReturnAst(const Statement& _statement, Parser* _par
 std::vector<json> FunctionDeclaration::getParamList(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
     if(strcmp(_parser->getCurrentLookAheadType().c_str(), _RIGHT_PARENTHESIS) == 0) return std::vector<json>();
     auto _expression = _statement.getExpressionStatement().getExpression();
-    return _statement.getVariableStatement().getDeclarationList(_expression, _parser, _parser->getLookAhead(), true);
+    return _statement.getVariableStatement().getDeclarationList(_statement, _expression, _parser, _parser->getLookAhead(), true);
 }

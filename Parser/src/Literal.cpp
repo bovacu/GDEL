@@ -2,8 +2,9 @@
 #include "Parser/include/Literal.h"
 #include "Parser/include/Parser.h"
 #include "Parser/include/Exception.hpp"
+#include "Parser/include/Statement.h"
 
-json Literal::getAst(Parser* _parser, json& _tokenToCheck) const {
+json Literal::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
     auto _tokenType = _tokenToCheck["type"].get<std::string>();
     json _outToken {};
     if(strcmp(_tokenType.c_str(), _INTEGER) == 0 || strcmp(_tokenType.c_str(), _FLOAT) == 0) {

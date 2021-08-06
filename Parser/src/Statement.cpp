@@ -21,7 +21,7 @@ json Statement::getAst(Parser* _parser, json& _tokenToCheck) const {
         return this->functionDeclaration.getReturnAst(*this, _parser, _parser->getLookAhead());
     }
 
-    return this->expressionStatement.getAst(_parser, _tokenToCheck);
+    return this->expressionStatement.getAst(*this, _parser, _tokenToCheck);
 }
 
 

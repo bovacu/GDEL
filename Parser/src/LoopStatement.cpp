@@ -8,7 +8,7 @@ json LoopStatement::getAst(const Statement& _statement, Parser* _parser, json& _
     const Expression& _expression = _statement.getExpressionStatement().getExpression();
     _parser->eatToken(_LOOP);
     _parser->eatToken(_LEFT_PARENTHESIS);
-    auto _condition = _expression.getAst(_parser, _parser->getLookAhead());
+    auto _condition = _expression.getAst(_statement, _parser, _parser->getLookAhead());
     _parser->eatToken(_RIGHT_PARENTHESIS);
     auto _loopBody = _statement.getAst(_parser, _parser->getLookAhead());
 
