@@ -1,10 +1,7 @@
 #ifndef __RELATIONALEXPRESSION_H__
 #define __RELATIONALEXPRESSION_H__
 
-#include "Parser/include/Declarations.h"
 #include "Parser/include/AdditiveExpression.h"
-class Parser;
-class Statement;
 
 class RelationalExpression {
     private:

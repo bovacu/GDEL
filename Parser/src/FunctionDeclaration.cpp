@@ -1,7 +1,5 @@
 #include "Parser/include/FunctionDeclaration.h"
-#include "Parser/include/Defines.h"
 #include "Parser/include/Parser.h"
-#include "Parser/include/Statement.h"
 
 json FunctionDeclaration::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
     _parser->eatToken(_FUNC);

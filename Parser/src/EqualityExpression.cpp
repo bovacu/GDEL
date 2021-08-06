@@ -1,7 +1,5 @@
 #include "Parser/include/EqualityExpression.h"
-#include "Parser/include/Defines.h"
 #include "Parser/include/Parser.h"
-#include "Parser/include/Statement.h"
 
 
 json EqualityExpression::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {

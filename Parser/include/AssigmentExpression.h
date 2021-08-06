@@ -1,11 +1,7 @@
 #ifndef __ASSIGMENTEXPRESSION_H__
 #define __ASSIGMENTEXPRESSION_H__
 
-#include "Parser/include/Declarations.h"
 #include "Parser/include/LogicalOrExpression.h"
-
-class Statement;
-class Parser;
 
 class AssigmentExpression {
     private:

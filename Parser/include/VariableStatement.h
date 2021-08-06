@@ -3,9 +3,9 @@
 
 #include "Parser/include/Declarations.h"
 
-class Expression;
 class Parser;
 class Statement;
+class Expression;
 
 class VariableStatement {
     public:

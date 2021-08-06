@@ -1,11 +1,7 @@
 #ifndef __LOGICALOREXPRESSION_H__
 #define __LOGICALOREXPRESSION_H__
 
-#include "Parser/include/Declarations.h"
 #include "Parser/include/LogicalAndExpression.h"
-
-class Statement;
-class Parser;
 
 class LogicalOrExpression {
     private:

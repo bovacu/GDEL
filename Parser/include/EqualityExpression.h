@@ -1,11 +1,7 @@
 #ifndef __EQUALITYEXPRESSION_H__
 #define __EQUALITYEXPRESSION_H__
 
-#include "Parser/include/Declarations.h"
 #include "Parser/include/RelationalExpression.h"
-
-class Parser;
-class Statement;
 
 class EqualityExpression {
     private:

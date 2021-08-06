@@ -1,11 +1,7 @@
 #ifndef __RANGEEXPRESSION_H__
 #define __RANGEEXPRESSION_H__
 
-#include "Parser/include/Declarations.h"
 #include "Parser/include/UnaryExpression.h"
-
-class Statement;
-class Parser;
 
 class RangeExpression {
     private:

@@ -1,8 +1,5 @@
 #include "Parser/include/MemberExpression.h"
-#include "Parser/include/Defines.h"
 #include "Parser/include/Parser.h"
-#include "Parser/include/Statement.h"
-
 
 json MemberExpression::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
     auto _object = this->primaryExpression.getAst(_statement, _parser, _parser->getLookAhead());

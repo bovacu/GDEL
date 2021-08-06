@@ -1,11 +1,7 @@
 #ifndef __LOGICALANDEXPRESSION_H__
 #define __LOGICALANDEXPRESSION_H__
 
-#include "Parser/include/Declarations.h"
 #include "Parser/include/EqualityExpression.h"
-
-class Statement;
-class Parser;
 
 class LogicalAndExpression {
     private:

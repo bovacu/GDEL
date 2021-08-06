@@ -1,11 +1,7 @@
 #ifndef __MULTIPLICATIVEEXPRESSION_H__
 #define __MULTIPLICATIVEEXPRESSION_H__
 
-#include "Parser/include/Declarations.h"
 #include "Parser/include/RangeExpression.h"
-
-class Statement;
-class Parser;
 
 class MultiplicativeExpression {
     private:

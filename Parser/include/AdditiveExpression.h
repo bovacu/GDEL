@@ -1,11 +1,7 @@
 #ifndef __ADDITIVEEXPRESSION_H__
 #define __ADDITIVEEXPRESSION_H__
 
-#include "Parser/include/Declarations.h"
 #include "Parser/include/MultiplicativeExpression.h"
-
-class Statement;
-class Parser;
 
 class AdditiveExpression {
     private:

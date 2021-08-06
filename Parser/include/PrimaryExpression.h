@@ -1,12 +1,8 @@
 #ifndef __PRIMARYEXPRESSION_H__
 #define __PRIMARYEXPRESSION_H__
 
-#include "Parser/include/Declarations.h"
 #include "Parser/include/ParenthesisExpression.h"
 #include "Parser/include/Literal.h"
-
-class Statement;
-class Parser;
 
 class PrimaryExpression {
     private:

@@ -1,11 +1,7 @@
 #ifndef __UNARYEXPRESSION_H__
 #define __UNARYEXPRESSION_H__
 
-#include "Parser/include/Declarations.h"
 #include "Parser/include/CallExpression.h"
-
-class Statement;
-class Parser;
 
 class UnaryExpression {
     private:

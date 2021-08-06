@@ -1,7 +1,5 @@
 #include "Parser/include/RelationalExpression.h"
-#include "Parser/include/Defines.h"
 #include "Parser/include/Parser.h"
-#include "Parser/include/Statement.h"
 
 
 json RelationalExpression::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {

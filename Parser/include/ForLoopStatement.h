@@ -2,9 +2,9 @@
 #define __FORLOOPSTATEMENT_H__
 
 #include "Parser/include/Declarations.h"
+
 class Statement;
 class Parser;
-class VariableStatement;
 
 class ForLoopStatement {
     public:

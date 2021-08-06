@@ -1,7 +1,5 @@
 #include "Parser/include/LogicalAndExpression.h"
-#include "Parser/include/Defines.h"
 #include "Parser/include/Parser.h"
-#include "Parser/include/Statement.h"
 
 json LogicalAndExpression::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
     auto _left = this->equalityExpression.getAst(_statement, _parser, _parser->getLookAhead());

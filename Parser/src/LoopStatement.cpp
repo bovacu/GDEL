@@ -1,8 +1,5 @@
 #include "Parser/include/LoopStatement.h"
-#include "Parser/include/Defines.h"
 #include "Parser/include/Parser.h"
-#include "Parser/include/Expression.h"
-#include "Parser/include/Statement.h"
 
 json LoopStatement::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
     const Expression& _expression = _statement.getExpressionStatement().getExpression();

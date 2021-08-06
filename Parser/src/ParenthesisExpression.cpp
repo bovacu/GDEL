@@ -1,6 +1,4 @@
-#include "Parser/include/Defines.h"
 #include "Parser/include/ParenthesisExpression.h"
-#include "Parser/include/Expression.h"
 #include "Parser/include/Parser.h"
 
 json ParenthesisExpression::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {

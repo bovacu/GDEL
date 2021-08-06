@@ -1,11 +1,7 @@
 #ifndef __EXPRESSIONSTATEMENT_H__
 #define __EXPRESSIONSTATEMENT_H__
 
-#include "Parser/include/Declarations.h"
 #include "Parser/include/Expression.h"
-
-class Parser;
-class Statement;
 
 class ExpressionStatement {
     private:

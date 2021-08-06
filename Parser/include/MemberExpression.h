@@ -1,9 +1,7 @@
 #ifndef __MEMBEREXPRESSION_H__
 #define __MEMBEREXPRESSION_H__
 
-#include "Parser/include/Declarations.h"
 #include "Parser/include/PrimaryExpression.h"
-class Statement;
 
 class MemberExpression {
     private:

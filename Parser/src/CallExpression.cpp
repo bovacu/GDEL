@@ -1,8 +1,5 @@
 #include "Parser/include/CallExpression.h"
-#include "Parser/include/Defines.h"
 #include "Parser/include/Parser.h"
-#include "Parser/include/Statement.h"
-
 
 json CallExpression::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
     auto _member = this->memberExpression.getAst(_statement, _parser, _parser->getLookAhead());
@@ -27,17 +24,16 @@ const json CallExpression::callee(const Statement& _statement, Parser* _parser, 
 
 const std::vector<json> CallExpression::getArguments(const Statement& _statement, Parser* _parser, json& _member) const {
     _parser->eatToken(_LEFT_PARENTHESIS);
-    auto _argsList = strcmp(_parser->getCurrentLookAheadType().c_str(), _RIGHT_PARENTHESIS) == 0 ? std::vector<json>() :
-                     getArgumentList(_statement, _parser, _parser->getLookAhead());
+    auto _argsList = getArgumentList(_statement, _parser, _parser->getLookAhead());
     _parser->eatToken(_RIGHT_PARENTHESIS);
 
     return _argsList;
 }
 
 const std::vector<json> CallExpression::getArgumentList(const Statement& _statement, Parser* _parser, json& _member) const {
-    std::vector<json> _args;
-    
-    return _args;
+    if(strcmp(_parser->getCurrentLookAheadType().c_str(), _RIGHT_PARENTHESIS) == 0) return std::vector<json>();
+    auto _expression = _statement.getExpressionStatement().getExpression();
+    return _statement.getVariableStatement().getDeclarationList(_statement, _expression, _parser, _parser->getLookAhead(), true);
 }
 
 const MemberExpression& CallExpression::getMemberExpression() const {

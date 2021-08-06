@@ -1,11 +1,7 @@
 #ifndef __CALLEXPRESSION_H__
 #define __CALLEXPRESSION_H__
 
-#include "Parser/include/Declarations.h"
 #include "Parser/include/MemberExpression.h"
-
-class Statement;
-class Parser;
 
 class CallExpression {
     private:

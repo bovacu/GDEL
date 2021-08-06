@@ -2,6 +2,8 @@
 #define LITERAL_H
 
 #include "Parser/include/Declarations.h"
+#include "Parser/include/Defines.h"
+
 class Parser;
 class Statement;
 

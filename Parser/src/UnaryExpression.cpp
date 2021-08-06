@@ -1,7 +1,5 @@
-#include "Parser/include/Defines.h"
 #include "Parser/include/UnaryExpression.h"
 #include "Parser/include/Parser.h"
-#include "Parser/include/Statement.h"
 
 json UnaryExpression::getAst(const Statement& _statement, Parser* _parser, json& _tokenToCheck) const {
     json _unaryOperator; // ! or - or +
