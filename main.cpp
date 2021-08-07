@@ -12,7 +12,9 @@ int main(int argc, char *argv[]) {
         Parser _p;
         try {
             auto _root = _p.parse(R"(
-               struct Point {
+                import 'MathModule';
+                
+                struct Point {
                     func constructor(_x, _y) {
                         this.x = _x;
                         this.y = _y;
@@ -28,6 +30,7 @@ int main(int argc, char *argv[]) {
                 }
 
                 var _myPoint = new Point(10, 5);
+                _myPoint.x = _myPoint.y;
             )");
             std::cout << _root.dump(4) << std::endl;
         } catch(CoreException e) {  }

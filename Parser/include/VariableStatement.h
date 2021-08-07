@@ -1,16 +1,14 @@
 #ifndef __VARIABLESTATEMENT_H__
 #define __VARIABLESTATEMENT_H__
 
-#include "Parser/include/Declarations.h"
-
-class Parser;
-class Statement;
+#include "Parser/include/IStatement.h"
 class Expression;
 
-class VariableStatement {
+class VariableStatement : public IStatement {
     public:
         json getAst(const Statement& _statement, Parser& _parser, json& _tokenToCheck) const;
         std::vector<json> getDeclarationList(const Statement& _statement, const Expression& _expression, Parser& _parser, json& _tokenToCheck, bool _isSpecialDecl = false) const;
+        inline Func getFunc() override { return BIND_FN(VariableStatement::getAst); }
         
     private:
         json getVariableDeclaration(const Statement& _statement, const Expression& _expression, Parser& _parser, json& _tokenToCheck, bool _isSpecialDecl = false) const;

@@ -9,8 +9,8 @@
 #include "Parser/include/ForLoopStatement.h"
 #include "Parser/include/FunctionStatement.h"
 #include "Parser/include/StructStatement.h"
-
-class Parser;
+#include "Parser/include/ImportStatement.h"
+#include <map>
 
 class Statement {
     private:
@@ -20,13 +20,18 @@ class Statement {
         IfStatement ifStatement;
         LoopStatement loopStatement;
         ForLoopStatement forLoopStatement;
-        FunctionStatement functionDeclaration;
+        FunctionStatement functionStatement;
         StructStatement structStatement;
+        ImportStatement importStatement;
+        std::map<std::string, Func> statementsFuncs;
 
     public:
+        Statement();
         json getAst(Parser& _parser, json& _tokenToCheck) const;
+        
         const ExpressionStatement& getExpressionStatement() const;
         const VariableStatement& getVariableStatement() const;
+        const ImportStatement& getImportStatement() const;
         const BlockStatement& getBlockStatement() const;
         const IfStatement& getIfStatement() const;
         const LoopStatement& getLoopStatement() const;

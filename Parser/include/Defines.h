@@ -110,4 +110,7 @@ extern const char* symbols[35];
 #define _BASE_EXPRESSION "BASE_EXPRESSION"
 #define _BASE "base"
 
-extern const char* keywords[17];
+#define _IMPORT_STATEMENT "IMPORT_STATEMENT"
+#define _IMPORT "import"
+
+extern const char* keywords[18];

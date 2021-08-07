@@ -13,6 +13,7 @@
 #include "Parser/tests/LoopTests.hpp"
 #include "Parser/tests/FunctionTests.hpp"
 #include "Parser/tests/StructTests.hpp"
+#include "Parser/tests/ImportTests.hpp"
 #include <assert.h>
 
 class ParserTests {
@@ -28,6 +29,7 @@ class ParserTests {
         LoopTests loopTests;
         FunctionTests functionTests;
         StructTests structTests;
+        ImportTests importTests;
 
     public:
         void run() {
@@ -41,6 +43,7 @@ class ParserTests {
             loopTests.runTests();
             functionTests.runTests();
             structTests.runTests();
+            importTests.runTests();
         }
 };
 

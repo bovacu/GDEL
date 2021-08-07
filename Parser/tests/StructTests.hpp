@@ -16,7 +16,7 @@ class StructTests {
         void test1() {
             Parser _parser;
             const char* _code1 = R"(
-                struct Point {
+                struct Point extends BasePoint {
                     func constructor(_x, _y) {
                         this.x = _x;
                         this.y = _y;
@@ -39,7 +39,10 @@ class StructTests {
                 {
                     "body": [
                         {
-                            "extends": null,
+                            "extends": {
+                                "type": "ID",
+                                "value": "BasePoint"
+                            },
                             "name": {
                                 "type": "ID",
                                 "value": "Point"
