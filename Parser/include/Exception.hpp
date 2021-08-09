@@ -26,7 +26,7 @@ class UnexpectedEOFException : public CoreException {
 class UnexpectedTypexception : public CoreException {
     public:
         UnexpectedTypexception(const char* _typeExpected, const char* _typeGot, const char* _valueGot, int _line) {
-            std::cerr << "\033[1;31m" << "Error: Unexpected type " << _typeGot << " with value '" << _valueGot << "', expected " << _typeExpected << " in line " << _line << "\033[0m\n" << std::endl;
+            std::cerr << "\033[1;31m" << "Error: Unexpected type " << _typeGot << " with value '" << _valueGot << "', expected '" << _typeExpected << "' in line " << _line << "\033[0m\n" << std::endl;
         }
         ~UnexpectedTypexception() { }
 };
@@ -37,6 +37,14 @@ class IllegalAssigmentExpression : public CoreException {
             std::cerr << "\033[1;31m" << "Error: Illegal assigment of var '" << _assigment << "' in line " << _line << "\033[0m\n" << std::endl;
         }
         ~IllegalAssigmentExpression() { }
+};
+
+class IllegalFunctionArgument : public CoreException {
+    public:
+        IllegalFunctionArgument(const char* _assigment, int _line) {
+            std::cerr << "\033[1;31m" << "Error: Illegal function argument declaration, expected variable name and got '" << _assigment << "' in line " << _line << "\033[0m\n" << std::endl;
+        }
+        ~IllegalFunctionArgument() { }
 };
 
 class MalformedStringException : public CoreException {

@@ -1,8 +1,7 @@
 #ifndef __VARIABLESTEST_H__
 #define __VARIABLESTEST_H__
 
-#include "Parser/include/Parser.h"
-#include "Parser/include/Declarations.h"
+#include "Parser/include/Parser.hpp"
 #include <assert.h>
 
 class VariablesTest {
@@ -17,7 +16,6 @@ class VariablesTest {
 
     private:
         void test1() {
-            Parser _parser;
             const char* _code1 = R"(
                 var x;
             )";
@@ -47,12 +45,12 @@ class VariablesTest {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "✔" << " Variables 1!" << "\033[0m\n" << std::endl;
         }
 
         void test2() {
-            Parser _parser;
             const char* _code1 = R"(
                 var x, y, z, c, t;
             )";
@@ -114,12 +112,12 @@ class VariablesTest {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "✔" << " Variables 2!" << "\033[0m\n" << std::endl;
         }
 
         void test3() {
-            Parser _parser;
             const char* _code1 = R"(
                 var x, y = (5 + 5) * 3, z, c = w, t;
             )";
@@ -209,12 +207,12 @@ class VariablesTest {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "✔" << " Variables 3!" << "\033[0m\n" << std::endl;
         }
 
         void test4() {
-            Parser _parser;
             const char* _code1 = R"(
                 var x = 0;
                 var _y = 4;
@@ -278,8 +276,9 @@ class VariablesTest {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "✔" << " Variables 4!" << "\033[0m\n" << std::endl;
         }
 };
 

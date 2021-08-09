@@ -9,6 +9,7 @@
 #define _EXCL_RANGE "..."
 
 #define _SEMICOLON ";"
+#define _COLON ":"
 #define _COMA ","
 #define _SPACE " "
 #define _N "/n"
@@ -56,6 +57,9 @@
 #define _POW "^"
 #define _LEFT_PARENTHESIS "("
 #define _RIGHT_PARENTHESIS ")"
+
+#define _AT "@"
+#define _FORMAT_EXPRESSION "FORMAT_EXPRESSION"
 
 #define _IGNORE "IGNORE"
 #define _ERROR "ERROR"
@@ -113,4 +117,9 @@ extern const char* symbols[35];
 #define _IMPORT_STATEMENT "IMPORT_STATEMENT"
 #define _IMPORT "import"
 
-extern const char* keywords[18];
+#define _LAMB_EXPRESSION "LAMB_EXPRESSION"
+#define _LAMB "lamb"
+#define _TERN_EXPRESSION "TERN_EXPRESSION"
+#define _TERN "tern"
+
+extern const char* keywords[20];

@@ -8,7 +8,7 @@ const char* symbols[35] = { _SPACE, _SEMICOLON, _N, _R, _T, _SUM, _DIV, _MUL,
                             _RIGHT_BRACKET
                           };
 
-const char* keywords[18] = { _VAR, _FOR, _LOOP, _IF, _ELSE_IF, _ELSE, _SWITCH, _CASE,
+const char* keywords[20] = { _VAR, _FOR, _LOOP, _IF, _ELSE_IF, _ELSE, _SWITCH, _CASE,
                              _IN, _FUNC, _RET, _NEW, _STRUCT, _IMPORT, _SELF, _BASE,
-                             _EXTENDS, _IMPORT
-                            };
+                             _EXTENDS, _IMPORT, _LAMB, _TERN
+                           };

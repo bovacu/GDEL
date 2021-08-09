@@ -1,8 +1,7 @@
 #ifndef __LOOPTESTS_H__
 #define __LOOPTESTS_H__
 
-#include "Parser/include/Parser.h"
-#include "Parser/include/Declarations.h"
+#include "Parser/include/Parser.hpp"
 #include <assert.h>
 
 class LoopTests {
@@ -17,9 +16,8 @@ class LoopTests {
 
     private:
         void test1() {
-            Parser _parser;
             const char* _code1 = R"(
-                for(var _z = 0 in 8..9) {
+                for(_z = 0 in 8..9) {
                        
                 }
             )";
@@ -31,15 +29,19 @@ class LoopTests {
                         {
                             "index": [
                                 {
-                                    "id": {
+                                    "left": {
                                         "type": "ID",
                                         "value": "_z"
                                     },
-                                    "init": {
+                                    "operator": {
+                                        "type": "=",
+                                        "value": "="
+                                    },
+                                    "right": {
                                         "type": "INTEGER",
                                         "value": "0"
                                     },
-                                    "type": "VARIABLE_DECLARATION"
+                                    "type": "ASSIGMENT_EXPRESSION"
                                 }
                             ],
                             "loopBody": {
@@ -71,16 +73,16 @@ class LoopTests {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " Loops 1!" << "\033[0m\n" << std::endl;
         }
 
         void test2() {
-            Parser _parser;
             const char* _code1 = R"(
-                for(var _i in x) {
+                for(_i in x) {
                    var _y = _i + 1;
-               }
+                }
             )";
             json _resultAst;
             
@@ -90,12 +92,8 @@ class LoopTests {
                         {
                             "index": [
                                 {
-                                    "id": {
-                                        "type": "ID",
-                                        "value": "_i"
-                                    },
-                                    "init": null,
-                                    "type": "VARIABLE_DECLARATION"
+                                    "type": "ID",
+                                    "value": "_i"
                                 }
                             ],
                             "loopBody": {
@@ -144,12 +142,12 @@ class LoopTests {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " Loops 2!" << "\033[0m\n" << std::endl;
         }
 
         void test3() {
-            Parser _parser;
             const char* _code1 = R"(
                 loop(x) {
                    
@@ -179,16 +177,16 @@ class LoopTests {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " Loops 3!" << "\033[0m\n" << std::endl;
         }
 
         void test4() {
-            Parser _parser;
             const char* _code1 = R"(
                 loop(x > 5) {
                     if(x == 3) {
-                        for(var _z in 9...10) {
+                        for(_z in 9...10) {
                             var _string = 'stringyyy';
                         }
                     }
@@ -239,12 +237,8 @@ class LoopTests {
                                                 {
                                                     "index": [
                                                         {
-                                                            "id": {
-                                                                "type": "ID",
-                                                                "value": "_z"
-                                                            },
-                                                            "init": null,
-                                                            "type": "VARIABLE_DECLARATION"
+                                                            "type": "ID",
+                                                            "value": "_z"
                                                         }
                                                     ],
                                                     "loopBody": {
@@ -303,8 +297,9 @@ class LoopTests {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " Loops 4!" << "\033[0m\n" << std::endl;
         }
 };
 

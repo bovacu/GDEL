@@ -1,8 +1,7 @@
 #ifndef __IFTESTS_H__
 #define __IFTESTS_H__
 
-#include "Parser/include/Parser.h"
-#include "Parser/include/Declarations.h"
+#include "Parser/include/Parser.hpp"
 #include <assert.h>
 
 class IfTests {
@@ -17,7 +16,6 @@ class IfTests {
 
     private:
         void test1() {
-            Parser _parser;
             const char* _code1 = R"(
                 10 + x <= 100 - c;
             )";
@@ -74,12 +72,12 @@ class IfTests {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " If 1!" << "\033[0m\n" << std::endl;
         }
 
         void test2() {
-            Parser _parser;
             const char* _code1 = R"(
                 if(x + 3 == y - 3 * 4) {
                     var _result = x + y;
@@ -182,12 +180,12 @@ class IfTests {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " If 2!" << "\033[0m\n" << std::endl;
         }
 
         void test3() {
-            Parser _parser;
             const char* _code1 = R"(
                 if(a) {
                     # simple comment
@@ -291,12 +289,12 @@ class IfTests {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " If 3!" << "\033[0m\n" << std::endl;
         }
 
         void test4() {
-            Parser _parser;
             const char* _code1 = R"(
                 if(a > b)
                     b = a;
@@ -370,8 +368,9 @@ class IfTests {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " If 4!" << "\033[0m\n" << std::endl;
         }
 };
 

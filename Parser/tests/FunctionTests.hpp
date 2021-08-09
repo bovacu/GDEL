@@ -1,8 +1,7 @@
 #ifndef __FUNCTIONTESTS_H__
 #define __FUNCTIONTESTS_H__
 
-#include "Parser/include/Parser.h"
-#include "Parser/include/Declarations.h"
+#include "Parser/include/Parser.hpp"
 #include <assert.h>
 
 class FunctionTests {
@@ -17,7 +16,6 @@ class FunctionTests {
 
     private:
         void test1() {
-            Parser _parser;
             const char* _code1 = R"(
                 func square(x) {
                    ret x * x;
@@ -58,12 +56,8 @@ class FunctionTests {
                             },
                             "params": [
                                 {
-                                    "id": {
-                                        "type": "ID",
-                                        "value": "x"
-                                    },
-                                    "init": null,
-                                    "type": "VARIABLE_DECLARATION"
+                                    "type": "ID",
+                                    "value": "x"
                                 }
                             ],
                             "type": "FUNCTION_DECLARATION"
@@ -76,12 +70,12 @@ class FunctionTests {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " Functions 1!" << "\033[0m\n" << std::endl;
         }
 
         void test2() {
-            Parser _parser;
             const char* _code1 = R"(
                 func square() {
                    # just an empty function
@@ -112,12 +106,12 @@ class FunctionTests {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " Functions 2!" << "\033[0m\n" << std::endl;
         }
 
         void test3() {
-            Parser _parser;
             const char* _code1 = R"(
                 func square(x = 4, y = -5.5, z = false, w = 'hello') {
                    ret;
@@ -144,22 +138,30 @@ class FunctionTests {
                             },
                             "params": [
                                 {
-                                    "id": {
+                                    "left": {
                                         "type": "ID",
                                         "value": "x"
                                     },
-                                    "init": {
+                                    "operator": {
+                                        "type": "=",
+                                        "value": "="
+                                    },
+                                    "right": {
                                         "type": "INTEGER",
                                         "value": "4"
                                     },
-                                    "type": "VARIABLE_DECLARATION"
+                                    "type": "ASSIGMENT_EXPRESSION"
                                 },
                                 {
-                                    "id": {
+                                    "left": {
                                         "type": "ID",
                                         "value": "y"
                                     },
-                                    "init": {
+                                    "operator": {
+                                        "type": "=",
+                                        "value": "="
+                                    },
+                                    "right": {
                                         "argument": {
                                             "type": "FLOAT",
                                             "value": "5.5"
@@ -170,29 +172,37 @@ class FunctionTests {
                                         },
                                         "type": "UNARY_OP"
                                     },
-                                    "type": "VARIABLE_DECLARATION"
+                                    "type": "ASSIGMENT_EXPRESSION"
                                 },
                                 {
-                                    "id": {
+                                    "left": {
                                         "type": "ID",
                                         "value": "z"
                                     },
-                                    "init": {
+                                    "operator": {
+                                        "type": "=",
+                                        "value": "="
+                                    },
+                                    "right": {
                                         "type": "BOOL",
                                         "value": "false"
                                     },
-                                    "type": "VARIABLE_DECLARATION"
+                                    "type": "ASSIGMENT_EXPRESSION"
                                 },
                                 {
-                                    "id": {
+                                    "left": {
                                         "type": "ID",
                                         "value": "w"
                                     },
-                                    "init": {
+                                    "operator": {
+                                        "type": "=",
+                                        "value": "="
+                                    },
+                                    "right": {
                                         "type": "STRING",
                                         "value": "hello"
                                     },
-                                    "type": "VARIABLE_DECLARATION"
+                                    "type": "ASSIGMENT_EXPRESSION"
                                 }
                             ],
                             "type": "FUNCTION_DECLARATION"
@@ -205,12 +215,12 @@ class FunctionTests {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " Functions 3!" << "\033[0m\n" << std::endl;
         }
 
         void test4() {
-            Parser _parser;
             const char* _code1 = R"(
                 func myFunc(x = 24, y = 4.4, z = false, s = 'hello') {
                    loop(z) {
@@ -266,48 +276,64 @@ class FunctionTests {
                             },
                             "params": [
                                 {
-                                    "id": {
+                                    "left": {
                                         "type": "ID",
                                         "value": "x"
                                     },
-                                    "init": {
+                                    "operator": {
+                                        "type": "=",
+                                        "value": "="
+                                    },
+                                    "right": {
                                         "type": "INTEGER",
                                         "value": "24"
                                     },
-                                    "type": "VARIABLE_DECLARATION"
+                                    "type": "ASSIGMENT_EXPRESSION"
                                 },
                                 {
-                                    "id": {
+                                    "left": {
                                         "type": "ID",
                                         "value": "y"
                                     },
-                                    "init": {
+                                    "operator": {
+                                        "type": "=",
+                                        "value": "="
+                                    },
+                                    "right": {
                                         "type": "FLOAT",
                                         "value": "4.4"
                                     },
-                                    "type": "VARIABLE_DECLARATION"
+                                    "type": "ASSIGMENT_EXPRESSION"
                                 },
                                 {
-                                    "id": {
+                                    "left": {
                                         "type": "ID",
                                         "value": "z"
                                     },
-                                    "init": {
+                                    "operator": {
+                                        "type": "=",
+                                        "value": "="
+                                    },
+                                    "right": {
                                         "type": "BOOL",
                                         "value": "false"
                                     },
-                                    "type": "VARIABLE_DECLARATION"
+                                    "type": "ASSIGMENT_EXPRESSION"
                                 },
                                 {
-                                    "id": {
+                                    "left": {
                                         "type": "ID",
                                         "value": "s"
                                     },
-                                    "init": {
+                                    "operator": {
+                                        "type": "=",
+                                        "value": "="
+                                    },
+                                    "right": {
                                         "type": "STRING",
                                         "value": "hello"
                                     },
-                                    "type": "VARIABLE_DECLARATION"
+                                    "type": "ASSIGMENT_EXPRESSION"
                                 }
                             ],
                             "type": "FUNCTION_DECLARATION"
@@ -320,8 +346,9 @@ class FunctionTests {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " Functions 4!" << "\033[0m\n" << std::endl;
         }
 };
 

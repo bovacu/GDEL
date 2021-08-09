@@ -1,8 +1,7 @@
 #ifndef __STRUCTTESTS_H__
 #define __STRUCTTESTS_H__
 
-#include "Parser/include/Parser.h"
-#include "Parser/include/Declarations.h"
+#include "Parser/include/Parser.hpp"
 #include <assert.h>
 
 class StructTests {
@@ -14,7 +13,6 @@ class StructTests {
 
     private:
         void test1() {
-            Parser _parser;
             const char* _code1 = R"(
                 struct Point extends BasePoint {
                     func constructor(_x, _y) {
@@ -29,9 +27,13 @@ class StructTests {
                     func getY() {
                         ret this.y;
                     }
+
+                    func print() {
+                        console.log(self.x, self.y, getX(), getY(), z[0]);
+                    }
                 }
 
-                var _myPoint = new Point(10, 5);
+                var _myPoint = new Point(10, y[1]);
             )";
             json _resultAst;
             
@@ -113,20 +115,12 @@ class StructTests {
                                         },
                                         "params": [
                                             {
-                                                "id": {
-                                                    "type": "ID",
-                                                    "value": "_x"
-                                                },
-                                                "init": null,
-                                                "type": "VARIABLE_DECLARATION"
+                                                "type": "ID",
+                                                "value": "_x"
                                             },
                                             {
-                                                "id": {
-                                                    "type": "ID",
-                                                    "value": "_y"
-                                                },
-                                                "init": null,
-                                                "type": "VARIABLE_DECLARATION"
+                                                "type": "ID",
+                                                "value": "_y"
                                             }
                                         ],
                                         "type": "FUNCTION_DECLARATION"
@@ -186,6 +180,89 @@ class StructTests {
                                         },
                                         "params": [],
                                         "type": "FUNCTION_DECLARATION"
+                                    },
+                                    {
+                                        "body": {
+                                            "body": [
+                                                {
+                                                    "expression": {
+                                                        "arguments": [
+                                                            {
+                                                                "computed": false,
+                                                                "object": {
+                                                                    "type": "SEFL_EXPRESSION"
+                                                                },
+                                                                "property": {
+                                                                    "type": "ID",
+                                                                    "value": "x"
+                                                                },
+                                                                "type": "MEMBER_EXPRESSION"
+                                                            },
+                                                            {
+                                                                "computed": false,
+                                                                "object": {
+                                                                    "type": "SEFL_EXPRESSION"
+                                                                },
+                                                                "property": {
+                                                                    "type": "ID",
+                                                                    "value": "y"
+                                                                },
+                                                                "type": "MEMBER_EXPRESSION"
+                                                            },
+                                                            {
+                                                                "arguments": [],
+                                                                "callee": {
+                                                                    "type": "ID",
+                                                                    "value": "getX"
+                                                                },
+                                                                "type": "CALL_EXPRESSION"
+                                                            },
+                                                            {
+                                                                "arguments": [],
+                                                                "callee": {
+                                                                    "type": "ID",
+                                                                    "value": "getY"
+                                                                },
+                                                                "type": "CALL_EXPRESSION"
+                                                            },
+                                                            {
+                                                                "computed": true,
+                                                                "object": {
+                                                                    "type": "ID",
+                                                                    "value": "z"
+                                                                },
+                                                                "property": {
+                                                                    "type": "INTEGER",
+                                                                    "value": "0"
+                                                                },
+                                                                "type": "MEMBER_EXPRESSION"
+                                                            }
+                                                        ],
+                                                        "callee": {
+                                                            "computed": false,
+                                                            "object": {
+                                                                "type": "ID",
+                                                                "value": "console"
+                                                            },
+                                                            "property": {
+                                                                "type": "ID",
+                                                                "value": "log"
+                                                            },
+                                                            "type": "MEMBER_EXPRESSION"
+                                                        },
+                                                        "type": "CALL_EXPRESSION"
+                                                    },
+                                                    "type": "EXPRESSION_STATEMENT"
+                                                }
+                                            ],
+                                            "type": "BLOCK_STATEMENT"
+                                        },
+                                        "name": {
+                                            "type": "ID",
+                                            "value": "print"
+                                        },
+                                        "params": [],
+                                        "type": "FUNCTION_DECLARATION"
                                     }
                                 ],
                                 "type": "BLOCK_STATEMENT"
@@ -202,20 +279,20 @@ class StructTests {
                                     "init": {
                                         "args": [
                                             {
-                                                "id": {
-                                                    "type": "INTEGER",
-                                                    "value": "10"
-                                                },
-                                                "init": null,
-                                                "type": "VARIABLE_DECLARATION"
+                                                "type": "INTEGER",
+                                                "value": "10"
                                             },
                                             {
-                                                "id": {
-                                                    "type": "INTEGER",
-                                                    "value": "5"
+                                                "computed": true,
+                                                "object": {
+                                                    "type": "ID",
+                                                    "value": "y"
                                                 },
-                                                "init": null,
-                                                "type": "VARIABLE_DECLARATION"
+                                                "property": {
+                                                    "type": "INTEGER",
+                                                    "value": "1"
+                                                },
+                                                "type": "MEMBER_EXPRESSION"
                                             }
                                         ],
                                         "callee": {
@@ -237,8 +314,9 @@ class StructTests {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " Struct 1!" << "\033[0m\n" << std::endl;
         }
 };
 

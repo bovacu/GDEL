@@ -1,7 +1,9 @@
 #include <iostream>
-#include "Parser/include/Parser.h"
-#include "Parser/include/Exception.hpp"
+// #include "Parser/include/Parser.h"
+// #include "Parser/include/Exception.hpp"
 #include "Parser/tests/ParserTests.hpp"
+
+// #include "Parser/include/Parser.hpp"
 
 int main(int argc, char *argv[]) {
     
@@ -9,12 +11,9 @@ int main(int argc, char *argv[]) {
         ParserTests _pt;
         _pt.run();
     #else
-        Parser _p;
         try {
-            auto _root = _p.parse(R"(
-                import 'MathModule';
-                
-                struct Point {
+            auto _root = parse(R"(
+                struct Point extends BasePoint {
                     func constructor(_x, _y) {
                         this.x = _x;
                         this.y = _y;
@@ -27,10 +26,13 @@ int main(int argc, char *argv[]) {
                     func getY() {
                         ret this.y;
                     }
+
+                    func print() {
+                        console.log(self.x, self.y, getX(), getY(), z[0]);
+                    }
                 }
 
-                var _myPoint = new Point(10, 5);
-                _myPoint.x = _myPoint.y;
+                var _myPoint = new Point(10, y[1]);
             )");
             std::cout << _root.dump(4) << std::endl;
         } catch(CoreException e) {  }

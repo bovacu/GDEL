@@ -24,34 +24,9 @@ project (${PROJECT_NAME})
 # the project's entire directory structure.
 include_directories(${CMAKE_SOURCE_DIR}/Parser ${CMAKE_SOURCE_DIR})
 set(SRC_FILES   main.cpp 
-                Parser/src/Parser.cpp 
-                Parser/src/Tokenizer.cpp 
-                Parser/src/Literal.cpp 
-                Parser/src/Statement.cpp
-                Parser/src/ExpressionStatement.cpp
-                Parser/src/Expression.cpp
-                Parser/src/BlockStatement.cpp
-                Parser/src/AdditiveExpression.cpp
-                Parser/src/MultiplicativeExpression.cpp
-                Parser/src/PrimaryExpression.cpp
-                Parser/src/ParenthesisExpression.cpp
-                Parser/src/AssigmentExpression.cpp
-                Parser/src/TokenStripper.cpp
                 Parser/src/Defines.cpp
-                Parser/src/VariableStatement.cpp
-                Parser/src/IfStatement.cpp
-                Parser/src/LoopStatement.cpp
-                Parser/src/ForLoopStatement.cpp
-                Parser/src/RelationalExpression.cpp
-                Parser/src/EqualityExpression.cpp
-                Parser/src/LogicalAndExpression.cpp
-                Parser/src/LogicalOrExpression.cpp
-                Parser/src/UnaryExpression.cpp
-                Parser/src/RangeExpression.cpp
-                Parser/src/FunctionStatement.cpp
-                Parser/src/MemberExpression.cpp
-                Parser/src/CallExpression.cpp
-                Parser/src/StructStatement.cpp
-                Parser/src/ImportStatement.cpp)
+                Parser/include/TokenStripper.hpp
+                Parser/include/Parser.hpp
+            )
 
 add_executable (${PROJECT_NAME} ${SRC_FILES})

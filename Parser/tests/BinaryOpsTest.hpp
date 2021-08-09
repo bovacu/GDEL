@@ -1,8 +1,7 @@
 #ifndef __BINARYOPSTEST_H__
 #define __BINARYOPSTEST_H__
 
-#include "Parser/include/Parser.h"
-#include "Parser/include/Declarations.h"
+#include "Parser/include/Parser.hpp"
 #include <assert.h>
 
 
@@ -20,7 +19,6 @@ class BinaryOpsTest {
 
     private:
         void test1() {
-            Parser _parser;
             const char* _code1 = R"(
                 45 + 33;
             )";
@@ -55,12 +53,12 @@ class BinaryOpsTest {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " BinaryOps 1!" << "\033[0m\n" << std::endl;
         }
 
         void test2() {
-            Parser _parser;
             const char* _code1 = R"(
                 45 + 33 - 95;
             )";
@@ -106,12 +104,13 @@ class BinaryOpsTest {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " BinaryOps 2!" << "\033[0m\n" << std::endl;
+
         }
 
         void test3() {
-            Parser _parser;
             const char* _code1 = R"(
                 3 + 2 * 95;
             )";
@@ -157,12 +156,13 @@ class BinaryOpsTest {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " BinaryOps 3!" << "\033[0m\n" << std::endl;
+
         }
 
         void test4() {
-            Parser _parser;
             const char* _code1 = R"(
                 3 / 2 - 95;
             )";
@@ -208,12 +208,13 @@ class BinaryOpsTest {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " BinaryOps 4!" << "\033[0m\n" << std::endl;
+
         }
 
         void test5() {
-            Parser _parser;
             const char* _code1 = R"(
                 3 + 2 * 95 / 5 - 1;
             )";
@@ -281,12 +282,12 @@ class BinaryOpsTest {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " BinaryOps 5!" << "\033[0m\n" << std::endl;
         }
 
         void test6() {
-            Parser _parser;
             const char* _code1 = R"(
                 (3 + 2) * 4;
             )";
@@ -332,8 +333,9 @@ class BinaryOpsTest {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " BinaryOps 6!" << "\033[0m\n" << std::endl;
         }
 };
 

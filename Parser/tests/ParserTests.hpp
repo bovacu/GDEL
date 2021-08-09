@@ -1,8 +1,8 @@
 #ifndef __PARSERTESTS_H__
 #define __PARSERTESTS_H__
 
-#include "Parser/include/Parser.h"
-#include "Parser/include/Declarations.h"
+// #include "Parser/include/Parser.h"
+// #include "Parser/include/Declarations.h"
 #include "Parser/tests/BlockTest.hpp"
 #include "Parser/tests/NumbersTest.hpp"
 #include "Parser/tests/BinaryOpsTest.hpp"
@@ -13,7 +13,7 @@
 #include "Parser/tests/LoopTests.hpp"
 #include "Parser/tests/FunctionTests.hpp"
 #include "Parser/tests/StructTests.hpp"
-#include "Parser/tests/ImportTests.hpp"
+// #include "Parser/tests/ImportTests.hpp"
 #include <assert.h>
 
 class ParserTests {
@@ -29,7 +29,7 @@ class ParserTests {
         LoopTests loopTests;
         FunctionTests functionTests;
         StructTests structTests;
-        ImportTests importTests;
+        // ImportTests importTests;
 
     public:
         void run() {
@@ -43,7 +43,7 @@ class ParserTests {
             loopTests.runTests();
             functionTests.runTests();
             structTests.runTests();
-            importTests.runTests();
+            // importTests.runTests();
         }
 };
 

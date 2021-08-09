@@ -1,8 +1,7 @@
 #ifndef __IMPORTTESTS_H__
 #define __IMPORTTESTS_H__
 
-#include "Parser/include/Parser.h"
-#include "Parser/include/Declarations.h"
+#include "Parser/include/Parser.hpp"
 #include <assert.h>
 
 class ImportTests {
@@ -14,7 +13,6 @@ class ImportTests {
 
     private:
         void test1() {
-            Parser _parser;
             const char* _code1 = R"(
                 import 'MathModule';
             )";
@@ -38,8 +36,9 @@ class ImportTests {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " Import 1!" << "\033[0m\n" << std::endl;
         }
 };
 

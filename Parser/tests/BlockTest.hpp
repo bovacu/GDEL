@@ -1,8 +1,7 @@
 #ifndef __BLOCKSTEST_H__
 #define __BLOCKSTEST_H__
 
-#include "Parser/include/Parser.h"
-#include "Parser/include/Declarations.h"
+#include "Parser/include/Parser.hpp"
 #include <assert.h>
 
 class BlockTest {
@@ -20,7 +19,6 @@ class BlockTest {
         }
 
         void test1() {
-            Parser _parser;
             const char* _code1 = R"(
                 {}
             )";
@@ -41,12 +39,12 @@ class BlockTest {
                     "type": "PROGRAM"
                 }
             )";
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " BlockStatement 1!" << "\033[0m\n" << std::endl;
         }
 
         void test2() {
-            Parser _parser;
             const char* _code1 = R"(
                 {
                     45;
@@ -86,12 +84,12 @@ class BlockTest {
                 }
             )";
 
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " BlockStatement 2!" << "\033[0m\n" << std::endl;
         }
 
         void test3() {
-            Parser _parser;
             const char* _code1 = R"(
                 {
                     45;
@@ -154,8 +152,9 @@ class BlockTest {
                 }
             )";
 
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(json::parse(_expectedAst) == _resultAst);
+            std::cout << "\033[1;32m" << "  ✔" << " BlockStatement 3!" << "\033[0m\n" << std::endl;
         }
 };
 

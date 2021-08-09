@@ -1,9 +1,7 @@
 #ifndef __NUMBERSTEST_H__
 #define __NUMBERSTEST_H__
 
-#include "Parser/include/Parser.h"
-#include "Parser/include/Defines.h"
-#include "Parser/include/Declarations.h"
+#include "Parser/include/Parser.hpp"
 #include <assert.h>
 
 class NumbersTest {
@@ -21,7 +19,6 @@ class NumbersTest {
         }
 
         void numbers1() {
-            Parser _parser;
             const char* _code1 = R"(45;)";
             json _resultAst;
             
@@ -44,12 +41,12 @@ class NumbersTest {
                 }
             };
 
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(_resultAst == _expectedAst);
+            std::cout << "\033[1;32m" << "  ✔" << " NumberTests 1!" << "\033[0m\n" << std::endl;
         }
 
         void numbers2() {
-            Parser _parser;
             const char* _code1 = R"(
                 36578;
             )";
@@ -73,12 +70,12 @@ class NumbersTest {
                 }
             };
 
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(_resultAst == _expectedAst);
+            std::cout << "\033[1;32m" << "  ✔" << " NumberTests 2!" << "\033[0m\n" << std::endl;
         }
 
         void numbers3() {
-            Parser _parser;
             const char* _code1 = R"(
                 36578;
                 128.256;
@@ -120,41 +117,9 @@ class NumbersTest {
                 }
             };
 
-            _resultAst = _parser.parse(_code1);
+            _resultAst = parse(_code1);
             assert(_resultAst == _expectedAst);
-        }
-
-        void numbersFailParsingBySemicolon() {
-            Parser _parser;
-            const char* _code1 = R"(
-                123
-            )";
-            json _resultAst;
-            json _expectedAst = {
-                {"type", _PROGRAM},
-                {"body", std::vector<json> {
-                        {
-                            {"expression", {
-                                    {"type", _INTEGER},
-                                    {"value", "123"}
-                                }
-                            },
-                            {"type", _EXPRESSION_STATEMENT}
-                        },
-                        {
-                            {"type", _EOF},
-                            {"value", _EOF}
-                        }
-                    }
-                }
-            };
-
-            try {
-                _resultAst = _parser.parse(_code1);
-                assert(false);
-            } catch(const std::exception& e) {
-                assert(true);
-            }
+            std::cout << "\033[1;32m" << "  ✔" << " NumberTests 3!" << "\033[0m\n" << std::endl;
         }
 };
 
