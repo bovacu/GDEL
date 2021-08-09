@@ -1,0 +1,7 @@
+'hello {x + y}'
+
+lamb: () -> {
+
+}
+
+tern: cond, opt1, opt2;

@@ -252,6 +252,7 @@ class LoopTests {
                                                                         },
                                                                         "init": {
                                                                             "type": "STRING",
+                                                                            "formattings": [],
                                                                             "value": "stringyyy"
                                                                         },
                                                                         "type": "VARIABLE_DECLARATION"

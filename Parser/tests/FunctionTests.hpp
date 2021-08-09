@@ -200,6 +200,7 @@ class FunctionTests {
                                     },
                                     "right": {
                                         "type": "STRING",
+                                        "formattings": [],
                                         "value": "hello"
                                     },
                                     "type": "ASSIGMENT_EXPRESSION"
@@ -331,6 +332,7 @@ class FunctionTests {
                                     },
                                     "right": {
                                         "type": "STRING",
+                                        "formattings": [],
                                         "value": "hello"
                                     },
                                     "type": "ASSIGMENT_EXPRESSION"

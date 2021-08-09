@@ -24,6 +24,7 @@ class ImportTests {
                         {
                             "path": {
                                 "type": "STRING",
+                                "formattings": [],
                                 "value": "MathModule"
                             },
                             "type": "IMPORT_STATEMENT"

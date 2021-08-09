@@ -5,6 +5,7 @@
 // #include "Parser/include/Declarations.h"
 #include "Parser/tests/BlockTest.hpp"
 #include "Parser/tests/NumbersTest.hpp"
+#include "Parser/tests/StringTests.hpp"
 #include "Parser/tests/BinaryOpsTest.hpp"
 #include "Parser/tests/AssigmentTests.hpp"
 #include "Parser/tests/VariablesTest.hpp"
@@ -13,13 +14,14 @@
 #include "Parser/tests/LoopTests.hpp"
 #include "Parser/tests/FunctionTests.hpp"
 #include "Parser/tests/StructTests.hpp"
-// #include "Parser/tests/ImportTests.hpp"
+#include "Parser/tests/ImportTests.hpp"
 #include <assert.h>
 
 class ParserTests {
 
     private:
         NumbersTest numberTets;
+        StringTests stringTests;
         BlockTest blockTest;
         BinaryOpsTest binaryOpsTest;
         AssigmentTests assigmentTests;
@@ -29,11 +31,12 @@ class ParserTests {
         LoopTests loopTests;
         FunctionTests functionTests;
         StructTests structTests;
-        // ImportTests importTests;
+        ImportTests importTests;
 
     public:
         void run() {
             numberTets.runTests();
+            stringTests.runTests();
             blockTest.runTests();
             binaryOpsTest.runTests();
             assigmentTests.runTests();
@@ -43,7 +46,7 @@ class ParserTests {
             loopTests.runTests();
             functionTests.runTests();
             structTests.runTests();
-            // importTests.runTests();
+            importTests.runTests();
         }
 };
 

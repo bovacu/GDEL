@@ -213,6 +213,7 @@ class IfTests {
                                                 },
                                                 "init": {
                                                     "type": "STRING",
+                                                    "formattings": [],
                                                     "value": "my string"
                                                 },
                                                 "type": "VARIABLE_DECLARATION"

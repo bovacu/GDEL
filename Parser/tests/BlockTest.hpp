@@ -68,7 +68,8 @@ class BlockTest {
                                 {
                                     "expression": {
                                         "type": "STRING",
-                                        "value": "blocky"
+                                        "value": "blocky",
+                                        "formattings": []
                                     },
                                     "type": "EXPRESSION_STATEMENT"
                                 }
@@ -117,7 +118,8 @@ class BlockTest {
                                 {
                                     "expression": {
                                         "type": "STRING",
-                                        "value": "blockyOut"
+                                        "value": "blockyOut",
+                                        "formattings": []
                                     },
                                     "type": "EXPRESSION_STATEMENT"
                                 },
@@ -126,6 +128,7 @@ class BlockTest {
                                         {
                                             "expression": {
                                                 "type": "STRING",
+                                                "formattings": [],
                                                 "value": "blockyIn"
                                             },
                                             "type": "EXPRESSION_STATEMENT"
