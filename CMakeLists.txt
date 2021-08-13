@@ -19,11 +19,29 @@ endif()
 
 project (${PROJECT_NAME})
 
+set(FORT_ENABLE_TESTING OFF CACHE INTERNAL "")
+
+add_subdirectory(third-party/libfort)
+
 include_directories(${CMAKE_SOURCE_DIR}/Parser ${CMAKE_SOURCE_DIR})
 set(SRC_FILES   main.cpp 
                 Parser/src/Defines.cpp
                 Parser/include/TokenStripper.hpp
                 Parser/include/Parser.hpp
+
+                Vm/include/common.h
+                Vm/include/memBlock.h
+                Vm/include/memory.h
+                Vm/include/debug.h
+                Vm/include/data.h
+                Vm/include/vm.h
+
+                Vm/src/memBlock.cpp
+                Vm/src/memory.cpp
+                Vm/src/debug.cpp
+                Vm/src/data.cpp
+                Vm/src/vm.cpp
             )
 
 add_executable (${PROJECT_NAME} ${SRC_FILES})
+target_link_libraries(${PROJECT_NAME} PRIVATE fort)

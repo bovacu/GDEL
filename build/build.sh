@@ -39,7 +39,7 @@ execBuildRun() {
 }
 
 compile() {
-	cmakeOut=$(cd build; cmake .. -DBUILD_TYPE_PARAM=$1 -DRUN_TESTS=$2 -DAPP_NAME_PARAM=$3 -Wno-dev -Wno-switch)
+	cmakeOut=$(cd build; cmake .. -DBUILD_TYPE_PARAM=$1 -DRUN_TESTS=$2 -DAPP_NAME_PARAM=$3 -Wno-dev -Wno-switch -Wnon-pod-varargs)
 	if [[ $? != 0 ]]; then
     	# There was an error
     	buildError
