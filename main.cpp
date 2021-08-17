@@ -47,14 +47,14 @@ static void runFile(gdelVm& _vm, const char* path) {
 }
 
 static void repl(gdelVm& _vm) {
-    char line[1024];
+    char _line[1024];
     for (;;) {
-        printf("> ");
-        if (!fgets(line, sizeof(line), stdin)) {
-            printf("\n");
+        printf("gdel~ ");
+        std::cin.getline(_line, sizeof(_line));
+        if(strcmp(_line, "exit()") == 0)
             break;
-        }
-        _vm.run(line);
+
+        // _vm.run(_line);
     }
 }
 
@@ -77,6 +77,7 @@ int main(int argc, char *argv[]) {
     }
 
     _vm.end();
+
     return 0;
 }
 

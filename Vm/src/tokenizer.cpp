@@ -1,12 +1,53 @@
 #include "Vm/include/tokenizer.h"
 #include <string.h>
+#include <iostream>
 
 void gdelTokenizer::init(const char* _code) {
     this->current = _code;
     this->start = _code;
     this->line = 1;
+
+    if(this->trie.getSize() == 0)
+        initTrieDS();
 }
 
+void gdelTokenizer::initTrieDS() {
+    trie.insertKey("and");
+    trie.insertKey("base");
+    trie.insertKey("else");
+    trie.insertKey("elif");
+    trie.insertKey("if");
+    trie.insertKey("false");
+    trie.insertKey("for");
+    trie.insertKey("func");
+    trie.insertKey("null");
+    trie.insertKey("or");
+    trie.insertKey("print");
+    trie.insertKey("reg");
+    trie.insertKey("self");
+    trie.insertKey("true");
+    trie.insertKey("var");
+}
+
+/*
+ * Okay this can seem really estrange and incorrect as we are passing -1 to the index of the array, but the thing is in C++
+ * we have this:
+ * 
+ *      int arr[4] = {3, 0, 5, 8};
+ *      std::cout << arr[2] << std::endl; 
+ * 
+ * With this code we get 5 as output, but what happend to get this output? Well, arr[2] is just a redefinition of *(arr + 4),
+ * and thats basic pointer arithmetic
+ * 
+ *      [    3    |    0    |    5    |    8    ]   ->  [    3    |    0    |    5    |    8    ]
+ *           ^                                                                   ^
+ *          arr                                                               arr + 2
+ * 
+ *  And of course we deference de address to get the value inside that pointer.
+ * 
+ * So, if we do current++, the pointer is already one char ahead, and by doing current[-1] = *(current - 1) we are getting the 
+ * current char and the current pointer is pointing to the next one.
+*/
 char gdelTokenizer::advance() {
     this->current++;
     return this->current[-1];
@@ -71,37 +112,31 @@ bool gdelTokenizer::isAlpha(char c) {
             c == '_';
 }
 
-gdelTokenType gdelTokenizer::checkKeyword(int start, int length, const char* rest, gdelTokenType type) {
-    if (this->current - this->start == start + length && memcmp(this->start + start, rest, length) == 0) {
-      return type;
-    }
-    return gdelTokenType::IDENTIFIER;
-}
-
 gdelTokenType gdelTokenizer::identifierType() {
     switch (this->start[0]) {
-        case 'a': return checkKeyword(1, 2, "nd", gdelTokenType::AND);
-        case 'b': return checkKeyword(1, 4, "base", gdelTokenType::SUPER);
-        case 'c': return checkKeyword(1, 4, "lass", gdelTokenType::CLASS);
-        case 'e': return checkKeyword(1, 3, "lse", gdelTokenType::ELSE);
-        case 'i': return checkKeyword(1, 1, "f", gdelTokenType::IF);
-        case 'f':
-            if (this->current - this->start > 1) {
-                switch (this->start[1]) {
-                    case 'a': return checkKeyword(2, 3, "lse", gdelTokenType::FALSE);
-                    case 'o': return checkKeyword(2, 1, "r", gdelTokenType::FOR);
-                    case 'u': return checkKeyword(2, 2, "nc", gdelTokenType::FUN);
-                } 
-            }
-        break;
-        case 'l': return checkKeyword(1, 3, "oop", gdelTokenType::WHILE);
-        case 'n': return checkKeyword(1, 2, "il", gdelTokenType::NIL);
-        case 'o': return checkKeyword(1, 1, "r", gdelTokenType::OR);
-        case 'p': return checkKeyword(1, 4, "rint", gdelTokenType::PRINT);
-        case 'r': return checkKeyword(1, 2, "et", gdelTokenType::RETURN);
-        case 's': return checkKeyword(1, 3, "elf", gdelTokenType::THIS);
-        case 't': return checkKeyword(1, 3, "rue", gdelTokenType::THIS);
-        case 'v': return checkKeyword(1, 2, "ar", gdelTokenType::VAR);
+        case 'a': if(this->trie.hasKey("and")) return gdelTokenType::AND;
+        case 'b': if(this->trie.hasKey("base")) return gdelTokenType::BASE;
+        case 'e': {
+                    if(this->trie.hasKey("else")) return gdelTokenType::ELSE;
+                    // if(this->trie.hasKey("elif")) return gdelTokenType::ELIF;
+                }
+        case 'i': if(this->trie.hasKey("if")) return gdelTokenType::IF;
+        case 'f': {
+                    if(this->trie.hasKey("false")) return gdelTokenType::FALSE;
+                    if(this->trie.hasKey("func")) return gdelTokenType::FUNC;
+                    if(this->trie.hasKey("for")) return gdelTokenType::FOR;
+                }
+        case 'l': if(this->trie.hasKey("loop")) return gdelTokenType::LOOP;
+        case 'n': if(this->trie.hasKey("null")) return gdelTokenType::NULL_;
+        case 'o': if(this->trie.hasKey("or")) return gdelTokenType::OR;
+        case 'p': if(this->trie.hasKey("print")) return gdelTokenType::PRINT;
+        case 'r': {
+            if(this->trie.hasKey("reg")) return gdelTokenType::REG;
+            if(this->trie.hasKey("ret")) return gdelTokenType::RET;
+        }
+        case 's': if(this->trie.hasKey("self")) return gdelTokenType::SELF;
+        case 't': if(this->trie.hasKey("true")) return gdelTokenType::TRUE;
+        case 'v': if(this->trie.hasKey("var")) return gdelTokenType::VAR;
     }
     return gdelTokenType::IDENTIFIER;
 }

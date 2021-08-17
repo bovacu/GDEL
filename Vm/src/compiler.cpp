@@ -31,21 +31,21 @@ gdelParseRule gdelCompiler::rules[] = {
     [gdelTokenType::STRING]        = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::NUMBER]        = { &gdelCompiler::number,    NULL,                   PREC_NONE },
     [gdelTokenType::AND]           = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::CLASS]         = { NULL,                     NULL,                   PREC_NONE },
+    [gdelTokenType::REG]           = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::ELSE]          = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::FALSE]         = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::FOR]           = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::FUN]           = { NULL,                     NULL,                   PREC_NONE },
+    [gdelTokenType::FUNC]          = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::IF]            = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::NIL]           = { NULL,                     NULL,                   PREC_NONE },
+    [gdelTokenType::NULL_]         = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::OR]            = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::PRINT]         = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::RETURN]        = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::SUPER]         = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::THIS]          = { NULL,                     NULL,                   PREC_NONE },
+    [gdelTokenType::RET]           = { NULL,                     NULL,                   PREC_NONE },
+    [gdelTokenType::BASE]          = { NULL,                     NULL,                   PREC_NONE },
+    [gdelTokenType::SELF]          = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::TRUE]          = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::VAR]           = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::WHILE]         = { NULL,                     NULL,                   PREC_NONE },
+    [gdelTokenType::LOOP]          = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::ERROR]         = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::EOF_]          = { NULL,                     NULL,                   PREC_NONE },
 }; 
@@ -158,6 +158,7 @@ void gdelCompiler::grouping(gdelVm& _vm) {
 void gdelCompiler::unary(gdelVm& _vm) {
     gdelTokenType operatorType = this->parser.previous.type;
     parserPrecedence(_vm, gdelPrecedence::PREC_UNARY);
+
     switch (operatorType) {
         case gdelTokenType::MINUS: emitByte(gdelOpCode::OP_NEGATE); break;
         default:

@@ -1,6 +1,8 @@
 #ifndef __TOKENIZER_H__
 #define __TOKENIZER_H__
 
+#include "dataStructs/TrieDS.hpp"
+
 typedef enum {
     // Single-character s.
     LEFT_PAREN, RIGHT_PAREN,
@@ -20,10 +22,10 @@ typedef enum {
     IDENTIFIER, STRING, NUMBER, BOOL,
 
 // Keywords.
-    AND, CLASS, ELSE, FALSE,
-    FOR, FUN, IF, NIL, OR,
-    PRINT, RETURN, SUPER, THIS,
-    TRUE, VAR, WHILE,
+    AND, REG, ELSE, FALSE,
+    FOR, FUNC, IF, NULL_, OR,
+    PRINT, RET, BASE, SELF,
+    TRUE, VAR, LOOP,
     ERROR,
     EOF_
   } gdelTokenType;
@@ -40,6 +42,7 @@ class gdelTokenizer {
         const char* start;
         const char* current;
         int line;
+        TrieDS trie;
 
     public:
         void init(const char* _code);
@@ -48,6 +51,7 @@ class gdelTokenizer {
         gdelToken errorToken(const char* _error);
 
     private:
+        void initTrieDS();
         bool isAtEnd();
         char advance();
         char peek();
@@ -61,7 +65,6 @@ class gdelTokenizer {
         gdelToken number();
         gdelToken identifier();
 
-        gdelTokenType checkKeyword(int start, int length, const char* rest, gdelTokenType type);
         gdelTokenType identifierType();
 };
 
