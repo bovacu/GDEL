@@ -36,9 +36,9 @@
 	}
 
 	std::string ip(int _op){
-	std::stringstream stream;
-	stream  << std::setfill ('0') << std::setw(5) << _op;
-	return stream.str();
+		std::stringstream stream;
+		stream  << std::setfill ('0') << std::setw(5) << _op;
+		return stream.str();
 	}
 #pragma endregion WRITE_TO_TABLE_METHODS
 
@@ -106,6 +106,16 @@ size_t disassembleGdelInstruction(gdelMemBlock* _memBlock, size_t _byteCodeArrIn
         	return simpleInstruction(_memBlock, "OP_RETURN", _byteCodeArrIndex, _byteCodeTable);
       	case OP_CONST:
         	return constantInstruction(_memBlock, "OP_CONSTANT", _byteCodeArrIndex, _byteCodeTable, _dataPoolTable);
+		case OP_NEGATE: 
+			return simpleInstruction(_memBlock, "OP_NEGATE", _byteCodeArrIndex, _byteCodeTable);
+		case OP_ADD: 
+			return simpleInstruction(_memBlock, "OP_ADD", _byteCodeArrIndex, _byteCodeTable);
+		case OP_SUB: 
+			return simpleInstruction(_memBlock, "OP_SUB", _byteCodeArrIndex, _byteCodeTable);
+		case OP_MUL: 
+			return simpleInstruction(_memBlock, "OP_MUL", _byteCodeArrIndex, _byteCodeTable);
+		case OP_DIV: 
+			return simpleInstruction(_memBlock, "OP_DIV", _byteCodeArrIndex, _byteCodeTable);
       	default:
 			std::string _val("Unknown");
 			_val.append(" ("); _val.append(int_to_hex(_currentInstruction)); _val.append(")");

@@ -3,6 +3,7 @@
 
 #include "Vm/include/memBlock.h"
 #include "Vm/include/common.h"
+
 #define STACK_SIZE 256
 
 /*
@@ -34,23 +35,33 @@
  * 0, the stack is empty. For now, our stack is fixed, what means it can produce a stack-overflow error, but this will be change to be
  * a dynamic array.
 */
-typedef struct {
-    byte* ip;
-    gdelMemBlock* memBlock;
-    gdelData stack[STACK_SIZE];
-    gdelData* stackPtr;
-} gdelVm;
 
 typedef enum {
     PROGRAM_OK,
-    PROGRAM_COMPILE_ERROR,
-    PROGRAM_RUNTIME_ERROR
+    PROGRAM_COMPILE_ERROR = -1,
+    PROGRAM_RUNTIME_ERROR = -2
 } gdelProgramResult;
 
-void initGdelVm();
-void freeGdelVm();
-gdelProgramResult runGdelVm(gdelMemBlock* _memBlock);
+class gdelCompiler;
+class gdelVm {
+    private:
+        byte* ip;
+        gdelMemBlock* memBlock;
+        gdelData stack[STACK_SIZE];
+        gdelData* stackPtr;
+        
+        gdelCompiler* compiler;
 
-void resetStack();
+    public:
+        void init();
+        void end();
+        gdelProgramResult run(const char* _code);
+
+    private:
+        gdelProgramResult runGdelVm();
+        void resetStack();
+        void pushDataToStack(gdelData _data);
+        gdelData popDataFromStack();
+};
 
 #endif // __VM_H__

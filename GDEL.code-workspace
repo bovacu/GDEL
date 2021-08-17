@@ -96,7 +96,8 @@
 			"any": "cpp",
 			"typeindex": "cpp",
 			"variant": "cpp",
-			"__functional_base_03": "cpp"
+			"__functional_base_03": "cpp",
+			"version": "cpp"
 		}
 	},
 	"tasks": {

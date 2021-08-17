@@ -3,7 +3,8 @@
 
 #include <stdint.h>
 #include <stdlib.h>
-#define DEBUG_EXECUTION
+
+// #define DEBUG_EXECUTION
 
 #define EXIT_NO_POSSIBLE_REALLOCATION_ERROR -1
 

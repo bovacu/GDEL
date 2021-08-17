@@ -43,6 +43,13 @@
 typedef enum {
     OP_RETURN   = 0x00,
     OP_CONST    = 0x01,
+    OP_NEGATE   = 0x02,
+    OP_ADD      = 0x03,
+    OP_SUB      = 0x04,
+    OP_MUL      = 0x05,
+    OP_DIV      = 0x06,
+    OP_PERCENT  = 0x07,
+    OP_POW      = 0x08,
     TEST_ERROR  = 0x99
 } gdelOpCode;
 

@@ -29,18 +29,13 @@ set(SRC_FILES   main.cpp
                 Parser/include/TokenStripper.hpp
                 Parser/include/Parser.hpp
 
-                Vm/include/common.h
-                Vm/include/memBlock.h
-                Vm/include/memory.h
-                Vm/include/debug.h
-                Vm/include/data.h
-                Vm/include/vm.h
-
                 Vm/src/memBlock.cpp
                 Vm/src/memory.cpp
                 Vm/src/debug.cpp
                 Vm/src/data.cpp
                 Vm/src/vm.cpp
+                Vm/src/tokenizer.cpp
+                Vm/src/compiler.cpp
             )
 
 add_executable (${PROJECT_NAME} ${SRC_FILES})

@@ -12,7 +12,7 @@
  * Both the enum and the u8strwid is used to render correctly the table of instructions when debugging
 */
 typedef enum {
-    ERROR = -1,
+    // ERROR = -1,
     OK = 0
 } gdelOpStatus;
 int u8strwid(const void *beg, const void *end, size_t *width);
@@ -35,6 +35,8 @@ constexpr std::size_t va_count(Args&&...) { return sizeof...(Args); }
                                     va_end(_list);                            \
                                     _t << fort::endr;                         \
                                     }(_table, 0, __VA_ARGS__)
+
+std::string ip(int _op);
 
 void disassembleGdelMemBlock(gdelMemBlock* _memBlock, const char* _memBlockName);
 size_t disassembleGdelInstruction(gdelMemBlock* _memBlock, size_t _byteCodeArrIndex, fort::utf8_table& _byteCodeTable, fort::utf8_table& _datPoolTable);
