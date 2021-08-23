@@ -3,3 +3,6 @@ build/cmake_install.cmake
 build/CMakeCache.txt
 build/Makefile
 releases
+*.idx
+*.o
+*.d

@@ -16,7 +16,7 @@ gdelProgramResult gdelVm::run(const char* _code) {
     
     if (!this->compiler->compile(*this, _code, &_memBlock)) {
         freeGdleMemBlock(&_memBlock);
-        std::cerr << "Exit error: " << gdelProgramResult::PROGRAM_COMPILE_ERROR << std::endl;
+        // std::cerr << "Exit error: " << gdelProgramResult::PROGRAM_COMPILE_ERROR << std::endl;
         return gdelProgramResult::PROGRAM_COMPILE_ERROR;
     }
     

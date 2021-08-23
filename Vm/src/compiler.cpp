@@ -1,9 +1,12 @@
 #include "Vm/include/compiler.h"
 #include "Vm/include/memBlock.h"
 #include "Vm/include/debug.h"
+#include "Vm/include/tokenizer.h"
+#include <functional>
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
+#include <optional>
 
 gdelParseRule gdelCompiler::rules[] = {
     [gdelTokenType::LEFT_PAREN]    = { &gdelCompiler::grouping,  NULL,                   PREC_NONE },
@@ -50,11 +53,80 @@ gdelParseRule gdelCompiler::rules[] = {
     [gdelTokenType::EOF_]          = { NULL,                     NULL,                   PREC_NONE },
 }; 
 
+/*
+ * This is how the compilation proccess works:
+ *
+ * 1 + 3
+ * 
+ * compile:
+ *          * advance -> sets previous (gdelToken) to the current and the we advance the current to a new token provided by the 
+ *                       tokenizer. If error, just return the error and stops compiling.
+ *                             ~ previous -> empty token
+ *                             ~ current  -> number token (1)
+ *          
+ *          * expression -> this calls parserPrecedence(PREC_ASSIGNMENT)
+ *                                     |
+ *                                     └> advance: 
+ *                                     |        ~ previous -> number token (1)
+ *                                     |        ~ current  -> op_sum token (+)
+ *                                     |
+ *                                     └> Now we get the parsing rule for number and call it.
+ *                                     |                                  |
+ *                                     |                                  └> emitConst(1) (*1)
+ *                                     |                                     |
+ *                                     |                                     └> emitBytes(OP_CONST, makeConst(1))
+ *                                     |                                        |                   |
+ *                                     |                                        |                   └> Writes the constant to the data pool and returns it's address inside the DP
+ *                                     |                                        |    
+ *                                     |                                        └> emitByte(OP_CONST) -> this writes the OP_CONST byte to the gdelMemBlock
+ *                                     |                                        |    
+ *                                     |                                        └> emitByte(1 addrss inside DP) -> this writes the OP_CONST byte to the gdelMemBlock
+ *                                     |
+ *                                     └> Now we check if the passed precedence (PREC_ASSIGNMENT) is lower than the precedence of our previous (PREC_TERM, as previous is +).
+ *                                          |
+ *                                          └> advance()      
+ *                                          |        ~ previous -> number token (+)
+ *                                          |        ~ current  -> op_sum token (3)
+ *                                          |
+ *                                          └> The prefix for the rule + is binary
+ *                                                                          |
+ *                                                                          └> We check if there is a more priority op (saved as op) with parserPrecedence(previous.precedence + 1) -> PREC_FACTOR
+ *                                                                          |       |
+ *                                                                          |       └> advance
+ *                                                                          |       |        ~ previous -> number token (3)
+ *                                                                          |       |        ~ current  -> op_sum token (/0)
+ *                                                                          |       └> Now we get the parsing rule for number and call it.
+ *                                                                          |       |   └> emitConst(3) (*2)
+ *                                                                          |       |       |
+ *                                                                          |       |       └> emitBytes(OP_CONST, makeConst(3))
+ *                                                                          |       |       |                   |
+ *                                                                          |       |       |                   └> Writes the constant to the data pool and returns it's address inside the DP
+ *                                                                          |       |       |    
+ *                                                                          |       |       └> emitByte(OP_CONST) -> this writes the OP_CONST byte to the gdelMemBlock
+ *                                                                          |       |       |    
+ *                                                                          |       |       └> emitByte(3 addrss inside DP) -> this writes the OP_CONST byte to the gdelMemBlock          
+ *                                                                          |       |
+ *                                                                          |       └> Now we check the precedence passed (PREC_TERM) is lower than the previous precedecene (PREC_NON as is number). So no while here   
+ *                                                                          |
+ *                                                                          └> Now we emit the byte of the corresponding operator (op) and emitByte(OP_ADD) (*3)
+ * 
+ * 
+ * This ends the compilation process which also prepares the gdelMemBlock for the Vm to execute, and it is finally like this:
+ * 
+ *     ╔═════════════════╗                
+ *     ║   OP_ADD (*3)   ║                
+ *     ╠═════════════════╣               ╔═════════════════╗
+ *     ║  OP_CONST (*2)  ║ ────────────> ║        3        ║
+ *     ╠═════════════════╣               ╠═════════════════╣
+ *     ║  OP_CONST (*1)  ║ ────────────> ║        1        ║ 
+ *     ╚═════════════════╝               ╚═════════════════╝
+ * 
+ * And now the Vm will just simply execute what the gdelMemblock has inside
+*/                                                                          
+
 bool gdelCompiler::compile(gdelVm& _vm, const char* _code, gdelMemBlock* _memBlock) {
     this->tokenizer.init(_code);
-
     this->currentCompilingBlock = _memBlock;
-
     this->parser.panicMode = false;
     this->parser.hadError = false;
     
@@ -69,7 +141,7 @@ bool gdelCompiler::compile(gdelVm& _vm, const char* _code, gdelMemBlock* _memBlo
 void gdelCompiler::advance() {
     this->parser.previous = this->parser.current;
     for (;;) {
-      this->parser.current = this->tokenizer.scanToken();
+      this->parser.current = this->tokenizer.getToken();
       if (this->parser.current.type != gdelTokenType::ERROR) break;
       errorAtCurrent(this->parser.current.start);
     }
@@ -96,15 +168,17 @@ void gdelCompiler::errorAt(gdelToken* token, const char* message) {
     if(this->parser.panicMode) return;
     this->parser.panicMode = true;
 
-    fprintf(stderr, "[line %d] Error", token->line);
+    PRINT_ERROR("[line " << token->line << "] Error");
     if (token->type == gdelTokenType::EOF_) {
-        fprintf(stderr, " at end");
+        PRINT_ERROR(" at end");
     } else if (token->type == gdelTokenType::ERROR) {
-        fprintf(stderr, "fuck");
+        PRINT_ERROR(" fuck");
     } else {
-        fprintf(stderr, " at '%.*s'", token->length, token->start);
+        std::string _err(token->start, token->start + token->length);
+        PRINT_ERROR(" at '" << _err << "'");
+        // fprintf(stderr, " at '%.*s'", token->length, token->start);
     }
-    fprintf(stderr, ": %s\n", message);
+    PRINT_LN_ERROR(": " << message);
     this->parser.hadError = true;
 }
 
@@ -112,6 +186,25 @@ void gdelCompiler::error(const char* _errorMessage) {
     errorAt(&this->parser.previous, _errorMessage);
 }
 
+/*
+ * This is the way of controlling until what point an expression should be parsed. This method works with the enum defined 
+ * in the gdelPrecedence inside compiler.h, there it is stablished the precedence.
+ * 
+ * If a precedence of X is being parsed, all the upper precedence elements will be parsed before the currente precedence, and
+ * the lower precedence elements will never be executed. So if we have the expression -fibonacci(10); we have an Unary 
+ * precedence, a Call precedence and a Primary precedence. The precedence values, from higher to lower is 
+ * Primary -> Call -> Unary, so first of all the parser will evaluate 4, then it will call fibonacci and finally it will negate
+ * the result, in that exact order and won't take any lower precedence operations than Unary.
+ * 
+ * -fibonacci(4) -- Primary: 4                  -> calls the rule to handle a number
+ *                     |
+ *                     ▼
+ *                  Call: fibonacci(Primary)    -> calls the rule to handle a call
+ *                     |
+ *                     ▼
+ *                  Unary: -Call(Primary)       -> calls the rule to handle a unary
+ *  
+*/
 void gdelCompiler::parserPrecedence(gdelVm& _vm, gdelPrecedence _precedence) {
     advance();
     
@@ -124,6 +217,7 @@ void gdelCompiler::parserPrecedence(gdelVm& _vm, gdelPrecedence _precedence) {
     ((*this).*_prefix)(_vm); // As this is a function pointer-to-member, we always need an object to invoke the function, in this case is 'this'
     
     while (_precedence <= getParseRule(this->parser.current.type)->precedence) {
+        std::cout << "precedence tested: " << _precedence << " against " << getParseRule(this->parser.current.type)->precedence << std::endl;
         advance();
         _rule = getParseRule(this->parser.previous.type);
         gdelParseFn _infix = _rule->infix;

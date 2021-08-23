@@ -10,6 +10,12 @@
 
 typedef double gdelData;
 
+typedef enum {
+    DT_BOOL,
+    DT_NUMBER, 
+    DT_NULL
+} gdelDataType;
+
 typedef struct {
     size_t maxSize;
     size_t currentDataValue;

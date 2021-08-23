@@ -163,7 +163,7 @@ gdelToken gdelTokenizer::number() {
     return makeToken(gdelTokenType::NUMBER);
 }
 
-gdelToken gdelTokenizer::scanToken() {
+gdelToken gdelTokenizer::getToken() {
 
     skipWhitespaces();
 

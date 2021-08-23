@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "Parser/tests/ParserTests.hpp"
 #include "Parser/include/Parser.hpp"
 
@@ -54,7 +53,7 @@ static void repl(gdelVm& _vm) {
         if(strcmp(_line, "exit()") == 0)
             break;
 
-        // _vm.run(_line);
+        _vm.run(_line);
     }
 }
 
@@ -66,7 +65,7 @@ int main(int argc, char *argv[]) {
     
     gdelVm _vm;
     _vm.init();
-
+    std::cout << "Welcome to GDEL command line!" << std::endl;
     if(argc == 1) {
         repl(_vm);
     } else if (argc == 2) {
