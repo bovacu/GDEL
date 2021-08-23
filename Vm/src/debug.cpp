@@ -29,8 +29,8 @@
 
 	std::string int_to_hex(int _op){
 	std::stringstream stream;
-	stream << "0x" 
-			<< std::setfill ('0') << std::setw(sizeof(uint8_t)*2) 
+	stream << "0x"
+			<< std::setfill ('0') << std::setw(sizeof(uint8_t)*2)
 			<< std::hex << _op;
 	return stream.str();
 	}
@@ -43,8 +43,8 @@
 #pragma endregion WRITE_TO_TABLE_METHODS
 
 /*
- * This method just prints the current instruction and advances the instruction pointer. This is only useful when executing 
- * instructions that takes 1 byte, the instruction itself as other instructions take more bytes and more positions would be 
+ * This method just prints the current instruction and advances the instruction pointer. This is only useful when executing
+ * instructions that takes 1 byte, the instruction itself as other instructions take more bytes and more positions would be
 */
 static size_t simpleInstruction(gdelMemBlock* _memBlock, const char* _instructionName, size_t _byteCodeArrIndex, fort::utf8_table& _byteCodeTable) {
     std::string _val(_instructionName);
@@ -55,7 +55,7 @@ static size_t simpleInstruction(gdelMemBlock* _memBlock, const char* _instructio
 
 /*
  * This instruction takes two bytes, the first one is the OP_CONST which tells the computer to look for a const value in the data
- * pool and the next byte is the pointer of the address to the data pool where the value is stored. 
+ * pool and the next byte is the pointer of the address to the data pool where the value is stored.
 */
 static size_t constantInstruction(gdelMemBlock* _memBlock, const char* _instructionName, size_t _byteCodeArrIndex, fort::utf8_table& _byteCodeTable, fort::utf8_table& _dataPoolTable) {
 	uint8_t _constantAddrss = _memBlock->byteCode[_byteCodeArrIndex + 1]; //_byteCodeArrIndex is the OP_CONST and right after is the value, that's why the +1
@@ -63,7 +63,7 @@ static size_t constantInstruction(gdelMemBlock* _memBlock, const char* _instruct
 	std::string _val(_instructionName);
     _val.append(" ("); _val.append(int_to_hex(_memBlock->byteCode[_byteCodeArrIndex])); _val.append(")");
     _byteCodeTable << ip(_byteCodeArrIndex).c_str() << _val.c_str() << "2" << ip(_constantAddrss).c_str() << fort::endr;
-    _dataPoolTable << ip(_constantAddrss).c_str() << std::to_string(_data).c_str() << fort::endr;
+    _dataPoolTable << ip(_constantAddrss).c_str() << std::to_string(GET_GDEL_NUMBER_DATA(_data)).c_str() << fort::endr;
     return _byteCodeArrIndex + 2;
 }
 
@@ -78,7 +78,7 @@ void disassembleGdelMemBlock(gdelMemBlock* _memBlock, const char* _memBlockName)
     ADD_HEADER(_blockInfoTable, "   Used bytes   ", false);
     ADD_HEADER(_blockInfoTable, "   Total bytes  ", true);
     ADD_ROW(_blockInfoTable, _memBlockName, std::to_string(_memBlock->currentByteIndex).c_str(), std::to_string(_memBlock->maxByteSize).c_str());
-	
+
 	fort::utf8_table _byteCodeTable;
 	ADD_HEADER(_byteCodeTable, "   IP   ",          false);
     ADD_HEADER(_byteCodeTable, "   Instruction   ", false);
@@ -92,7 +92,7 @@ void disassembleGdelMemBlock(gdelMemBlock* _memBlock, const char* _memBlockName)
     size_t _byteArrIndex = 0;
     while(_byteArrIndex < _memBlock->currentByteIndex)
         _byteArrIndex = disassembleGdelInstruction(_memBlock, _byteArrIndex, _byteCodeTable, _dataPoolTable);
-    
+
     TABLE_STYLE(_blockInfoTable);
     TABLE_STYLE(_byteCodeTable);
     TABLE_STYLE(_dataPoolTable);
@@ -106,15 +106,15 @@ size_t disassembleGdelInstruction(gdelMemBlock* _memBlock, size_t _byteCodeArrIn
         	return simpleInstruction(_memBlock, "OP_RETURN", _byteCodeArrIndex, _byteCodeTable);
       	case OP_CONST:
         	return constantInstruction(_memBlock, "OP_CONSTANT", _byteCodeArrIndex, _byteCodeTable, _dataPoolTable);
-		case OP_NEGATE: 
+		case OP_NEGATE:
 			return simpleInstruction(_memBlock, "OP_NEGATE", _byteCodeArrIndex, _byteCodeTable);
-		case OP_ADD: 
+		case OP_ADD:
 			return simpleInstruction(_memBlock, "OP_ADD", _byteCodeArrIndex, _byteCodeTable);
-		case OP_SUB: 
+		case OP_SUB:
 			return simpleInstruction(_memBlock, "OP_SUB", _byteCodeArrIndex, _byteCodeTable);
-		case OP_MUL: 
+		case OP_MUL:
 			return simpleInstruction(_memBlock, "OP_MUL", _byteCodeArrIndex, _byteCodeTable);
-		case OP_DIV: 
+		case OP_DIV:
 			return simpleInstruction(_memBlock, "OP_DIV", _byteCodeArrIndex, _byteCodeTable);
       	default:
 			std::string _val("Unknown");

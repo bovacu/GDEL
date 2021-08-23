@@ -1,4 +1,0 @@
-clang++
-Vm/source/vm.cpp
-Vm/source/compiler.cpp
--std=c++17

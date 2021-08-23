@@ -14,13 +14,13 @@ void gdelVm::init() {
 gdelProgramResult gdelVm::run(const char* _code) {
     gdelMemBlock _memBlock;
     initGdelMemBlock(&_memBlock);
-    
+
     if (!this->compiler->compile(*this, _code, &_memBlock)) {
         freeGdleMemBlock(&_memBlock);
         // std::cerr << "Exit error: " << gdelProgramResult::PROGRAM_COMPILE_ERROR << std::endl;
         return gdelProgramResult::PROGRAM_COMPILE_ERROR;
     }
-    
+
     this->memBlock = &_memBlock;
     this->ip = this->memBlock->byteCode;
     gdelProgramResult result = runGdelVm();
@@ -47,7 +47,7 @@ gdelData gdelVm::popDataFromStack() {
 }
 
 gdelData gdelVm::peek(int _depth) {
-    return this->stackPtr[-1 - _depth];    
+    return this->stackPtr[-1 - _depth];
 }
 
 
@@ -73,7 +73,7 @@ void gdelVm::runtimeError(const char* format, ...) {
             _blockInfoTable << fort::header << "Name";
             _blockInfoTable << "Used bytes";
             _blockInfoTable << "Total bytes" << fort::endr;
-            
+
             _byteCodeTable << fort::header << "IP";
             _byteCodeTable << "Instruction";
             _byteCodeTable << "Bytes";
@@ -91,12 +91,12 @@ void gdelVm::runtimeError(const char* format, ...) {
             _byteCodeTable.set_border_style(FT_DOUBLE2_STYLE);
             _dataPoolTable.set_border_style(FT_DOUBLE2_STYLE);
             _stackTable.set_border_style(FT_DOUBLE2_STYLE);
-            
+
         }
         void printDebug(fort::utf8_table* _blockInfoTable, fort::utf8_table* _byteCodeTable, fort::utf8_table* _dataPoolTable, fort::utf8_table* _stcackTable) {
             fort::utf8_table _rootTable;
             _rootTable.set_border_style(FT_EMPTY_STYLE);
-  
+
             fort::utf8_table _masterStackTable;
             _masterStackTable.set_border_style(FT_EMPTY_STYLE);
             _masterStackTable << fort::header << "Stack";
@@ -118,12 +118,12 @@ void gdelVm::runtimeError(const char* format, ...) {
                 _masterBlocksTable.column(_c).set_cell_text_align(fort::text_align::center);
             }
             _masterBlocksTable << _byteCodeTable->to_string() << _dataPoolTable->to_string() << fort::endr;
-            
+
             _rootTable << _masterBlocksTable.to_string() << _masterStackTable.to_string() << fort::endr;
 
             std::cout << _rootTable.to_string() << std::endl;
         }
-    
+
         void printStatistics() {
             fort::utf8_table _blocksChart;
 
@@ -134,14 +134,14 @@ void gdelVm::runtimeError(const char* format, ...) {
 /*
  * This is the main method of our virtual machine. It will take each bytecode and execute it as needed. To see the trace generated
  * by the vm, define the macro DEBUG_EXECUTION
- * 
+ *
  * The BINARY_OP is the way of reusing as much code as possible, by using C/C++ macros. The reason of the do{}while() loop is easier than
- * you thought. We need to be able to encapsulate inside our macro everything we need, and we need a block statement for that. Then why not 
+ * you thought. We need to be able to encapsulate inside our macro everything we need, and we need a block statement for that. Then why not
  * use a {  } simple block? Well, if we do if(...) BINARY_OP(+); else { } it will translate to if(...) { ... }; else { ... } and that ;
  * is a compilation error. With this dummy do { ... } while(false) we have that safe block we are looking for.
- * 
+ *
  * Secondly with BINARY_OP, if we want to do 2 + 3, then first the 2 is pushed to the stack (0x01) and then 3 is pushed (0x02), this means
- * the top element is the right operand and the underlaying one is the left one. 
+ * the top element is the right operand and the underlaying one is the left one.
 */
 gdelProgramResult gdelVm::runGdelVm() {
     this->ip = this->memBlock->byteCode;
@@ -209,9 +209,9 @@ gdelProgramResult gdelVm::runGdelVm() {
             case gdelOpCode::OP_MUL:     BINARY_OP(CREATE_GDEL_NUMBER, *); break;
             case gdelOpCode::OP_DIV:     BINARY_OP(CREATE_GDEL_NUMBER, /); break;
             case gdelOpCode::OP_PERCENT: {
-                auto _right = GET_GDEL_NUMBER_DATA(popDataFromStack()); 
-                auto _left = GET_GDEL_NUMBER_DATA(popDataFromStack()); 
-                pushDataToStack(CREATE_GDEL_NUMBER(std::fmod(_left, _right))); 
+                auto _right = GET_GDEL_NUMBER_DATA(popDataFromStack());
+                auto _left = GET_GDEL_NUMBER_DATA(popDataFromStack());
+                pushDataToStack(CREATE_GDEL_NUMBER(std::fmod(_left, _right)));
                 break;
             }
             case gdelOpCode::OP_NEGATE : {
@@ -226,10 +226,10 @@ gdelProgramResult gdelVm::runGdelVm() {
                 break;
             }
             case gdelOpCode::OP_POW: {
-                auto _right = GET_GDEL_NUMBER_DATA(popDataFromStack()); 
-                auto _left = GET_GDEL_NUMBER_DATA(popDataFromStack()); 
-                auto _pow = _left; 
-                for(auto _i = 0; _i < std::abs(_right) - 1; _i++) _pow *= _left; 
+                auto _right = GET_GDEL_NUMBER_DATA(popDataFromStack());
+                auto _left = GET_GDEL_NUMBER_DATA(popDataFromStack());
+                auto _pow = _left;
+                for(auto _i = 0; _i < std::abs(_right) - 1; _i++) _pow *= _left;
                 pushDataToStack(CREATE_GDEL_NUMBER(_pow));
                 break;
             }
@@ -242,4 +242,3 @@ gdelProgramResult gdelVm::runGdelVm() {
 
     #undef BINARY_OP
 }
-

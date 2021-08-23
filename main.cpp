@@ -12,8 +12,8 @@ static char* readFile(gdelVm& _vm, const char* path) {
 
     if (file == NULL) {
         fprintf(stderr, "Could not open file \"%s\".\n", path);
-        exit(74); 
-    } 
+        exit(74);
+    }
 
     fseek(file, 0L, SEEK_END);
     size_t fileSize = ftell(file);
@@ -22,14 +22,14 @@ static char* readFile(gdelVm& _vm, const char* path) {
 
     if (buffer == NULL) {
         fprintf(stderr, "Not enough memory to read \"%s\".\n", path);
-        exit(74); 
+        exit(74);
     }
 
     size_t bytesRead = fread(buffer, sizeof(char), fileSize, file);
 
     if (bytesRead < fileSize) {
         fprintf(stderr, "Could not read file \"%s\".\n", path);
-        exit(74); 
+        exit(74);
     }
 
     buffer[bytesRead] = '\0';
@@ -62,7 +62,7 @@ void runInterpreter(const json& _ast);
 void runVirtualMachine();
 
 int main(int argc, char *argv[]) {
-    
+
     gdelVm _vm;
     _vm.init();
     std::cout << "Welcome to GDEL command line!" << std::endl;
@@ -82,26 +82,26 @@ int main(int argc, char *argv[]) {
 
 void runVirtualMachine() {
 
-    gdelMemBlock _memBlock;
-    initGdelMemBlock(&_memBlock);
+    // gdelMemBlock _memBlock;
+    // initGdelMemBlock(&_memBlock);
 
-    size_t _constantDir = writeConstantToGdelMemBlock(&_memBlock, 2.2);
-    size_t _constantDir2 = writeConstantToGdelMemBlock(&_memBlock, 3.4);
-    size_t _constantDir3 = writeConstantToGdelMemBlock(&_memBlock, 5.6);
-    writeToGdelMemBlock(&_memBlock, gdelOpCode::OP_CONST);
-    writeToGdelMemBlock(&_memBlock, _constantDir);
-    writeToGdelMemBlock(&_memBlock, gdelOpCode::OP_CONST);
-    writeToGdelMemBlock(&_memBlock, _constantDir2);
-    writeToGdelMemBlock(&_memBlock, gdelOpCode::OP_ADD);
-    writeToGdelMemBlock(&_memBlock, gdelOpCode::OP_CONST);
-    writeToGdelMemBlock(&_memBlock, _constantDir3);
-    writeToGdelMemBlock(&_memBlock, gdelOpCode::OP_DIV);
-    writeToGdelMemBlock(&_memBlock, gdelOpCode::OP_NEGATE);
-    writeToGdelMemBlock(&_memBlock, gdelOpCode::OP_RETURN);
+    // size_t _constantDir = writeConstantToGdelMemBlock(&_memBlock, 2.2);
+    // size_t _constantDir2 = writeConstantToGdelMemBlock(&_memBlock, 3.4);
+    // size_t _constantDir3 = writeConstantToGdelMemBlock(&_memBlock, 5.6);
+    // writeToGdelMemBlock(&_memBlock, gdelOpCode::OP_CONST);
+    // writeToGdelMemBlock(&_memBlock, _constantDir);
+    // writeToGdelMemBlock(&_memBlock, gdelOpCode::OP_CONST);
+    // writeToGdelMemBlock(&_memBlock, _constantDir2);
+    // writeToGdelMemBlock(&_memBlock, gdelOpCode::OP_ADD);
+    // writeToGdelMemBlock(&_memBlock, gdelOpCode::OP_CONST);
+    // writeToGdelMemBlock(&_memBlock, _constantDir3);
+    // writeToGdelMemBlock(&_memBlock, gdelOpCode::OP_DIV);
+    // writeToGdelMemBlock(&_memBlock, gdelOpCode::OP_NEGATE);
+    // writeToGdelMemBlock(&_memBlock, gdelOpCode::OP_RETURN);
 
     // runGdelVm(&_memBlock);
 
-    
+
 }
 
 void runParser() {

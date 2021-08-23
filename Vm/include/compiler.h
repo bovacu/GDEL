@@ -39,7 +39,7 @@ class gdelCompiler {
         gdelParser parser;
         gdelMemBlock* currentCompilingBlock;
         static gdelParseRule rules[45];
-    
+
     public:
         bool compile(gdelVm& _vm, const char* _code, gdelMemBlock* _memBlock);
 
@@ -56,7 +56,7 @@ class gdelCompiler {
 
         void number(gdelVm& _vm);
             byte makeConstant(gdelVm& _vm, gdelData _data);
-        void grouping(gdelVm& _vm); 
+        void grouping(gdelVm& _vm);
         void unary(gdelVm& _vm);
 
         void binary(gdelVm& _vm);

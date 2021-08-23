@@ -1,0 +1,52 @@
+[
+{
+  "directory": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL",
+  "command": "/usr/bin/g++  -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk -std=gnu++17 -o CMakeFiles/GDEL-DEBUG-DEBUG.dir/main.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/main.cpp",
+  "file": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/main.cpp"
+},
+{
+  "directory": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL",
+  "command": "/usr/bin/g++  -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk -std=gnu++17 -o CMakeFiles/GDEL-DEBUG-DEBUG.dir/Parser/src/Defines.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Defines.cpp",
+  "file": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser/src/Defines.cpp"
+},
+{
+  "directory": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL",
+  "command": "/usr/bin/g++  -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk -std=gnu++17 -o CMakeFiles/GDEL-DEBUG-DEBUG.dir/Vm/src/memBlock.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Vm/src/memBlock.cpp",
+  "file": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Vm/src/memBlock.cpp"
+},
+{
+  "directory": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL",
+  "command": "/usr/bin/g++  -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk -std=gnu++17 -o CMakeFiles/GDEL-DEBUG-DEBUG.dir/Vm/src/memory.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Vm/src/memory.cpp",
+  "file": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Vm/src/memory.cpp"
+},
+{
+  "directory": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL",
+  "command": "/usr/bin/g++  -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk -std=gnu++17 -o CMakeFiles/GDEL-DEBUG-DEBUG.dir/Vm/src/debug.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Vm/src/debug.cpp",
+  "file": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Vm/src/debug.cpp"
+},
+{
+  "directory": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL",
+  "command": "/usr/bin/g++  -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk -std=gnu++17 -o CMakeFiles/GDEL-DEBUG-DEBUG.dir/Vm/src/data.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Vm/src/data.cpp",
+  "file": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Vm/src/data.cpp"
+},
+{
+  "directory": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL",
+  "command": "/usr/bin/g++  -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk -std=gnu++17 -o CMakeFiles/GDEL-DEBUG-DEBUG.dir/Vm/src/vm.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Vm/src/vm.cpp",
+  "file": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Vm/src/vm.cpp"
+},
+{
+  "directory": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL",
+  "command": "/usr/bin/g++  -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk -std=gnu++17 -o CMakeFiles/GDEL-DEBUG-DEBUG.dir/Vm/src/tokenizer.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Vm/src/tokenizer.cpp",
+  "file": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Vm/src/tokenizer.cpp"
+},
+{
+  "directory": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL",
+  "command": "/usr/bin/g++  -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Parser -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk -std=gnu++17 -o CMakeFiles/GDEL-DEBUG-DEBUG.dir/Vm/src/compiler.cpp.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Vm/src/compiler.cpp",
+  "file": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/Vm/src/compiler.cpp"
+},
+{
+  "directory": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib",
+  "command": "/usr/bin/gcc  -I/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib          -Wall         -Wextra         -Wdouble-promotion         -Wshadow         -Wformat=2         -Wno-variadic-macros         -Wcast-align         -Wstrict-aliasing=2         -Wstrict-overflow=5         -Wfloat-equal         -Wwrite-strings          -Wpedantic -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk -fPIC -o CMakeFiles/fort.dir/fort.c.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib/fort.c",
+  "file": "/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib/fort.c"
+}
+]

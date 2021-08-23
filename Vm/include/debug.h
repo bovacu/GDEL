@@ -18,11 +18,11 @@ typedef enum {
 int u8strwid(const void *beg, const void *end, size_t *width);
 
 #define TABLE_STYLE(_table)  _table.set_border_style(FT_DOUBLE2_STYLE);
-                           
+
 
 #define ADD_HEADER(_table, _header, _end)   _table << fort::header << _header;                                      \
                                             if(_end) _table << fort::endr;                                          \
-                                          
+
 template<typename ...Args>
 constexpr std::size_t va_count(Args&&...) { return sizeof...(Args); }
 

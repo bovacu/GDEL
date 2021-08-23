@@ -6,3 +6,7 @@ releases
 *.idx
 *.o
 *.d
+releases/debug/GDEL-DEBUG
+.cache
+.ccls-cache
+third-party/libfort/lib/*cmake*

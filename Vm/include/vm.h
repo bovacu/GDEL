@@ -10,12 +10,12 @@
  * This struct is the heart everyting. It contains the memBlock to run at each time and the IP.
  * The IP is the instruction pointer (or PC, program counter) and it is a pointer that points to the operation that is going to be
  * execute next, not the one that is currently happening.
- * 
+ *
  * It also contains the stack, fixed-sized array of gdelData. This stack is used to store the information declared on each function.
  * The stack pointer always points to one element up the highest element, like this:
- * 
- * 
- *      ╔═   ╔═════════════════╗ 
+ *
+ *
+ *      ╔═   ╔═════════════════╗
  *      ║    ║   ───────────   ║ < gdelVm stack top = 255
  *      ║    ╠═════════════════╣
  *      ║    ║   ───────────   ║
@@ -30,7 +30,7 @@
  *      ║    ╠═════════════════╣
  *      ║    ║        C        ║ < gdelVm stack bottom
  *      ╚═   ╚═════════════════╝
- * 
+ *
  * Our stack will pop and push values as needed and to. Pointing to an upper element than the highest means that if our stackPtr is
  * 0, the stack is empty. For now, our stack is fixed, what means it can produce a stack-overflow error, but this will be change to be
  * a dynamic array.
@@ -49,7 +49,7 @@ class gdelVm {
         gdelMemBlock* memBlock;
         gdelData stack[STACK_SIZE];
         gdelData* stackPtr;
-        
+
         gdelCompiler* compiler;
 
     public:
