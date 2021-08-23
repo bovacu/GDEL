@@ -62,6 +62,8 @@ class gdelVm {
         void resetStack();
         void pushDataToStack(gdelData _data);
         gdelData popDataFromStack();
+        gdelData peek(int _depth);
+        void runtimeError(const char* _error, ...);
 };
 
 #endif // __VM_H__

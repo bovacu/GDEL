@@ -230,8 +230,8 @@ gdelParseRule* gdelCompiler::getParseRule(gdelTokenType _tokenType) {
 }
 
 void gdelCompiler::number(gdelVm& _vm) {
-    gdelData _constant = strtod(this->parser.previous.start, nullptr);
-    emitConstant(_vm, _constant);
+    auto _constant = strtod(this->parser.previous.start, nullptr);
+    emitConstant(_vm, CREATE_GDEL_NUMBER(_constant));
 }
 
 

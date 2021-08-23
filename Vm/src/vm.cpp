@@ -4,6 +4,7 @@
 #include "Vm/include/compiler.h"
 #include <cmath>
 #include <iostream>
+#include <string>
 
 void gdelVm::init() {
     this->compiler = new gdelCompiler();
@@ -45,6 +46,24 @@ gdelData gdelVm::popDataFromStack() {
     return *this->stackPtr;
 }
 
+gdelData gdelVm::peek(int _depth) {
+    return this->stackPtr[-1 - _depth];    
+}
+
+
+void gdelVm::runtimeError(const char* format, ...) {
+    va_list args;
+    va_start(args, format);
+    vfprintf(stderr, format, args);
+    va_end(args);
+    fputs("\n", stderr);
+    size_t instruction = this->ip - this->memBlock->byteCode - 1;
+    //int line = vm.chunk->lines[instruction];
+    //fprintf(stderr, "[line %d] in script\n", line);
+    PRINT_LN_ERROR("Runtime error!!");
+    resetStack();
+  }
+
 #ifdef DEBUG_EXECUTION
     #ifndef RUNTIME_DEBUG_FUNCS
     #define RUNTIME_DEBUG_FUNCS
@@ -74,11 +93,10 @@ gdelData gdelVm::popDataFromStack() {
             _stackTable.set_border_style(FT_DOUBLE2_STYLE);
             
         }
-
         void printDebug(fort::utf8_table* _blockInfoTable, fort::utf8_table* _byteCodeTable, fort::utf8_table* _dataPoolTable, fort::utf8_table* _stcackTable) {
             fort::utf8_table _rootTable;
             _rootTable.set_border_style(FT_EMPTY_STYLE);
-
+  
             fort::utf8_table _masterStackTable;
             _masterStackTable.set_border_style(FT_EMPTY_STYLE);
             _masterStackTable << fort::header << "Stack";
@@ -86,7 +104,6 @@ gdelData gdelVm::popDataFromStack() {
             for(auto _c = 0; _c < _masterStackTable.col_count(); _c++){
                 _masterStackTable.column(_c).set_cell_text_align(fort::text_align::center);
             }
-
             // for(int _i = 0; _i < vm.stackPtr - vm.stack; _i++)
             //     *_stcackTable << ip(_i).c_str() << std::to_string(vm.stack[_i]) << fort::endr;
 
@@ -129,12 +146,22 @@ gdelData gdelVm::popDataFromStack() {
 gdelProgramResult gdelVm::runGdelVm() {
     this->ip = this->memBlock->byteCode;
 
-    #define BINARY_OP(_op)                      \
-      do {                                      \
-        gdelData _right = popDataFromStack();   \
-        gdelData _left = popDataFromStack();    \
-        pushDataToStack(_left _op _right);      \
-      } while (false)
+    #define BINARY_OP(_gdelDataType, _op)                                                                           \
+       if(!IS_GDEL_NUMBER(peek(0)) || !IS_GDEL_NUMBER(peek(1))) {                                                   \
+            std::string _error = "Error while binary operation, both operands must be numbers and got gdelDataType' ";\
+            _error.append(std::to_string((int)peek(0).type));                                                       \
+            _error.append("' and gdelDataType '");                                                                  \
+            _error.append(std::to_string((int)peek(1).type));                                                       \
+            _error.push_back('\'');                                                                                 \
+            runtimeError(_error.c_str());                                                                           \
+            return gdelProgramResult::PROGRAM_RUNTIME_ERROR;                                                        \
+        }                                                                                                           \
+                                                                                                                    \
+        do {                                                                                                        \
+            double _right = GET_GDEL_NUMBER_DATA(popDataFromStack());                                               \
+            double _left = GET_GDEL_NUMBER_DATA(popDataFromStack());                                                \
+            pushDataToStack(_gdelDataType(_left _op _right));                                                       \
+        } while (false)
 
     #ifdef DEBUG_EXECUTION
         fort::utf8_table _blockInfoTable;
@@ -159,7 +186,7 @@ gdelProgramResult gdelVm::runGdelVm() {
                     printDebug(&_blockInfoTable, &_byteCodeTable, &_dataPoolTable, &_stackTable);
                 #endif
                 gdelData _data = popDataFromStack();
-                std::cout << _data << std::endl;
+                std::cout << GET_GDEL_NUMBER_DATA(_data) << std::endl;
                 return gdelProgramResult::PROGRAM_OK;
             }
 
@@ -177,25 +204,33 @@ gdelProgramResult gdelVm::runGdelVm() {
             /*
              * Bytes: 1
             */
-            case gdelOpCode::OP_ADD:     BINARY_OP(+); break;
-            case gdelOpCode::OP_SUB:     BINARY_OP(-); break;
-            case gdelOpCode::OP_MUL:     BINARY_OP(*); break;
-            case gdelOpCode::OP_DIV:     BINARY_OP(/); break;
+            case gdelOpCode::OP_ADD:     BINARY_OP(CREATE_GDEL_NUMBER, +); break;
+            case gdelOpCode::OP_SUB:     BINARY_OP(CREATE_GDEL_NUMBER, -); break;
+            case gdelOpCode::OP_MUL:     BINARY_OP(CREATE_GDEL_NUMBER, *); break;
+            case gdelOpCode::OP_DIV:     BINARY_OP(CREATE_GDEL_NUMBER, /); break;
             case gdelOpCode::OP_PERCENT: {
-                gdelData _right = popDataFromStack(); 
-                gdelData _left = popDataFromStack(); 
-                pushDataToStack(std::fmod(_left, _right)); 
+                auto _right = GET_GDEL_NUMBER_DATA(popDataFromStack()); 
+                auto _left = GET_GDEL_NUMBER_DATA(popDataFromStack()); 
+                pushDataToStack(CREATE_GDEL_NUMBER(std::fmod(_left, _right))); 
                 break;
             }
             case gdelOpCode::OP_NEGATE : {
-                pushDataToStack(-popDataFromStack());
+                if(!IS_GDEL_NUMBER(peek(0))) {
+                    std::string _error = "Error while negating, operands must be bool or number but got: gdelDataType '";
+                    _error.append(std::to_string((int)peek(0).type));
+                    _error.push_back('\'');
+                    runtimeError(_error.c_str());
+                    return gdelProgramResult::PROGRAM_RUNTIME_ERROR;
+                }
+                pushDataToStack(CREATE_GDEL_NUMBER(-GET_GDEL_NUMBER_DATA(popDataFromStack())));
                 break;
             }
             case gdelOpCode::OP_POW: {
-                gdelData _right = popDataFromStack(); 
-                gdelData _left = popDataFromStack(); 
-                gdelData _pow = _left; for(auto _i = 0; _i < std::abs(_right) - 1; _i++) _pow *= _left; 
-                pushDataToStack(_pow);
+                auto _right = GET_GDEL_NUMBER_DATA(popDataFromStack()); 
+                auto _left = GET_GDEL_NUMBER_DATA(popDataFromStack()); 
+                auto _pow = _left; 
+                for(auto _i = 0; _i < std::abs(_right) - 1; _i++) _pow *= _left; 
+                pushDataToStack(CREATE_GDEL_NUMBER(_pow));
                 break;
             }
 
