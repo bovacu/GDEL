@@ -9,4 +9,5 @@ releases
 releases/debug/GDEL-DEBUG
 .cache
 .ccls-cache
-third-party/libfort/lib/*cmake*
+build/third-party/*
+build/third-party

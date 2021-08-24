@@ -99,7 +99,10 @@
 			"__functional_base_03": "cpp",
 			"version": "cpp",
 			"*.inc": "cpp"
-		}
+		
+		},
+		"ccls.launch.command": "/usr/local/bin/ccls",
+		"ccls.misc.compilationDatabaseDirectory": "build"
 	},
 	"tasks": {
 		"version": "2.0.0",
