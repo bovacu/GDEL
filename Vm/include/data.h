@@ -3,6 +3,9 @@
 
 #include "common.h"
 
+typedef struct gdelRegister gdelRegister;
+typedef struct gdelStringRegister gdelStringRegister;
+
 /*
  * This represents the space of memory to store constants and data that are not instructions. It is represented as the right pile
  * inside the memBlock.h
@@ -11,7 +14,8 @@
 typedef enum {
     DT_BOOL,
     DT_NUMBER, 
-    DT_NULL
+    DT_NULL,
+    DT_REGISTER
 } gdelDataType;
 
 /*
@@ -54,12 +58,17 @@ typedef enum {
  *
  * What is that padding right there? Well, c and c++ compilers like variables to be spaced equially, so as the union is 8 bytes and the gdelDataType only 4, it adds those 4 extra bytes so 
  * everything is alligned.
+ *
+ *
+ * Update: 
+ *      Now it also contains a pointer to a register (GDEL version of objects). It is also inside the union, so no more bytes required for this. Same structure as before.
  */
 typedef struct {
     gdelDataType type;
     union {
         bool _bool;
         double _num;
+        gdelRegister* _reg;
     } data;
 } gdelData;
 
@@ -74,13 +83,15 @@ void initGdelDataPool(gdelDataPool* _dataPool);
 void writeToDataPool(gdelDataPool* _dataPool, gdelData _data);
 void freeDataPool(gdelDataPool* _dataPool);
 
-
+bool areGdelDataEqual(gdelData& _left, gdelData& _right);
 /*
  * Those macros return a gdelData variable with the corresponding data inside (constants, numbers, true, false...)
  */
 #define CREATE_GDEL_BOOL(_data)    ((gdelData){gdelDataType::DT_BOOL, {._bool = _data}})
 #define CREATE_GDEL_NULL           ((gdelData){gdelDataType::DT_NULL, {._num = 0}})
 #define CREATE_GDEL_NUMBER(_data)  ((gdelData){gdelDataType::DT_NUMBER, {._num = _data}})
+
+#define CREATE_GDEL_REGISTER(_data) ((gdelData){gdelDataType::DT_REGISTER, {._reg = (gdelRegister*)_data}})
 
 
 /*
@@ -89,6 +100,7 @@ void freeDataPool(gdelDataPool* _dataPool);
 #define GET_GDEL_BOOL_DATA(_gdelData)    (_gdelData.data._bool)
 #define GET_GDEL_NUMBER_DATA(_gdelData)  (_gdelData.data._num)
 
+#define GET_GDEL_REGISTER_DATA(_gdelData) (_gdelData.data._reg)
 
 /*
  * Those macros take an existing gdelData variable and tells if it is of an specific gdelDataType
@@ -96,5 +108,8 @@ void freeDataPool(gdelDataPool* _dataPool);
 #define IS_GDEL_BOOL(_gdelData)    ((_gdelData).type == gdelDataType::DT_BOOL)
 #define IS_GDEL_NUMBER(_gdelData)  ((_gdelData).type == gdelDataType::DT_NUMBER)
 #define IS_GDEL_NULL(_gdelData)    ((_gdelData).type == gdelDataType::DT_NULL)
+
+#define IS_GDEL_REGISTER(_gdelData) ((_gdelData).type == gdelDataType::DT_REGISTER)
+                                            
 
 #endif // __VALUES_H__

@@ -1,14 +1,23 @@
+#include <cmath>
+#include <sstream>
+#include <iostream>
+#include <string>
+
 #include "Vm/include/vm.h"
 #include "Vm/include/common.h"
 #include "Vm/include/debug.h"
 #include "Vm/include/compiler.h"
-#include <cmath>
-#include <iostream>
-#include <string>
+#include "Vm/include/register.h"
+#include "Vm/include//memory.h"
+
+#define THROW_GDEL_ERROR(_message)  std::stringstream _error; \
+                                    _error << _message;       \
+                                    runtimeError(_error.str().c_str())
 
 void gdelVm::init() {
     this->compiler = new gdelCompiler();
     resetStack();
+    this->registerPtr = nullptr;
 }
 
 gdelProgramResult gdelVm::run(const char* _code) {
@@ -29,6 +38,7 @@ gdelProgramResult gdelVm::run(const char* _code) {
 }
 
 void gdelVm::end() {
+    freeRegisters();
     delete this->compiler;
 }
 
@@ -148,12 +158,9 @@ gdelProgramResult gdelVm::runGdelVm() {
 
     #define BINARY_OP(_gdelDataType, _op)                                                                           \
        if(!IS_GDEL_NUMBER(peek(0)) || !IS_GDEL_NUMBER(peek(1))) {                                                   \
-            std::string _error = "Error while binary operation, both operands must be numbers and got gdelDataType' ";\
-            _error.append(std::to_string((int)peek(0).type));                                                       \
-            _error.append("' and gdelDataType '");                                                                  \
-            _error.append(std::to_string((int)peek(1).type));                                                       \
-            _error.push_back('\'');                                                                                 \
-            runtimeError(_error.c_str());                                                                           \
+            THROW_GDEL_ERROR( "Error while binary operation, both operands must be numbers and got gdelDataType '"  \
+                              << std::to_string((int)peek(0).type) << "' and gdelDataType '"                        \
+                              << std::to_string((int)peek(1).type) << "'");                                         \
             return gdelProgramResult::PROGRAM_RUNTIME_ERROR;                                                        \
         }                                                                                                           \
                                                                                                                     \
@@ -186,7 +193,19 @@ gdelProgramResult gdelVm::runGdelVm() {
                     printDebug(&_blockInfoTable, &_byteCodeTable, &_dataPoolTable, &_stackTable);
                 #endif
                 gdelData _data = popDataFromStack();
-                std::cout << GET_GDEL_NUMBER_DATA(_data) << std::endl;
+                switch(_data.type) {
+                    case gdelDataType::DT_BOOL: {
+                        if(GET_GDEL_BOOL_DATA(_data))
+                            std::cout << "true" << std::endl;
+                        else
+                            std::cout << "false" << std::endl;
+                        break;
+                    }
+
+                    case gdelDataType::DT_NUMBER: std::cout << GET_GDEL_NUMBER_DATA(_data) << std::endl; break;
+                    case gdelDataType::DT_NULL: std::cout << "null" << std::endl; break;
+                    case gdelDataType::DT_REGISTER: printRegister(_data);
+                }
                 return gdelProgramResult::PROGRAM_OK;
             }
 
@@ -204,7 +223,28 @@ gdelProgramResult gdelVm::runGdelVm() {
             /*
              * Bytes: 1
             */
-            case gdelOpCode::OP_ADD:     BINARY_OP(CREATE_GDEL_NUMBER, +); break;
+            case gdelOpCode::OP_FALSE: pushDataToStack(CREATE_GDEL_BOOL(false));    break;
+            case gdelOpCode::OP_NULL:  pushDataToStack(CREATE_GDEL_NULL);           break;
+            case gdelOpCode::OP_TRUE:  pushDataToStack(CREATE_GDEL_BOOL(true));     break;
+
+            /*
+             * Bytes: 1
+            */
+            case gdelOpCode::OP_ADD: {
+                auto _peekLeft = peek(0);
+                auto _peekRight = peek(1);
+
+                if(IS_GDEL_STRING(_peekLeft) && IS_GDEL_STRING(_peekRight)) {
+                    concatGdelStrings();
+                } else if(IS_GDEL_NUMBER(_peekLeft) && IS_GDEL_NUMBER(_peekRight)) {
+                    BINARY_OP(CREATE_GDEL_NUMBER, +); break;
+                } else {
+                    THROW_GDEL_ERROR("Error adding type '" << std::to_string((int)_peekLeft.type) << "' and type '" << std::to_string((int)_peekRight.type) << "'");
+                    return gdelProgramResult::PROGRAM_RUNTIME_ERROR;
+                }
+
+                break;
+            }
             case gdelOpCode::OP_SUB:     BINARY_OP(CREATE_GDEL_NUMBER, -); break;
             case gdelOpCode::OP_MUL:     BINARY_OP(CREATE_GDEL_NUMBER, *); break;
             case gdelOpCode::OP_DIV:     BINARY_OP(CREATE_GDEL_NUMBER, /); break;
@@ -212,17 +252,6 @@ gdelProgramResult gdelVm::runGdelVm() {
                 auto _right = GET_GDEL_NUMBER_DATA(popDataFromStack());
                 auto _left = GET_GDEL_NUMBER_DATA(popDataFromStack());
                 pushDataToStack(CREATE_GDEL_NUMBER(std::fmod(_left, _right)));
-                break;
-            }
-            case gdelOpCode::OP_NEGATE : {
-                if(!IS_GDEL_NUMBER(peek(0))) {
-                    std::string _error = "Error while negating, operands must be bool or number but got: gdelDataType '";
-                    _error.append(std::to_string((int)peek(0).type));
-                    _error.push_back('\'');
-                    runtimeError(_error.c_str());
-                    return gdelProgramResult::PROGRAM_RUNTIME_ERROR;
-                }
-                pushDataToStack(CREATE_GDEL_NUMBER(-GET_GDEL_NUMBER_DATA(popDataFromStack())));
                 break;
             }
             case gdelOpCode::OP_POW: {
@@ -234,6 +263,36 @@ gdelProgramResult gdelVm::runGdelVm() {
                 break;
             }
 
+            /*
+             * Bytes: 1
+            */
+            case gdelOpCode::OP_NOT:
+            case gdelOpCode::OP_NEGATE : {
+                auto _peek = peek(0);
+                if(IS_GDEL_NUMBER(_peek)) {
+                    pushDataToStack(CREATE_GDEL_NUMBER(-GET_GDEL_NUMBER_DATA(popDataFromStack())));
+                } else if(IS_GDEL_BOOL(_peek) || IS_GDEL_NULL(_peek)) {
+                    auto _notValue = IS_GDEL_NULL(_peek) || (IS_GDEL_BOOL(_peek) && !GET_GDEL_BOOL_DATA(_peek));
+                    pushDataToStack(CREATE_GDEL_BOOL(_notValue));
+                } else {
+                    std::string _error = "Error while negating, operands must be bool or number but got: gdelDataType '";
+                    _error.append(std::to_string((int)peek(0).type));
+                    _error.push_back('\'');
+                    runtimeError(_error.c_str());
+                    return gdelProgramResult::PROGRAM_RUNTIME_ERROR;
+                }
+                break;
+            }
+
+            case gdelOpCode::OP_EQUAL: {
+                gdelData _left = popDataFromStack();
+                gdelData _right = popDataFromStack();
+                pushDataToStack(CREATE_GDEL_BOOL(areGdelDataEqual(_left, _right)));
+                break;
+            }
+            case gdelOpCode::OP_GREAT: BINARY_OP(CREATE_GDEL_BOOL, >); break;
+            case gdelOpCode::OP_LESS: BINARY_OP(CREATE_GDEL_BOOL, <); break;
+
             default:
                 std::cout << "To default with: " << (int)_currentInstruction << std::endl;
                 break;
@@ -241,4 +300,37 @@ gdelProgramResult gdelVm::runGdelVm() {
     }
 
     #undef BINARY_OP
+}
+
+void gdelVm::concatGdelStrings() {
+    gdelStringRegister* _leftString = GET_GDEL_STRING(popDataFromStack());
+    gdelStringRegister* _rightString = GET_GDEL_STRING(popDataFromStack());
+    int _length = _leftString->length + _rightString->length;
+    char* _heapChars = GDEL_ALLOCATE_HEAP(char, _length + 1);
+    strcpy(_heapChars, _rightString->characters);
+    strcat(_heapChars, _leftString->characters);
+    _heapChars[_length] = '\0';
+
+ 
+    gdelStringRegister* _result = takeString(*this, _heapChars, _length);
+    pushDataToStack(CREATE_GDEL_REGISTER(_result));
+}
+
+void gdelVm::freeRegister(gdelRegister* _reg) {
+    switch (_reg->type) {
+      case gdelRegisterType::REG_STRING: {
+        gdelStringRegister* _stringReg = (gdelStringRegister*)_reg;
+        GDEL_FREE_BLOCK(char, _stringReg->characters, _stringReg->length + 1);
+        GDEL_FREE_HEAP(gdelRegister, _reg);
+        break;
+} }
+}
+
+void gdelVm::freeRegisters() {
+    gdelRegister* _reg = this->registerPtr;
+    while (_reg != nullptr) {
+        gdelRegister* _next = _reg->nextRegister;
+        freeRegister(_reg);
+        _reg = _next;
+    }
 }

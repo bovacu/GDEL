@@ -49,8 +49,10 @@ class gdelVm {
         gdelMemBlock* memBlock;
         gdelData stack[STACK_SIZE];
         gdelData* stackPtr;
-
         gdelCompiler* compiler;
+
+    public:
+        gdelRegister* registerPtr; // pointer to the top of the allocated registers
 
     public:
         void init();
@@ -64,6 +66,10 @@ class gdelVm {
         gdelData popDataFromStack();
         gdelData peek(int _depth);
         void runtimeError(const char* _error, ...);
+        void concatGdelStrings();
+
+        void freeRegisters();
+        void freeRegister(gdelRegister* _register);
 };
 
 #endif // __VM_H__

@@ -76,15 +76,15 @@ third-party/libfort/lib/CMakeFiles/fort.dir/fort.c.o: third-party/libfort/lib/CM
 third-party/libfort/lib/CMakeFiles/fort.dir/fort.c.o: ../third-party/libfort/lib/fort.c
 third-party/libfort/lib/CMakeFiles/fort.dir/fort.c.o: third-party/libfort/lib/CMakeFiles/fort.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object third-party/libfort/lib/CMakeFiles/fort.dir/fort.c.o"
-	cd /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/third-party/libfort/lib && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT third-party/libfort/lib/CMakeFiles/fort.dir/fort.c.o -MF CMakeFiles/fort.dir/fort.c.o.d -o CMakeFiles/fort.dir/fort.c.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib/fort.c
+	cd /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/third-party/libfort/lib && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT third-party/libfort/lib/CMakeFiles/fort.dir/fort.c.o -MF CMakeFiles/fort.dir/fort.c.o.d -o CMakeFiles/fort.dir/fort.c.o -c /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib/fort.c
 
 third-party/libfort/lib/CMakeFiles/fort.dir/fort.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/fort.dir/fort.c.i"
-	cd /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/third-party/libfort/lib && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib/fort.c > CMakeFiles/fort.dir/fort.c.i
+	cd /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/third-party/libfort/lib && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib/fort.c > CMakeFiles/fort.dir/fort.c.i
 
 third-party/libfort/lib/CMakeFiles/fort.dir/fort.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/fort.dir/fort.c.s"
-	cd /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/third-party/libfort/lib && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib/fort.c -o CMakeFiles/fort.dir/fort.c.s
+	cd /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/build/third-party/libfort/lib && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/borjavazquez/Documents/ProjectsFromScratch/GDEL/third-party/libfort/lib/fort.c -o CMakeFiles/fort.dir/fort.c.s
 
 # Object files for target fort
 fort_OBJECTS = \

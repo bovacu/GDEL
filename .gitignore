@@ -11,3 +11,4 @@ releases/debug/GDEL-DEBUG
 .ccls-cache
 build/third-party/*
 build/third-party
+third-party/libfort/lib

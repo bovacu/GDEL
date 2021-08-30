@@ -2,11 +2,11 @@
 #include "Vm/include/memBlock.h"
 #include "Vm/include/debug.h"
 #include "Vm/include/tokenizer.h"
+#include "Vm/include/register.h"
 #include <functional>
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
-#include <ostream>
 
 gdelParseRule gdelCompiler::rules[] = {
     [gdelTokenType::LEFT_PAREN]    = { &gdelCompiler::grouping,  NULL,                   PREC_NONE },
@@ -22,31 +22,31 @@ gdelParseRule gdelCompiler::rules[] = {
     [gdelTokenType::STAR]          = { NULL,                     &gdelCompiler::binary,  PREC_FACTOR },
     [gdelTokenType::PERCENTAGE]    = { NULL,                     &gdelCompiler::binary,  PREC_FACTOR },
     [gdelTokenType::POW]           = { NULL,                     &gdelCompiler::binary,  PREC_FACTOR },
-    [gdelTokenType::BANG]          = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::BANG_EQUAL]    = { NULL,                     NULL,                   PREC_NONE },
+    [gdelTokenType::BANG]          = { &gdelCompiler::unary,     NULL,                   PREC_NONE },
+    [gdelTokenType::BANG_EQUAL]    = { NULL,                     &gdelCompiler::binary,  PREC_EQUALITY },
     [gdelTokenType::EQUAL]         = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::EQUAL_EQUAL]   = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::GREATER]       = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::GREATER_EQUAL] = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::LESS]          = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::LESS_EQUAL]    = { NULL,                     NULL,                   PREC_NONE },
+    [gdelTokenType::EQUAL_EQUAL]   = { NULL,                     &gdelCompiler::binary,  PREC_EQUALITY },
+    [gdelTokenType::GREATER]       = { NULL,                     &gdelCompiler::binary,  PREC_COMPARISON },
+    [gdelTokenType::GREATER_EQUAL] = { NULL,                     &gdelCompiler::binary,  PREC_COMPARISON },
+    [gdelTokenType::LESS]          = { NULL,                     &gdelCompiler::binary,  PREC_COMPARISON },
+    [gdelTokenType::LESS_EQUAL]    = { NULL,                     &gdelCompiler::binary,  PREC_COMPARISON },
     [gdelTokenType::IDENTIFIER]    = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::STRING]        = { NULL,                     NULL,                   PREC_NONE },
+    [gdelTokenType::STRING]        = { &gdelCompiler::str,       NULL,                   PREC_NONE },
     [gdelTokenType::NUMBER]        = { &gdelCompiler::number,    NULL,                   PREC_NONE },
     [gdelTokenType::AND]           = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::REG]           = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::ELSE]          = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::FALSE]         = { NULL,                     NULL,                   PREC_NONE },
+    [gdelTokenType::FALSE]         = { &gdelCompiler::literal,   NULL,                   PREC_NONE },
     [gdelTokenType::FOR]           = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::FUNC]          = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::IF]            = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::NULL_]         = { NULL,                     NULL,                   PREC_NONE },
+    [gdelTokenType::NULL_]         = { &gdelCompiler::literal,   NULL,                   PREC_NONE },
     [gdelTokenType::OR]            = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::PRINT]         = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::RET]           = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::BASE]          = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::SELF]          = { NULL,                     NULL,                   PREC_NONE },
-    [gdelTokenType::TRUE]          = { NULL,                     NULL,                   PREC_NONE },
+    [gdelTokenType::TRUE]          = { &gdelCompiler::literal,   NULL,                   PREC_NONE },
     [gdelTokenType::VAR]           = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::LOOP]          = { NULL,                     NULL,                   PREC_NONE },
     [gdelTokenType::ERROR]         = { NULL,                     NULL,                   PREC_NONE },
@@ -114,11 +114,11 @@ gdelParseRule gdelCompiler::rules[] = {
  * This ends the compilation process which also prepares the gdelMemBlock for the Vm to execute, and it is finally like this:
  *
  *     ╔═════════════════╗
- *     ║   OP_ADD (*3)   ║
+ *   2 ║   OP_ADD (*3)   ║
  *     ╠═════════════════╣               ╔═════════════════╗
- *     ║  OP_CONST (*2)  ║ ────────────> ║        3        ║
+ *   1 ║  OP_CONST (*2)  ║ ────────────> ║        3        ║
  *     ╠═════════════════╣               ╠═════════════════╣
- *     ║  OP_CONST (*1)  ║ ────────────> ║        1        ║
+ *   0 ║  OP_CONST (*1)  ║ ────────────> ║        1        ║
  *     ╚═════════════════╝               ╚═════════════════╝
  *
  * And now the Vm will just simply execute what the gdelMemblock has inside
@@ -217,7 +217,6 @@ void gdelCompiler::parserPrecedence(gdelVm& _vm, gdelPrecedence _precedence) {
     ((*this).*_prefix)(_vm); // As this is a function pointer-to-member, we always need an object to invoke the function, in this case is 'this'
 
     while (_precedence <= getParseRule(this->parser.current.type)->precedence) {
-        std::cout << "precedence tested: " << _precedence << " against " << getParseRule(this->parser.current.type)->precedence << std::endl;
         advance();
         _rule = getParseRule(this->parser.previous.type);
         gdelParseFn _infix = _rule->infix;
@@ -227,6 +226,23 @@ void gdelCompiler::parserPrecedence(gdelVm& _vm, gdelPrecedence _precedence) {
 
 gdelParseRule* gdelCompiler::getParseRule(gdelTokenType _tokenType) {
     return &rules[_tokenType];
+}
+
+/*
+ * This function returns types of values that don't have many variants. Currently we have
+ *      - bool
+ *      - null
+ *
+ * But any new type can be added here, for example EMPTY for lists and dictionaries
+*/
+void gdelCompiler::literal(gdelVm& _vm) {
+    switch (this->parser.previous.type) {
+      case gdelTokenType::FALSE: emitByte(gdelOpCode::OP_FALSE); break;
+      case gdelTokenType::NULL_: emitByte(gdelOpCode::OP_NULL); break;
+      case gdelTokenType::TRUE: emitByte(gdelOpCode::OP_TRUE); break;
+      default:
+        return; // Unreachable.
+    }
 }
 
 void gdelCompiler::number(gdelVm& _vm) {
@@ -255,6 +271,7 @@ void gdelCompiler::unary(gdelVm& _vm) {
 
     switch (operatorType) {
         case gdelTokenType::MINUS: emitByte(gdelOpCode::OP_NEGATE); break;
+        case gdelTokenType::BANG:  emitByte(gdelOpCode::OP_NOT); break;
         default:
             return; // Unreachable.
     }
@@ -264,18 +281,32 @@ void gdelCompiler::binary(gdelVm& _vm) {
     gdelTokenType operatorType = this->parser.previous.type;
     gdelParseRule* rule = getParseRule(operatorType);
     parserPrecedence(_vm, (gdelPrecedence)(rule->precedence + 1));
-
+    
     switch (operatorType) {
-        case gdelTokenType::PLUS:          emitByte(gdelOpCode::OP_ADD);     break;
-        case gdelTokenType::MINUS:         emitByte(gdelOpCode::OP_SUB);     break;
-        case gdelTokenType::STAR:          emitByte(gdelOpCode::OP_MUL);     break;
-        case gdelTokenType::SLASH:         emitByte(gdelOpCode::OP_DIV);     break;
-        case gdelTokenType::PERCENTAGE:    emitByte(gdelOpCode::OP_PERCENT); break;
-        case gdelTokenType::POW:           emitByte(gdelOpCode::OP_POW); break;
+        case gdelTokenType::PLUS:          emitByte(gdelOpCode::OP_ADD);                            break;
+        case gdelTokenType::MINUS:         emitByte(gdelOpCode::OP_SUB);                            break;
+        case gdelTokenType::STAR:          emitByte(gdelOpCode::OP_MUL);                            break;
+        case gdelTokenType::SLASH:         emitByte(gdelOpCode::OP_DIV);                            break;
+        case gdelTokenType::PERCENTAGE:    emitByte(gdelOpCode::OP_PERCENT);                        break;
+        case gdelTokenType::POW:           emitByte(gdelOpCode::OP_POW);                            break;
+        case gdelTokenType::BANG_EQUAL:    emitBytes(gdelOpCode::OP_EQUAL, gdelOpCode::OP_NOT);     break;
+        case gdelTokenType::EQUAL_EQUAL:   emitByte(gdelOpCode::OP_EQUAL);                          break;
+        case gdelTokenType::GREATER:       emitByte(gdelOpCode::OP_GREAT);                          break;
+        case gdelTokenType::GREATER_EQUAL: emitBytes(gdelOpCode::OP_LESS, gdelOpCode::OP_NOT);      break;
+        case gdelTokenType::LESS:          emitByte(gdelOpCode::OP_LESS);                           break;
+        case gdelTokenType::LESS_EQUAL:    emitBytes(gdelOpCode::OP_GREAT, gdelOpCode::OP_NOT);     break;
         default: return; // Unreachable.
     }
 }
 
+/*
+ * +1 is to trim the first ' and - 2 is to trim the last ' 
+*/
+void gdelCompiler::str(gdelVm& _vm) {
+    auto _reg = copyString(_vm, this->parser.previous.start + 1, this->parser.previous.length - 2);
+    
+    emitConstant(_vm, CREATE_GDEL_REGISTER(_reg));
+}
 
 void gdelCompiler::emitBytes(byte _byte0, byte _byte1) {
     emitByte(_byte0);

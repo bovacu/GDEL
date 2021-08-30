@@ -1,4 +1,5 @@
 #include "Vm/include/debug.h"
+#include "Vm/include/register.h"
 
 #include <iostream>
 #include <iomanip>
@@ -63,7 +64,24 @@ static size_t constantInstruction(gdelMemBlock* _memBlock, const char* _instruct
 	std::string _val(_instructionName);
     _val.append(" ("); _val.append(int_to_hex(_memBlock->byteCode[_byteCodeArrIndex])); _val.append(")");
     _byteCodeTable << ip(_byteCodeArrIndex).c_str() << _val.c_str() << "2" << ip(_constantAddrss).c_str() << fort::endr;
-    _dataPoolTable << ip(_constantAddrss).c_str() << std::to_string(GET_GDEL_NUMBER_DATA(_data)).c_str() << fort::endr;
+
+	std::string _dataStr;
+	switch(_data.type) {
+		case gdelDataType::DT_NUMBER: _dataStr = std::to_string(GET_GDEL_NUMBER_DATA(_data)); break;
+		case gdelDataType::DT_NULL: _dataStr = "null"; break;
+		case gdelDataType::DT_BOOL: GET_GDEL_BOOL_DATA(_data) ? _dataStr = "true" : _dataStr = "false";
+		case gdelDataType::DT_REGISTER: {
+			switch (GET_GDEL_REGISTER_TYPE(_data)) {
+			case gdelRegisterType::REG_STRING:
+				_dataStr = "'";
+				_dataStr.append(GET_GDEL_PTR_STRING(_data));
+				_dataStr.push_back('\'');
+				break;
+    		}
+		};
+	}
+
+    _dataPoolTable << ip(_constantAddrss).c_str() << _dataStr.c_str() << fort::endr;
     return _byteCodeArrIndex + 2;
 }
 
@@ -116,6 +134,24 @@ size_t disassembleGdelInstruction(gdelMemBlock* _memBlock, size_t _byteCodeArrIn
 			return simpleInstruction(_memBlock, "OP_MUL", _byteCodeArrIndex, _byteCodeTable);
 		case OP_DIV:
 			return simpleInstruction(_memBlock, "OP_DIV", _byteCodeArrIndex, _byteCodeTable);
+		case OP_POW:
+			return simpleInstruction(_memBlock, "OP_POW", _byteCodeArrIndex, _byteCodeTable);
+		case OP_PERCENT:
+			return simpleInstruction(_memBlock, "OP_MOD", _byteCodeArrIndex, _byteCodeTable);
+		case OP_NULL:
+        	return simpleInstruction(_memBlock, "OP_NULL", _byteCodeArrIndex, _byteCodeTable);
+      	case OP_TRUE:
+        	return simpleInstruction(_memBlock, "OP_TRUE", _byteCodeArrIndex, _byteCodeTable);
+      	case OP_FALSE:
+        	return simpleInstruction(_memBlock, "OP_FALSE", _byteCodeArrIndex, _byteCodeTable);
+		case OP_NOT:
+        	return simpleInstruction(_memBlock, "OP_NOT", _byteCodeArrIndex, _byteCodeTable);
+		case OP_EQUAL:
+        	return simpleInstruction(_memBlock, "OP_EQUAL", _byteCodeArrIndex, _byteCodeTable);
+		case OP_GREAT:
+        	return simpleInstruction(_memBlock, "OP_GREAT", _byteCodeArrIndex, _byteCodeTable);
+		case OP_LESS:
+        	return simpleInstruction(_memBlock, "OP_LESS", _byteCodeArrIndex, _byteCodeTable);
       	default:
 			std::string _val("Unknown");
 			_val.append(" ("); _val.append(int_to_hex(_currentInstruction)); _val.append(")");

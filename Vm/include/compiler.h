@@ -54,12 +54,16 @@ class gdelCompiler {
         void parserPrecedence(gdelVm& _vm, gdelPrecedence _precedence);
         gdelParseRule* getParseRule(gdelTokenType _tokenType);
 
+        void literal(gdelVm& _vm);
+
         void number(gdelVm& _vm);
             byte makeConstant(gdelVm& _vm, gdelData _data);
         void grouping(gdelVm& _vm);
         void unary(gdelVm& _vm);
 
         void binary(gdelVm& _vm);
+
+        void str(gdelVm& _vm);
 
         void emitByte(byte _byte);
         void emitBytes(byte _byte0, byte _byte1);

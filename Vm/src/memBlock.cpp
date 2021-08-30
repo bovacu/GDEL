@@ -52,7 +52,7 @@ size_t writeConstantToGdelMemBlock(gdelMemBlock* _memBlock, gdelData _data) {
  * our VM means to free the memory. It also frees the DataPool associated to the MemBlock.
 */
 void freeGdleMemBlock(gdelMemBlock* _memBlock) {
-    FREE_GDEL_MEM_BLOCK(uint8_t, _memBlock->byteCode, _memBlock->maxByteSize);
+    GDEL_FREE_BLOCK(uint8_t, _memBlock->byteCode, _memBlock->maxByteSize);
     freeDataPool(&_memBlock->dataPool);
     initGdelMemBlock(_memBlock);
 }

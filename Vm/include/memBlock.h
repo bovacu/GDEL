@@ -50,6 +50,13 @@ typedef enum {
     OP_DIV      = 0x06,
     OP_PERCENT  = 0x07,
     OP_POW      = 0x08,
+    OP_TRUE     = 0x09,
+    OP_FALSE    = 0x10,
+    OP_NULL     = 0x11,
+    OP_NOT      = 0x12,
+    OP_EQUAL    = 0x13,
+    OP_GREAT    = 0x14,
+    OP_LESS     = 0x15,
     TEST_ERROR  = 0x99
 } gdelOpCode;
 

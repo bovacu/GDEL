@@ -1,5 +1,6 @@
 #include "Vm/include/data.h"
 #include "Vm/include/memory.h"
+#include "Vm/include/register.h"
 
 /*
  * Those methods do basically the same as the memBlock.
@@ -21,6 +22,24 @@ void writeToDataPool(gdelDataPool* _dataPool, gdelData _data) {
 }
 
 void freeDataPool(gdelDataPool* _dataPool) {
-    FREE_GDEL_MEM_BLOCK(gdelData, _dataPool->pool, _dataPool->maxSize);
+    GDEL_FREE_BLOCK(gdelData, _dataPool->pool, _dataPool->maxSize);
     initGdelDataPool(_dataPool);
+}
+
+bool areGdelDataEqual(gdelData& _left, gdelData& _right) {
+    if(_left.type != _right.type) return false;
+
+    switch(_left.type) {
+        case gdelDataType::DT_BOOL:     return GET_GDEL_BOOL_DATA(_left) == GET_GDEL_BOOL_DATA(_right);
+        case gdelDataType::DT_NUMBER:   return GET_GDEL_NUMBER_DATA(_left) == GET_GDEL_NUMBER_DATA(_right);
+        case gdelDataType::DT_NULL:     return true;
+        case gdelDataType::DT_REGISTER: {
+            gdelStringRegister* _sLeft = GET_GDEL_STRING(_left);
+            gdelStringRegister* _sRight = GET_GDEL_STRING(_right);
+            return _sLeft->length == _sRight->length && strcmp(_sLeft->characters, _sRight->characters) == 0;
+        }
+    }
+
+    PRINT_LN_ERROR("No comparisson stablished for data type '" << _left.type << "'");
+    return false;
 }

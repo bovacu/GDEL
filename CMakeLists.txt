@@ -36,6 +36,7 @@ set(SRC_FILES   main.cpp
                 Vm/src/vm.cpp
                 Vm/src/tokenizer.cpp
                 Vm/src/compiler.cpp
+                Vm/src/register.cpp
             )
 
 add_executable (${PROJECT_NAME} ${SRC_FILES})
