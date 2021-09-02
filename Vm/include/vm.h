@@ -3,6 +3,7 @@
 
 #include "Vm/include/memBlock.h"
 #include "Vm/include/common.h"
+#include "Vm/include/hashTable.h"
 
 #define STACK_SIZE 256
 
@@ -49,6 +50,7 @@ class gdelVm {
         gdelMemBlock* memBlock;
         gdelData stack[STACK_SIZE];
         gdelData* stackPtr;
+        gdelHashTable stringPool;
         gdelCompiler* compiler;
 
     public:
@@ -58,6 +60,8 @@ class gdelVm {
         void init();
         void end();
         gdelProgramResult run(const char* _code);
+        void addStringToPool(gdelStringRegister* _string);
+        gdelStringRegister* findString(const char* _chars, int _length, uint32_t _hash);
 
     private:
         gdelProgramResult runGdelVm();
@@ -70,6 +74,8 @@ class gdelVm {
 
         void freeRegisters();
         void freeRegister(gdelRegister* _register);
+
+        bool isAnyType(const gdelData& _data, gdelDataType _types[]);
 };
 
 #endif // __VM_H__

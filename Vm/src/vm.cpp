@@ -60,6 +60,9 @@ gdelData gdelVm::peek(int _depth) {
     return this->stackPtr[-1 - _depth];
 }
 
+gdelStringRegister* gdelVm::findString(const char* _chars, int _length, uint32_t _hash) {
+    return this->stringPool.findString(_chars, _length, _hash);
+}
 
 void gdelVm::runtimeError(const char* format, ...) {
     va_list args;
@@ -231,8 +234,8 @@ gdelProgramResult gdelVm::runGdelVm() {
              * Bytes: 1
             */
             case gdelOpCode::OP_ADD: {
-                auto _peekLeft = peek(0);
-                auto _peekRight = peek(1);
+                auto _peekRight = peek(0);
+                auto _peekLeft = peek(1);
 
                 if(IS_GDEL_STRING(_peekLeft) && IS_GDEL_STRING(_peekRight)) {
                     concatGdelStrings();
@@ -275,10 +278,7 @@ gdelProgramResult gdelVm::runGdelVm() {
                     auto _notValue = IS_GDEL_NULL(_peek) || (IS_GDEL_BOOL(_peek) && !GET_GDEL_BOOL_DATA(_peek));
                     pushDataToStack(CREATE_GDEL_BOOL(_notValue));
                 } else {
-                    std::string _error = "Error while negating, operands must be bool or number but got: gdelDataType '";
-                    _error.append(std::to_string((int)peek(0).type));
-                    _error.push_back('\'');
-                    runtimeError(_error.c_str());
+                    THROW_GDEL_ERROR("Error while negating, operands must be bool or number but got: gdelDataType '" << std::to_string((int)peek(0).type) << "'");
                     return gdelProgramResult::PROGRAM_RUNTIME_ERROR;
                 }
                 break;
@@ -290,9 +290,34 @@ gdelProgramResult gdelVm::runGdelVm() {
                 pushDataToStack(CREATE_GDEL_BOOL(areGdelDataEqual(_left, _right)));
                 break;
             }
-            case gdelOpCode::OP_GREAT: BINARY_OP(CREATE_GDEL_BOOL, >); break;
-            case gdelOpCode::OP_LESS: BINARY_OP(CREATE_GDEL_BOOL, <); break;
+            case gdelOpCode::OP_GREAT: {
+                auto _peekRight = peek(0);
+                auto _peekLeft = peek(1);
+                if(IS_GDEL_STRING(_peekLeft) && IS_GDEL_STRING(_peekRight)) {
+                    pushDataToStack(CREATE_GDEL_BOOL(GET_GDEL_STRING(_peekLeft)->length > GET_GDEL_STRING(_peekRight)->length));
+                } else if(IS_GDEL_NUMBER(_peekLeft) && IS_GDEL_NUMBER(_peekRight)) {
+                    BINARY_OP(CREATE_GDEL_BOOL, >); 
+                } else {
+                    THROW_GDEL_ERROR("Error: comparisson >, <, >=, <= can only be used with comparable values, not type '" << _peekLeft.type << "' and '" << _peekRight.type << "'");
+                    return gdelProgramResult::PROGRAM_RUNTIME_ERROR;
+                }
 
+                break;
+            }
+            case gdelOpCode::OP_LESS: {
+                auto _peekRight = peek(0);
+                auto _peekLeft = peek(1);
+                if(IS_GDEL_STRING(_peekLeft) && IS_GDEL_STRING(_peekRight)) {
+                    pushDataToStack(CREATE_GDEL_BOOL(GET_GDEL_STRING(_peekLeft)->length < GET_GDEL_STRING(_peekRight)->length));
+                } else if(IS_GDEL_NUMBER(_peekLeft) && IS_GDEL_NUMBER(_peekRight)) {
+                    BINARY_OP(CREATE_GDEL_BOOL, <); 
+                } else {
+                    THROW_GDEL_ERROR("Error: comparisson >, <, >=, <= can only be used with comparable values, not type '" << _peekLeft.type << "' and '" << _peekRight.type << "'");
+                    return gdelProgramResult::PROGRAM_RUNTIME_ERROR;
+                }
+
+                break;
+            }
             default:
                 std::cout << "To default with: " << (int)_currentInstruction << std::endl;
                 break;
@@ -318,12 +343,13 @@ void gdelVm::concatGdelStrings() {
 
 void gdelVm::freeRegister(gdelRegister* _reg) {
     switch (_reg->type) {
-      case gdelRegisterType::REG_STRING: {
-        gdelStringRegister* _stringReg = (gdelStringRegister*)_reg;
-        GDEL_FREE_BLOCK(char, _stringReg->characters, _stringReg->length + 1);
-        GDEL_FREE_HEAP(gdelRegister, _reg);
-        break;
-} }
+        case gdelRegisterType::REG_STRING: {
+            gdelStringRegister* _stringReg = (gdelStringRegister*)_reg;
+            GDEL_FREE_BLOCK(char, _stringReg->characters, _stringReg->length + 1);
+            GDEL_FREE_HEAP(gdelRegister, _reg);
+            break;
+        }
+    }
 }
 
 void gdelVm::freeRegisters() {
@@ -332,5 +358,18 @@ void gdelVm::freeRegisters() {
         gdelRegister* _next = _reg->nextRegister;
         freeRegister(_reg);
         _reg = _next;
-    }
+    } 
+}
+
+bool gdelVm::isAnyType(const gdelData& _data, gdelDataType _types[]) {
+    auto _size = sizeof(*_types) / sizeof(_types[0]);
+    bool _is = false;
+    for(auto _i = 0; _i < _size; _i++)
+        _is = _types[_i] | _data.type;
+    
+    return _is;
+}
+
+void gdelVm::addStringToPool(gdelStringRegister* _string) {
+    stringPool.addEntry(_string, CREATE_GDEL_NULL);
 }

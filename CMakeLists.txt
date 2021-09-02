@@ -37,6 +37,7 @@ set(SRC_FILES   main.cpp
                 Vm/src/tokenizer.cpp
                 Vm/src/compiler.cpp
                 Vm/src/register.cpp
+                Vm/src/hashTable.cpp
             )
 
 add_executable (${PROJECT_NAME} ${SRC_FILES})

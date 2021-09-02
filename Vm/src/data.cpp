@@ -33,11 +33,7 @@ bool areGdelDataEqual(gdelData& _left, gdelData& _right) {
         case gdelDataType::DT_BOOL:     return GET_GDEL_BOOL_DATA(_left) == GET_GDEL_BOOL_DATA(_right);
         case gdelDataType::DT_NUMBER:   return GET_GDEL_NUMBER_DATA(_left) == GET_GDEL_NUMBER_DATA(_right);
         case gdelDataType::DT_NULL:     return true;
-        case gdelDataType::DT_REGISTER: {
-            gdelStringRegister* _sLeft = GET_GDEL_STRING(_left);
-            gdelStringRegister* _sRight = GET_GDEL_STRING(_right);
-            return _sLeft->length == _sRight->length && strcmp(_sLeft->characters, _sRight->characters) == 0;
-        }
+        case gdelDataType::DT_REGISTER: return GET_GDEL_REGISTER_DATA(_left) == GET_GDEL_REGISTER_DATA(_right);
     }
 
     PRINT_LN_ERROR("No comparisson stablished for data type '" << _left.type << "'");

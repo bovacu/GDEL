@@ -44,6 +44,7 @@ struct gdelRegister {
 struct gdelStringRegister : gdelRegister {
     int length;
     char* characters; // Heap allocated so we don't have to worry about it's size
+    uint32_t hash;
 };
 
 #define GET_GDEL_REGISTER_TYPE(_register) (GET_GDEL_REGISTER_DATA(_register)->type)
