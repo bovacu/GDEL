@@ -122,36 +122,44 @@ size_t disassembleGdelInstruction(gdelMemBlock* _memBlock, size_t _byteCodeArrIn
     switch (_currentInstruction) {
       	case gdelOpCode::OP_RETURN:
         	return simpleInstruction(_memBlock, "OP_RETURN", _byteCodeArrIndex, _byteCodeTable);
-      	case OP_CONST:
+      	case gdelOpCode::OP_CONST:
         	return constantInstruction(_memBlock, "OP_CONSTANT", _byteCodeArrIndex, _byteCodeTable, _dataPoolTable);
-		case OP_NEGATE:
+		case gdelOpCode::OP_NEGATE:
 			return simpleInstruction(_memBlock, "OP_NEGATE", _byteCodeArrIndex, _byteCodeTable);
-		case OP_ADD:
+		case gdelOpCode::OP_ADD:
 			return simpleInstruction(_memBlock, "OP_ADD", _byteCodeArrIndex, _byteCodeTable);
-		case OP_SUB:
+		case gdelOpCode::OP_SUB:
 			return simpleInstruction(_memBlock, "OP_SUB", _byteCodeArrIndex, _byteCodeTable);
-		case OP_MUL:
+		case gdelOpCode::OP_MUL:
 			return simpleInstruction(_memBlock, "OP_MUL", _byteCodeArrIndex, _byteCodeTable);
-		case OP_DIV:
+		case gdelOpCode::OP_DIV:
 			return simpleInstruction(_memBlock, "OP_DIV", _byteCodeArrIndex, _byteCodeTable);
-		case OP_POW:
+		case gdelOpCode::OP_POW:
 			return simpleInstruction(_memBlock, "OP_POW", _byteCodeArrIndex, _byteCodeTable);
-		case OP_PERCENT:
+		case gdelOpCode::OP_PERCENT:
 			return simpleInstruction(_memBlock, "OP_MOD", _byteCodeArrIndex, _byteCodeTable);
-		case OP_NULL:
+		case gdelOpCode::OP_NULL:
         	return simpleInstruction(_memBlock, "OP_NULL", _byteCodeArrIndex, _byteCodeTable);
-      	case OP_TRUE:
+      	case gdelOpCode::OP_TRUE:
         	return simpleInstruction(_memBlock, "OP_TRUE", _byteCodeArrIndex, _byteCodeTable);
-      	case OP_FALSE:
+      	case gdelOpCode::OP_FALSE:
         	return simpleInstruction(_memBlock, "OP_FALSE", _byteCodeArrIndex, _byteCodeTable);
-		case OP_NOT:
+		case gdelOpCode::OP_NOT:
         	return simpleInstruction(_memBlock, "OP_NOT", _byteCodeArrIndex, _byteCodeTable);
-		case OP_EQUAL:
+		case gdelOpCode::OP_EQUAL:
         	return simpleInstruction(_memBlock, "OP_EQUAL", _byteCodeArrIndex, _byteCodeTable);
-		case OP_GREAT:
+		case gdelOpCode::OP_GREAT:
         	return simpleInstruction(_memBlock, "OP_GREAT", _byteCodeArrIndex, _byteCodeTable);
-		case OP_LESS:
+		case gdelOpCode::OP_LESS:
         	return simpleInstruction(_memBlock, "OP_LESS", _byteCodeArrIndex, _byteCodeTable);
+		case gdelOpCode::OP_PRINT:
+			return simpleInstruction(_memBlock, "OP_PRINT", _byteCodeArrIndex, _byteCodeTable);
+		case gdelOpCode::OP_POP:
+			return simpleInstruction(_memBlock, "OP_POP", _byteCodeArrIndex, _byteCodeTable);
+		case gdelOpCode::OP_DEFINE_GLOBAL_VAR:
+			return simpleInstruction(_memBlock, "OP_DEF_GLOB_VAR", _byteCodeArrIndex, _byteCodeTable);
+		case gdelOpCode::OP_GET_GLOBAL_VAR:
+			return simpleInstruction(_memBlock, "OP_GET_GLOB_VAR", _byteCodeArrIndex, _byteCodeTable);
       	default:
 			std::string _val("Unknown");
 			_val.append(" ("); _val.append(int_to_hex(_currentInstruction)); _val.append(")");

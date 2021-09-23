@@ -39,3 +39,19 @@ bool areGdelDataEqual(gdelData& _left, gdelData& _right) {
     PRINT_LN_ERROR("No comparisson stablished for data type '" << _left.type << "'");
     return false;
 }
+
+void printGdelData(const gdelData& _data) {
+    switch(_data.type) {
+        case gdelDataType::DT_BOOL: {
+            if(GET_GDEL_BOOL_DATA(_data))
+                std::cout << "true" << std::endl;
+            else
+                std::cout << "false" << std::endl;
+            break;
+        }
+
+        case gdelDataType::DT_NUMBER: std::cout << GET_GDEL_NUMBER_DATA(_data) << std::endl; break;
+        case gdelDataType::DT_NULL: std::cout << "null" << std::endl; break;
+        case gdelDataType::DT_REGISTER: printRegister(_data);
+    }
+}

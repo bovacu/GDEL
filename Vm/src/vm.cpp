@@ -173,6 +173,9 @@ gdelProgramResult gdelVm::runGdelVm() {
             pushDataToStack(_gdelDataType(_left _op _right));                                                       \
         } while (false)
 
+    #define READ_CONSTANT() (this->memBlock->dataPool.pool[*this->ip++])
+    #define READ_STRING() (GET_GDEL_STRING(READ_CONSTANT()))
+
     #ifdef DEBUG_EXECUTION
         fort::utf8_table _blockInfoTable;
         fort::utf8_table _byteCodeTable;
@@ -195,20 +198,8 @@ gdelProgramResult gdelVm::runGdelVm() {
                 #ifdef DEBUG_EXECUTION
                     printDebug(&_blockInfoTable, &_byteCodeTable, &_dataPoolTable, &_stackTable);
                 #endif
-                gdelData _data = popDataFromStack();
-                switch(_data.type) {
-                    case gdelDataType::DT_BOOL: {
-                        if(GET_GDEL_BOOL_DATA(_data))
-                            std::cout << "true" << std::endl;
-                        else
-                            std::cout << "false" << std::endl;
-                        break;
-                    }
-
-                    case gdelDataType::DT_NUMBER: std::cout << GET_GDEL_NUMBER_DATA(_data) << std::endl; break;
-                    case gdelDataType::DT_NULL: std::cout << "null" << std::endl; break;
-                    case gdelDataType::DT_REGISTER: printRegister(_data);
-                }
+                // gdelData _data = popDataFromStack();
+                // printGdelData(_data);
                 return gdelProgramResult::PROGRAM_OK;
             }
 
@@ -218,7 +209,7 @@ gdelProgramResult gdelVm::runGdelVm() {
              *      - Address of the const stored inside the data pool
             */
             case gdelOpCode::OP_CONST: {
-                gdelData _const = this->memBlock->dataPool.pool[*this->ip++];
+                gdelData _const = READ_CONSTANT();
                 pushDataToStack(_const);
                 break;
             }
@@ -318,9 +309,36 @@ gdelProgramResult gdelVm::runGdelVm() {
 
                 break;
             }
+            
+            /*
+             * Bytes: 1
+            */
+            case gdelOpCode::OP_PRINT:  printGdelData(popDataFromStack()); break;
+            case gdelOpCode::OP_POP:    popDataFromStack(); break;
+
+            case gdelOpCode::OP_DEFINE_GLOBAL_VAR: {
+                gdelStringRegister* _name = READ_STRING();
+                this->globalVars.addEntry(_name, peek(0));
+                popDataFromStack();
+                break;
+            }
+
+            case gdelOpCode::OP_GET_GLOBAL_VAR: {
+                gdelStringRegister* _name = READ_STRING();
+                gdelData* _data = this->globalVars.getEntry(_name);
+                if(!_data) {
+                    THROW_GDEL_ERROR("Error: undefined variable '" << _name->characters <<"'");
+                    return gdelProgramResult::PROGRAM_RUNTIME_ERROR;
+                }
+
+                pushDataToStack(*_data);
+                break;
+            }
+
             default:
                 std::cout << "To default with: " << (int)_currentInstruction << std::endl;
                 break;
+
         }
     }
 

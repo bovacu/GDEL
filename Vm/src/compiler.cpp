@@ -30,7 +30,7 @@ gdelParseRule gdelCompiler::rules[] = {
     [gdelTokenType::GREATER_EQUAL] = { NULL,                     &gdelCompiler::binary,  PREC_COMPARISON },
     [gdelTokenType::LESS]          = { NULL,                     &gdelCompiler::binary,  PREC_COMPARISON },
     [gdelTokenType::LESS_EQUAL]    = { NULL,                     &gdelCompiler::binary,  PREC_COMPARISON },
-    [gdelTokenType::IDENTIFIER]    = { NULL,                     NULL,                   PREC_NONE },
+    [gdelTokenType::IDENTIFIER]    = { &gdelCompiler::variable,  NULL,                   PREC_NONE },
     [gdelTokenType::STRING]        = { &gdelCompiler::str,       NULL,                   PREC_NONE },
     [gdelTokenType::NUMBER]        = { &gdelCompiler::number,    NULL,                   PREC_NONE },
     [gdelTokenType::AND]           = { NULL,                     NULL,                   PREC_NONE },
@@ -131,11 +131,74 @@ bool gdelCompiler::compile(gdelVm& _vm, const char* _code, gdelMemBlock* _memBlo
     this->parser.hadError = false;
 
     advance();
-    expression(_vm);
+    while(!matchToken(gdelTokenType::EOF_)) {
+        declaration(_vm);
+    }
     consume(gdelTokenType::EOF_, "Expect end of expression.");
 
     endCompiler();
     return !this->parser.hadError;
+}
+
+void gdelCompiler::declaration(gdelVm& _vm) {
+    if(matchToken(gdelTokenType::VAR))
+        varDeclaration(_vm);
+    else
+        statement(_vm);
+    
+    if(this->parser.panicMode) synchronize(_vm);
+}
+
+void gdelCompiler::statement(gdelVm& _vm) {
+    if(matchToken(gdelTokenType::PRINT))
+        printStatement(_vm);
+    else
+        expressionStatement(_vm);
+}
+
+void gdelCompiler::variable(gdelVm& _vm) {
+    namedVar(_vm, this->parser.previous);
+}
+
+void gdelCompiler::varDeclaration(gdelVm& _vm) {
+    uint8_t _global = parseVariable(_vm, "Expect variable name.");
+
+    if (matchToken(gdelTokenType::EQUAL))
+        expression(_vm);
+    else 
+        emitByte(gdelOpCode::OP_NULL);
+    
+    // consume(TOKEN_SEMICOLON, "Expect ';' after variable declaration.");
+
+    defineVar(_vm, _global);
+}
+
+void gdelCompiler::defineVar(gdelVm& _vm, byte _varAddress) {
+    emitBytes(gdelOpCode::OP_DEFINE_GLOBAL_VAR, _varAddress);
+}
+
+void gdelCompiler::namedVar(gdelVm& _vm, gdelToken _token) {
+    byte _arg = emitIdetifierConstant(_vm, &_token);
+    emitBytes(gdelOpCode::OP_GET_GLOBAL_VAR, _arg);
+}
+
+void gdelCompiler::expressionStatement(gdelVm& _vm) {
+    expression(_vm);
+    emitByte(gdelOpCode::OP_POP);
+}
+
+void gdelCompiler::expression(gdelVm& _vm) {
+    parserPrecedence(_vm, gdelPrecedence::PREC_ASSIGNMENT);
+}
+
+bool gdelCompiler::matchToken(gdelTokenType _tokenType) {
+    if(!checkToken(_tokenType)) return false;
+    advance();
+    return true;
+}
+
+bool gdelCompiler::checkToken(gdelTokenType _tokenType) {
+    return parser.current.type == _tokenType;
 }
 
 void gdelCompiler::advance() {
@@ -147,9 +210,6 @@ void gdelCompiler::advance() {
     }
 }
 
-void gdelCompiler::expression(gdelVm& _vm) {
-    parserPrecedence(_vm, gdelPrecedence::PREC_ASSIGNMENT);
-}
 
 void gdelCompiler::consume(gdelTokenType _tokenType, const char* _errorMessage) {
     if (this->parser.current.type == _tokenType) {
@@ -222,6 +282,11 @@ void gdelCompiler::parserPrecedence(gdelVm& _vm, gdelPrecedence _precedence) {
         gdelParseFn _infix = _rule->infix;
         ((*this).*_infix)(_vm); // Same as above
     }
+}
+
+byte gdelCompiler::parseVariable(gdelVm& _vm, const char* _errorMessage) {
+    consume(gdelTokenType::IDENTIFIER, _errorMessage);
+    return emitIdetifierConstant(_vm, &this->parser.previous);
 }
 
 gdelParseRule* gdelCompiler::getParseRule(gdelTokenType _tokenType) {
@@ -321,10 +386,47 @@ void gdelCompiler::emitConstant(gdelVm& _vm, gdelData _data) {
     emitBytes(gdelOpCode::OP_CONST, makeConstant(_vm, _data));
 }
 
+byte gdelCompiler::emitIdetifierConstant(gdelVm& _vm, gdelToken* _token) {
+    return makeConstant(_vm, CREATE_GDEL_REGISTER(copyString(_vm, _token->start, _token->length)));
+}
+
 void gdelCompiler::emitReturn() {
     emitByte(gdelOpCode::OP_RETURN);
 }
 
 void gdelCompiler::endCompiler() {
     emitReturn();
+}
+
+
+void gdelCompiler::synchronize(gdelVm& _vm) {
+    this->parser.panicMode = false;
+
+    while (this->parser.current.type != gdelTokenType::EOF_) {
+        // if (this->parser.previous.type == gdelTokenType::SEMICOLON) return;
+        switch (this->parser.current.type) {
+        case gdelTokenType::REG:
+        case gdelTokenType::FUNC:
+        case gdelTokenType::VAR:
+        case gdelTokenType::FOR:
+        case gdelTokenType::IF:
+        case gdelTokenType::LOOP:
+        case gdelTokenType::PRINT:
+        case gdelTokenType::RET:
+            return;
+
+        default:
+            ; // Do nothing.
+        }
+
+        advance();
+    }
+}
+
+
+
+void gdelCompiler::printStatement(gdelVm& _vm) {
+    expression(_vm);
+    // consume(gdelTokenType::SEMICOLON, "Expected ';' at the end of the expression");
+    emitByte(gdelOpCode::OP_PRINT);
 }

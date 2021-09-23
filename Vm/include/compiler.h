@@ -44,7 +44,16 @@ class gdelCompiler {
         bool compile(gdelVm& _vm, const char* _code, gdelMemBlock* _memBlock);
 
     private:
+        bool matchToken(gdelTokenType _tokenType);
+        bool checkToken(gdelTokenType _tokenType);
         void advance();
+        void declaration(gdelVm& _vm);
+        void statement(gdelVm& _vm);
+        void variable(gdelVm& _vm);
+        void varDeclaration(gdelVm& _vm);
+        void defineVar(gdelVm& _vm, byte _varAddress);
+        void namedVar(gdelVm& _vm, gdelToken _token);
+        void expressionStatement(gdelVm& _vm);
         void expression(gdelVm& _vm);
         void consume(gdelTokenType _tokenType, const char* _errorMessage);
         void errorAtCurrent(const char* _errorMessage);
@@ -52,12 +61,13 @@ class gdelCompiler {
         void error(const char* _errorMessage);
 
         void parserPrecedence(gdelVm& _vm, gdelPrecedence _precedence);
+        byte parseVariable(gdelVm& _vm, const char* _errorMessage);
         gdelParseRule* getParseRule(gdelTokenType _tokenType);
 
         void literal(gdelVm& _vm);
 
         void number(gdelVm& _vm);
-            byte makeConstant(gdelVm& _vm, gdelData _data);
+        byte makeConstant(gdelVm& _vm, gdelData _data);
         void grouping(gdelVm& _vm);
         void unary(gdelVm& _vm);
 
@@ -68,9 +78,15 @@ class gdelCompiler {
         void emitByte(byte _byte);
         void emitBytes(byte _byte0, byte _byte1);
         void emitConstant(gdelVm& _vm, gdelData _data);
+        byte emitIdetifierConstant(gdelVm& _vm, gdelToken* _token);
         void emitReturn();
-
         void endCompiler();
+
+
+        void synchronize(gdelVm& _vm);
+
+
+        void printStatement(gdelVm& _vm);
 };
 
 #endif // __COMPILER_H__

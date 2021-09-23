@@ -41,23 +41,27 @@
  *          operand                    operand  dataIndex -> to look inside gdelMemBlock->dataPool
 */
 typedef enum {
-    OP_RETURN   = 0x00,
-    OP_CONST    = 0x01,
-    OP_NEGATE   = 0x02,
-    OP_ADD      = 0x03,
-    OP_SUB      = 0x04,
-    OP_MUL      = 0x05,
-    OP_DIV      = 0x06,
-    OP_PERCENT  = 0x07,
-    OP_POW      = 0x08,
-    OP_TRUE     = 0x09,
-    OP_FALSE    = 0x10,
-    OP_NULL     = 0x11,
-    OP_NOT      = 0x12,
-    OP_EQUAL    = 0x13,
-    OP_GREAT    = 0x14,
-    OP_LESS     = 0x15,
-    TEST_ERROR  = 0x99
+    OP_RETURN            = 0x00,
+    OP_CONST             = 0x01,
+    OP_NEGATE            = 0x02,
+    OP_ADD               = 0x03,
+    OP_SUB               = 0x04,
+    OP_MUL               = 0x05,
+    OP_DIV               = 0x06,
+    OP_PERCENT           = 0x07,
+    OP_POW               = 0x08,
+    OP_TRUE              = 0x09,
+    OP_FALSE             = 0x10,
+    OP_NULL              = 0x11,
+    OP_NOT               = 0x12,
+    OP_EQUAL             = 0x13,
+    OP_GREAT             = 0x14,
+    OP_LESS              = 0x15,
+    OP_PRINT             = 0x16,
+    OP_POP               = 0x17,
+    OP_DEFINE_GLOBAL_VAR = 0x018,
+    OP_GET_GLOBAL_VAR    = 0x019,
+    TEST_ERROR           = 0x99
 } gdelOpCode;
 
 /*  This is the base for instruction allocation of our VM. We will store the instructions as a dynamic array of bytes:

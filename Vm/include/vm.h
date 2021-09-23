@@ -53,6 +53,8 @@ class gdelVm {
         gdelHashTable stringPool;
         gdelCompiler* compiler;
 
+        gdelHashTable globalVars;
+
     public:
         gdelRegister* registerPtr; // pointer to the top of the allocated registers
 

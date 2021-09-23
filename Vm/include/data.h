@@ -112,4 +112,6 @@ bool areGdelDataEqual(gdelData& _left, gdelData& _right);
 #define IS_GDEL_REGISTER(_gdelData) ((_gdelData).type == gdelDataType::DT_REGISTER)
                                             
 
+void printGdelData(const gdelData& _data);
+
 #endif // __VALUES_H__
